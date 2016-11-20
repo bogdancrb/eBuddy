@@ -1,0 +1,87 @@
+.chat_box {
+    position: fixed;
+    right: 20px;
+    bottom: 0;
+    width: 250px;
+}
+
+.chat_head {
+    background: #6d84b4;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+}
+
+.chat_body {
+    background: white;
+    height: 400px;
+    padding: 5px 0;
+}
+
+#friendslist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 290px;
+    height: 484px;
+}
+
+.list-content ul{
+    list-style-type: none;
+}
+
+.friend {
+    border-bottom: 1px solid #e7ebee;
+    position: relative;
+}
+
+.friend:hover {
+    background: #f1f4f6;
+    cursor: pointer;
+}
+
+.status {
+    background: #26c281;
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    right: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.friend .status.away {
+    background: #ffce54;
+}
+
+.friend .status.inactive {
+    background: #eaeef0;
+}
+
+
+.list-content .list-group .title {
+    background: #5bc0de;
+    border: 2px solid #DDDDDD;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.friend img {
+    height: 10%;
+    width: 10%;
+}
+.friend ul {
+    height: 10%;
+    width: 10%;
+}
+.prj-name {
+    color: #5bc0de;
+}
+
+.name {
+    color: #5bc0de;
+}

@@ -1,0 +1,140 @@
+body {
+    background-color: rgb(168, 238, 244);
+}
+
+.chat {
+    bottom: 0;
+    width: 250px
+}
+
+.chat .head {
+    background-color: #6d84b4;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    clear: both;
+    border-radius: 5px 5px 0 0;
+}
+
+.head_tools {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+}
+
+.chat .body {
+    border: 1px solid rgba(26, 48, 91, 0.3);
+    background-color: rgb(255, 255, 255);
+}
+
+.content ul {
+    list-style-type: none;
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.body.content {
+    min-height: 50px;
+}
+
+.btn-chat-tool {
+    padding: 5px;
+    font-size: 12px;
+    background: transparent;
+    color: #97a0b3;
+}
+
+.message {
+    font-size: 12px;
+    position: relative;
+    display: inline-block;
+    clear: both;
+    margin-bottom: 8px;
+    padding: 13px 14px;
+    vertical-align: top;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.message:before {
+    position: absolute;
+    top: 19px;
+    display: block;
+    width: 8px;
+    height: 6px;
+    content: '\00a0';
+    -moz-transform: rotate(29deg) skew(-35deg);
+    -ms-transform: rotate(29deg) skew(-35deg);
+    -webkit-transform: rotate(29deg) skew(-35deg);
+    transform: rotate(29deg) skew(-35deg);
+}
+
+.message_content {
+    max-width: 180px;
+    overflow-wrap: break-word;
+}
+
+.message.from {
+    float: left;
+    color: #1a1a1a;
+    background-color: #97a0b3;
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+    -moz-animation-name: slideFromLeft;
+    -webkit-animation-name: slideFromLeft;
+    animation-name: slideFromLeft;
+    margin-left: -30px;
+}
+
+.message.from:before {
+    left: -3px;
+    background-color: #97a0b3;
+}
+
+.message.to {
+    float: right;
+    color: #fff;
+    background-color: #00b0ff;
+    -webkit-align-self: flex-end;
+    align-self: flex-end;
+    -moz-animation-name: slideFromRight;
+    -webkit-animation-name: slideFromRight;
+    animation-name: slideFromRight;
+    margin-right: 10px;
+}
+
+.message.to:before {
+    right: -3px;
+    background-color: #00b0ff;
+}
+
+.list-group{
+    margin-bottom: 0;
+}
+
+.list-group-horizontal .list-group-item {
+    display: inline-block;
+    float: right;
+}
+.list-group-horizontal .list-group-item {
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 0;
+    margin-left:0;
+    margin-right: 20px;
+    padding: 0;
+}
+
+#chats_windows{
+    bottom: 0;
+    right: 300px;
+    position: fixed;
+    overflow:hidden;
+}
+
+.head_details img{
+    height: 10%;
+    width: 10%;
+}
