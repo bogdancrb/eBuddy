@@ -1,0 +1,142 @@
+/*@font-face {*/
+/*font-family: Bell Gothic Std;*/
+/*src: url("../fonts/bellgothicstd-bold.eot") !* EOT file for IE *!*/
+/*}*/
+/*@font-face {*/
+/*font-family: Bell Gothic Std;*/
+/*src: url("../fonts/bellgothicstd-bold.ttf") !* TTF file for CSS3 browsers *!*/
+/*}*/
+
+.post-body
+{
+    border: 2px solid #ededec;
+    border-radius: 6px;
+    padding: 20px;
+    padding-left: 45px;
+    padding-right: 0px;
+    margin-top: 50px;
+}
+
+.post-actions
+{
+    float: right;
+}
+
+table.post-containter
+{
+    margin-top: 20px;
+}
+
+table.post-containter td
+{
+    padding-right: 30px;
+}
+
+.post-separator
+{
+    width: 700px;
+}
+
+.post-separator hr
+{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ededec;
+    margin-top: 8px;
+}
+
+.post-comment-body,
+.post-add-comment-body
+{
+    padding-top: 15px;
+    padding-left: 55px;
+    padding-bottom: 15px;
+}
+
+.post-comment-body
+{
+    background-color: #ededec;
+    margin-top: -10px;
+}
+
+table.post-comment-container td,
+table.post-add-comment-container td
+{
+    padding-right: 35px;
+}
+
+.post-comment-time
+{
+    float: right;
+    padding-right: 40px;
+}
+
+.post-add-comment-body
+{
+    background-color: #39464e;
+    margin-bottom: 30px;
+}
+
+.post-add-comment-input
+{
+    width: 600px;
+}
+
+.post-actions .custom-responsive-action-img
+{
+    max-width: 20%;
+    padding-left: 10px;
+}
+
+.post-comment-actions .custom-responsive-action-img
+{
+    max-width: 32px;
+    padding-right: 10px;
+    padding-top: 15px;
+}
+
+.post-avatar img
+{
+    width: 75px;
+    height: 75px;
+    margin-top: -70px;
+}
+
+.post-comment-avatar img,
+.post-add-comment-avatar img
+{
+    width: 60px;
+    height: 60px;
+    border: 2px solid white;
+}
+
+.post-author, .post-comment-author
+{
+    font-family: 'Bell Gothic Std';
+}
+
+.post-author
+{
+    font-size: 1.5em;
+}
+
+.post-time
+{
+    color: #39464e;
+}
+
+.post-comment-author
+{
+    font-size: 1.1em;
+}
+
+.post-comment-time
+{
+    font-size: 0.85em;
+}
+
+.post-comment-content-text
+{
+    padding-top: 10px;
+}
