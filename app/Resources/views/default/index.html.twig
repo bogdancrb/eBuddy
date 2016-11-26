@@ -100,8 +100,23 @@
         <a id="button" class="btn" style="float: right" href="#prieteni">PRIETENI</a>
     </div>
     <div id="aboutMe">
-        <b>Informatii generale</b>
-        <i class="fa fa-graduation-cap" aria-hidden="true">Studiaza Calculatoare Romana la Automatica</i>
+        <div class="col-sm-4">
+            <center>
+                <br><br><b>Informatii generale</b><br><br><br>
+                <i class="fa fa-graduation-cap" aria-hidden="true"> Studiaza Calculatoare Romana la Automatica</i><br>
+                <i class="fa fa-map-marker" aria-hidden="true"> Lucuieste in Craiova</i><br>
+                <i class="fa fa-home" aria-hidden="true"> Din Bucuresti</i>
+            </center>
+        </div>
+        <div class="col-sm-4">
+            <div id="profiePicture" class="image-cropper">
+                <img id="rounded" alt="Profile" src="{{ asset('profile-picture.jpg') }}">
+            </div>
+            <b>Catalin Rotaru</b>
+        </div>
+        <div class="col-sm-4">
+            <b>Poze recente</b>
+        </div>
     </div>
 {% endblock %}
 
