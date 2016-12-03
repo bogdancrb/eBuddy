@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+{% block body %}
+
+
+    <nav class="navbar navbar-static-top navbar-default" role="navigation">
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <!-- Collect the nav links and other content for toggling -->
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <ul class="nav navbar-nav"><!-- Align to the left nav links, forms and other content -->
+                <li class=""><a href="#"><span class="fa fa-dashboard"></span> Dashboard</a></li>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Search" type="text">
+                        <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                    </div>
+                </form>
+            </ul>
+
+                <ul class="nav navbar-nav navbar-right"><!-- Align to the right nav links, forms and other content -->
+                    <li class="dropdown active open"><!-- Dropdown -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="true"><span
+                                    class="fa fa-user"></span> {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><span class="fa fa-user"></span> Profile</a></li>
+                            <li><a href="#"><span class="fa fa-cog"></span> Settings</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}"><span class="fa fa-sign-out"></span>
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
+        </div>
+    </nav>
+    {{ block('fos_user_content') }}
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
+
+
+{% if app.request.hasPreviousSession %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div class="flash-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}

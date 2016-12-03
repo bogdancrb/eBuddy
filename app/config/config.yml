@@ -39,7 +39,18 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\Account
-
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address:        emailsender94@gmail.com
+                sender_name:    eBuddy-social Network
+    service:
+        mailer:               fos_user.mailer.default
+        email_canonicalizer:  fos_user.util.canonicalizer.default
+        token_generator:      fos_user.util.token_generator.default
+        username_canonicalizer:  fos_user.util.canonicalizer.default
+        user_manager:         fos_user.user_manager.default
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -66,8 +77,6 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    transport: gmail
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'

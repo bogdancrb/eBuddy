@@ -8,8 +8,8 @@ use FOS\UserBundle\Model\User as BaseAccount;
 /**
  * Account
  *
+ * @ORM\Entity
  * @ORM\Table(name="account")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Entity\AccountRepository")
  */
 class Account extends BaseAccount
 {

@@ -1,0 +1,12 @@
+
+/*    Pattern    */
+body {
+  background-image: url(../img/pattern_japan.jpg);
+  background-color: white;
+}
+
+/*    Repeat    */
+#unpattern {
+  background-color: lightblue;
+  background-position: 800px 200px, 600px 50px, 200px 400px, 100px 120px;
+}
