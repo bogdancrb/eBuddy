@@ -1,0 +1,304 @@
+@font-face{
+    font-family: Aldo;
+    src:url(../fonts/AldoPC.ttf);
+}
+
+#container{
+    width: 100%;
+    margin: 0 auto;
+    overflow: auto;
+    clear: both;
+    overflow:hidden;
+    position: relative;
+}
+
+#start_page{
+    
+    background-image: url(../images/background_start_page.png) ;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 1070px;
+    position: relative;
+    background-size: cover;
+    background-position:center;
+}
+
+#register_page{
+
+    background-image: url(../images/background_content_register.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 1070px;
+    position: relative;
+    background-size: cover;
+    background-position:center;
+}
+
+#content_page{
+    height: 1000px;
+    background-image: url(../images/background_content_info.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 1070px;
+    background-size: cover;
+    background-position:center;
+}
+
+#about_page{
+    height: 1000px;
+    background-image: url(../images/background_about.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 1070px;
+    background-size: cover;
+    background-position:center;
+}
+
+
+#footrer{
+    padding-top: 20px;
+    padding-left: 90px;
+}
+
+h1{
+    color: white;
+    position: absolute
+}
+
+h1.logo{
+    font-size: 90px;
+    font-family: Aldo;
+}
+
+@font-face{
+    font-family: Corbel;
+    src:url(../fonts/CORBEL_0.TTF);
+}
+
+#button_location{
+    padding-top: 30px;
+    padding-right: 70px;
+    float: right;
+}
+
+.btn-default.login{
+    width: 130px;
+    background-color: #36424a;
+    border-radius: 0px;
+    border: 0;
+    font-size: 25px;
+    color: white;
+    font-family: Corbel;
+    
+}
+
+.title{
+    text-align: center;
+    font-size: 70px;
+    color: white;
+    padding-top: 350px;
+    font-family: Corbel;
+    font-weight: 600;
+}
+p2{
+    color: #22a4fb;
+}
+
+
+.btn.btn-primary{
+    border-radius: 1px;
+    border-color: aqua;
+    font-size: 30px;
+    font-family: Corbel;
+    margin-top: 130px;
+    background: rgba(76, 175, 80, 0.01);
+    padding: 25px 40px 25px 40px;
+    
+}
+
+.btn.btn-primary.desprenoi{
+    
+    margin-left: 30%;
+    position: relative
+    float: left;
+}
+
+.btn.btn-primary.creazacont{
+    margin-right: 30%;
+    position: relative;
+    float: right;  
+}
+
+.btn.btn-primary:hover{
+    background-color: #22a4fb;
+}
+
+p.title.createacount{
+    padding-top: 140px;
+}
+
+p.title.note{
+    padding-top: 0px;
+    font-size: 30px;
+    color: #f9e37a;
+}
+
+
+.form{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+
+.form-cell{
+    display: table-cell;
+    text-align: center;
+    padding-left: 10%;
+}
+
+p.error{
+    color: red;
+    opacity: 0.3;
+    float: left;
+    font-size: 30px;
+    padding-top: 60px;
+    margin-bottom: -20px;
+}
+p.error:hover{
+    color: red;
+    opacity: 1;
+}
+
+.form-control{
+    border-radius: 0;
+    width: 500px;
+    height: 60px;
+    font-size: 30px;
+    float: left;
+}
+
+p.title.facilitati{
+    padding-top: 80px;
+    /*font-size: 68pt;*/
+    font-size: 68px;
+    color: #1f2a31;
+}
+
+/*
+.btn-primary.btn-facilitati{
+    padding: 0px 0px 0px 0px;
+   /*font-size: 30px;
+    color: #1f2a31;
+    fonr-size: 30pt;
+    font-family: Corbel;
+    margin-left: 10%;
+    margin-right: 10%;
+    border 0px;
+}
+*/
+
+.facility{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+
+.facility-icon{
+    display: table-cell;
+    text-align: center;
+}
+
+p.facility{
+    color: #1f2a31;
+    font-family: Corbel;
+    font-size: 30px;
+    font-weight: 600;
+    
+}
+
+.btn.btn-primary.other{
+    background-color: #1f2a31;
+    margin-top: 0px; 
+}
+
+p.title.desprenoi{
+    padding-top: 10px;
+}
+
+p.content{
+    padding: 2% 10% 0% 10%;
+    text-align: center;
+    font-size: 34pt;
+    color: white;
+    font-family: Corbel;
+}
+
+a{
+    color: #22a4fb;
+}
+
+a:hover{
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+@font-face{
+    font-family: ARCENA;
+    src:url(../fonts/ARCENA.TTF);
+}
+
+p.ghilimele{
+    font-size: 160pt;
+    font-family: ARCENA;
+    text-align: center;
+}
+
+@font-face{
+    font-family: Angelina;
+    src:url(../fonts/angelina.TTF);
+}
+
+p.teamtx{
+    text-align: center;
+    font-family: Angelina;
+    font-size: 60px;
+    font-weight: 500;
+}
+
+@font-face{
+    font-family: BellGothicStd;
+    src:url(../fonts/BellGothicStd-Bold.otf);
+}
+
+.footer{
+    background-image: url(../images/social_globe.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    margin-top: -130px;
+    font-family: BellGothicStd;
+    font-size: 20px;
+}
+
+.footer-cell-left{
+    display: table-cell;
+    text-align: left;
+    padding-left: 50px;
+}
+
+.footer-cell-right{
+    padding: 0px 0px 60px 10px;
+    display: table-cell;
+    text-align: right;
+    background-image: url(../images/ace_ucv_transparent_sample.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+p.foter{
+    padding-top: 250px;
+}
