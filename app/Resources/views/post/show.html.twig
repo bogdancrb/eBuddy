@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Post</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Content</th>
+                <td>{{ post.content }}</td>
+            </tr>
+            <tr>
+                <th>Onlyfor</th>
+                <td>{{ post.onlyFor }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ post.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('api_post_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('api_post_edit', { 'id': post.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

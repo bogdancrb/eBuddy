@@ -1,0 +1,1040 @@
+{% extends 'base.html.twig' %}
+{% block title %}Profile Edit{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* USER PROFILE PAGE */
+        .card {
+            margin-top: 20px;
+            padding: 30px;
+            background-color: rgba(214, 224, 226, 0.2);
+            -webkit-border-top-left-radius: 5px;
+            -moz-border-top-left-radius: 5px;
+            border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-top-right-radius: 5px;
+            border-top-right-radius: 5px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .card.hovercard {
+            position: relative;
+            padding-top: 0;
+            overflow: hidden;
+            text-align: center;
+            background-color: #fff;
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .card.hovercard .card-background {
+            height: 130px;
+        }
+
+        .card-background img {
+            -webkit-filter: blur(25px);
+            -moz-filter: blur(25px);
+            -o-filter: blur(25px);
+            -ms-filter: blur(25px);
+            filter: blur(25px);
+            margin-left: -100px;
+            margin-top: -200px;
+            min-width: 130%;
+        }
+
+        .card.hovercard .useravatar {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+        }
+
+        .card.hovercard .useravatar img {
+            width: 100px;
+            height: 100px;
+            max-width: 100px;
+            max-height: 100px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card.hovercard .card-info {
+            position: absolute;
+            bottom: 14px;
+            left: 0;
+            right: 0;
+        }
+
+        .card.hovercard .card-info .card-title {
+            padding: 0 5px;
+            font-size: 20px;
+            line-height: 1;
+            color: #262626;
+            background-color: rgba(255, 255, 255, 0.1);
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        }
+
+        .card.hovercard .card-info {
+            overflow: hidden;
+            font-size: 12px;
+            line-height: 20px;
+            color: #737373;
+            text-overflow: ellipsis;
+        }
+
+        .card.hovercard .bottom {
+            padding: 0 20px;
+            margin-bottom: 17px;
+        }
+
+        .btn-pref .btn {
+            -webkit-border-radius: 0 !important;
+        }
+
+        .navbar-header {
+            min-width: auto;
+        }
+
+    </style>
+
+{% endblock %}
+{% block body %}
+
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html"><img src="{{ asset('assets/images/logo_light.jpg') }}" alt=""></a>
+
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="sidebar-control sidebar-main-toggle hidden-xs">
+                        <i class="icon-paragraph-justify3"></i>
+                    </a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-git-compare"></i>
+                        <span class="visible-xs-inline-block position-right">Git updates</span>
+                        <span class="badge bg-warning-400">9</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-content">
+                        <div class="dropdown-content-heading">
+                            Git updates
+                            <ul class="icons-list">
+                                <li><a href="#"><i class="icon-sync"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <ul class="media-list dropdown-content-body width-350">
+                            <li class="media">
+                                <div class="media-left">
+                                    <a href="#"
+                                       class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i
+                                                class="icon-git-pull-request"></i></a>
+                                </div>
+
+                                <div class="media-body">
+                                    Drop the IE <a href="#">specific hacks</a> for temporal inputs
+                                    <div class="media-annotation">4 minutes ago</div>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left">
+                                    <a href="#"
+                                       class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i
+                                                class="icon-git-commit"></i></a>
+                                </div>
+
+                                <div class="media-body">
+                                    Add full font overrides for popovers and tooltips
+                                    <div class="media-annotation">36 minutes ago</div>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left">
+                                    <a href="#"
+                                       class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i
+                                                class="icon-git-branch"></i></a>
+                                </div>
+
+                                <div class="media-body">
+                                    <a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span>
+                                    branch
+                                    <div class="media-annotation">2 hours ago</div>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left">
+                                    <a href="#"
+                                       class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i
+                                                class="icon-git-merge"></i></a>
+                                </div>
+
+                                <div class="media-body">
+                                    <a href="#">Eugene Kopyov</a> merged <span class="text-semibold">Master</span> and
+                                    <span class="text-semibold">Dev</span> branches
+                                    <div class="media-annotation">Dec 18, 18:36</div>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left">
+                                    <a href="#"
+                                       class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i
+                                                class="icon-git-pull-request"></i></a>
+                                </div>
+
+                                <div class="media-body">
+                                    Have Carousel ignore keyboard events
+                                    <div class="media-annotation">Dec 12, 05:46</div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="dropdown-content-footer">
+                            <a href="#" data-popup="tooltip" title="All posts"><i
+                                        class="icon-menu display-block"></i></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li data-popup="tooltip" title="Create new Post">
+                    <a href="#" data-popup="tooltip" title="new Post" data-toggle="modal" data-target="#newPostModal">
+                        <i class="icon-quill4"></i>
+                        <span class="visible-xs-inline-block position-right">new post</span>
+                    </a>
+                    <div class="collapse" id="james2">
+                        <div class="contact-details">
+                            <ul class="list-extended list-unstyled list-icons">
+                                <li><i class="icon-pin position-left"></i> Amsterdam</li>
+                                <li><i class="icon-user-tie position-left"></i> Senior Designer</li>
+                                <li><i class="icon-phone position-left"></i> +1(800)431 8996</li>
+                                <li><i class="icon-mail5 position-left"></i> <a href="#">james@alexander.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-people"></i>
+                        <span class="visible-xs-inline-block position-right">Users</span>
+                    </a>
+
+
+
+
+
+                    <div class="dropdown-menu dropdown-content">
+                        <div class="dropdown-content-heading">
+                            Users online
+                            <ul class="icons-list">
+                                <li><a href="#"><i class="icon-gear"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <ul class="media-list dropdown-content-body width-300">
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                             class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading text-semibold">Jordana Ansley</a>
+                                    <span class="display-block text-muted text-size-small">Lead web developer</span>
+                                </div>
+                                <div class="media-right media-middle"><span class="status-mark border-success"></span>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                             class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading text-semibold">Will Brason</a>
+                                    <span class="display-block text-muted text-size-small">Marketing manager</span>
+                                </div>
+                                <div class="media-right media-middle"><span class="status-mark border-danger"></span>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                             class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading text-semibold">Hanna Walden</a>
+                                    <span class="display-block text-muted text-size-small">Project manager</span>
+                                </div>
+                                <div class="media-right media-middle"><span class="status-mark border-success"></span>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                             class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading text-semibold">Dori Laperriere</a>
+                                    <span class="display-block text-muted text-size-small">Business developer</span>
+                                </div>
+                                <div class="media-right media-middle"><span
+                                            class="status-mark border-warning-300"></span></div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                             class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading text-semibold">Vanessa Aurelius</a>
+                                    <span class="display-block text-muted text-size-small">UX expert</span>
+                                </div>
+                                <div class="media-right media-middle"><span class="status-mark border-grey-400"></span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="dropdown-content-footer">
+                            <a href="#" data-popup="tooltip" title="All users"><i
+                                        class="icon-menu display-block"></i></a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-bubbles4"></i>
+                        <span class="visible-xs-inline-block position-right">Messages</span>
+                        <span class="badge bg-warning-400">2</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-content width-350">
+                        <div class="dropdown-content-heading">
+                            Messages
+                            <ul class="icons-list">
+                                <li><a href="#"><i class="icon-compose"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <ul class="media-list dropdown-content-body">
+                            <li class="media">
+                                <div class="media-left">
+                                    <img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-sm"
+                                         alt="">
+                                    <span class="badge bg-danger-400 media-badge">5</span>
+                                </div>
+
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">
+                                        <span class="text-semibold">James Alexander</span>
+                                        <span class="media-annotation pull-right">04:58</span>
+                                    </a>
+
+                                    <span class="text-muted">who knows, maybe that would be the best thing for me...</span>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left">
+                                    <img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle img-sm"
+                                         alt="">
+                                    <span class="badge bg-danger-400 media-badge">4</span>
+                                </div>
+
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">
+                                        <span class="text-semibold">Margo Baker</span>
+                                        <span class="media-annotation pull-right">12:16</span>
+                                    </a>
+
+                                    <span class="text-muted">That was something he was unable to do because...</span>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                             class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">
+                                        <span class="text-semibold">Jeremy Victorino</span>
+                                        <span class="media-annotation pull-right">22:48</span>
+                                    </a>
+
+                                    <span class="text-muted">But that would be extremely strained and suspicious...</span>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                             class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">
+                                        <span class="text-semibold">Beatrix Diaz</span>
+                                        <span class="media-annotation pull-right">Tue</span>
+                                    </a>
+
+                                    <span class="text-muted">What a strenuous career it is that I've chosen...</span>
+                                </div>
+                            </li>
+
+                            <li class="media">
+                                <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                             class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">
+                                        <span class="text-semibold">Richard Vango</span>
+                                        <span class="media-annotation pull-right">Mon</span>
+                                    </a>
+
+                                    <span class="text-muted">Other travelling salesmen live a life of luxury...</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="dropdown-content-footer">
+                            <a href="#" data-popup="tooltip" title="All messages"><i
+                                        class="icon-menu display-block"></i></a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ asset('assets/images/placeholder.jpg') }}" alt="">
+                        <span>Marius Iliescu</span>
+                        <i class="caret"></i>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+                        <li><a href="#"><span class="badge badge-warning pull-right">58</span> <i
+                                        class="icon-comment-discussion"></i> Messages</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-main">
+                <div class="sidebar-content">
+
+                    <!-- Main navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+
+                                <!-- Main -->
+                                <li class="navigation-header"><span>Main</span> <i class="icon-menu"
+                                                                                   title="Main pages"></i></li>
+                                <li><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /main navigation -->
+
+                </div>
+            </div>
+            <!-- /main sidebar -->
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Cover area -->
+                <div class="profile-cover">
+                    <div class="profile-cover-img" style="background-image:url({{ asset('assets/images/cover.jpg') }})">
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#" class="profile-thumb">
+                            <img src="{{ asset('assets/images/placeholder.jpg') }}" class="img-circle" alt="">
+                        </a>
+                    </div>
+
+                    <div class="media-body">
+                        <h1>Marius Iliescu
+                        </h1>
+                    </div>
+
+                    <div class="media-right media-middle">
+                        <ul class="list-inline list-inline-condensed no-margin-bottom text-nowrap">
+                            <li><a href="#" class="btn btn-default"><i class="icon-file-picture position-left"></i>
+                                    -----------</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /cover area -->
+
+
+            <!-- Toolbar -->
+            <div class="navbar navbar-default navbar-xs navbar-component">
+                <ul class="nav navbar-nav visible-xs-block">
+                    <li class="full-width text-center"><a data-toggle="collapse" data-target="#navbar-filter"><i
+                                    class="icon-menu7"></i></a></li>
+                </ul>
+
+                <div class="navbar-collapse collapse" id="navbar-filter">
+                    <ul class="nav navbar-nav element-active-slate-400">
+                        <li class="active"><a href="#activity" data-toggle="tab"><i
+                                        class="icon-menu7 position-left"></i> Timline</a></li>
+                        <li><a href="#settings" data-toggle="tab"><i class="icon-cog3 position-left"></i> Settings</a></li>
+                    </ul>
+
+                    <div class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="icon-collaboration position-left"></i> Friends</a></li>
+                            <li><a href="#"><i class="icon-images3 position-left"></i> Photos</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /toolbar -->
+
+
+            <!-- User profile -->
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="tabbable">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="activity">
+
+                                <!-- Timeline -->
+                                <div class="timeline timeline-left content-group">
+                                    <div class="timeline-container">
+
+                                        <!-- Post -->
+                                        <div class="timeline-row">
+                                            <div class="timeline-icon">
+                                                <img src="{{ asset('assets/images/placeholder.jpg') }}" alt="">
+                                            </div>
+
+                                            <div class="panel panel-flat timeline-content">
+                                                <div class="panel-heading">
+                                                    <h6 class="panel-title">Post Title</h6>
+                                                    <div class="heading-elements">
+                                                        <span class="heading-text"><i
+                                                                    class="icon-checkmark-circle position-left text-success"></i> 49 minutes ago</span>
+                                                        <ul class="icons-list">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle"
+                                                                   data-toggle="dropdown">
+                                                                    <i class="icon-arrow-down12"></i>
+                                                                </a>
+
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="#"><i class="icon-user-lock"></i> Hide
+                                                                            user posts</a></li>
+                                                                    <li><a href="#"><i class="icon-user-block"></i>
+                                                                            Block user</a></li>
+                                                                    <li><a href="#"><i class="icon-user-minus"></i>
+                                                                            Unfollow user</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="#"><i class="icon-embed"></i> Embed
+                                                                            post</a></li>
+                                                                    <li><a href="#"><i class="icon-blocked"></i> Report
+                                                                            this post</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel-body">
+
+                                                    <a href="#" class="display-block content-group">
+                                                        <img src="{{ asset('assets/images/cover.jpg') }}"
+                                                             class="img-responsive content-group" alt="">
+                                                    </a>
+
+                                                    <h6 class="content-group">
+                                                        <i class="icon-comment-discussion position-left"></i>
+                                                        Las comment from <a href="#">Jason Ansley</a>:
+                                                    </h6>
+
+                                                    <blockquote>
+                                                        <p>When suspiciously goodness labrador understood rethought
+                                                            yawned grew piously endearingly inarticulate oh goodness
+                                                            jeez trout distinct hence cobra despite taped laughed the
+                                                            much audacious less inside tiger groaned darn stuffily
+                                                            metaphoric unihibitedly inside cobra.</p>
+                                                        <footer>Jason, <cite title="Source Title">10:39 am</cite>
+                                                        </footer>
+                                                    </blockquote>
+                                                </div>
+
+                                                <div class="panel-footer">
+                                                    <ul>
+                                                        <li><a href="#"><i class="icon-eye4 position-left"></i> 438</a>
+                                                        </li>
+                                                        <li><a href="#"><i class="icon-comment-discussion position-left"></i>71</a></li>
+                                                    </ul>
+
+                                                    <ul class="pull-right">
+                                                        <li><a href="#">See More<i class="icon-arrow-right14 position-right"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /blog post -->
+
+                                    </div>
+                                </div>
+                                <!-- /timeline -->
+
+                            </div>
+
+
+                            <div class="tab-pane fade" id="settings">
+
+                                <!-- Profile info -->
+                                <div class="panel panel-flat">
+                                    <div class="panel-heading">
+                                        <h6 class="panel-title">Profile information</h6>
+                                        <div class="heading-elements">
+                                            <ul class="icons-list">
+                                                <li><a data-action="collapse"></a></li>
+                                                <li><a data-action="reload"></a></li>
+                                                <li><a data-action="close"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <form action="#">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>First Name</label>
+                                                        <input type="text" value="Marius" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Full name</label>
+                                                        <input type="text" value="Iliescu" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Oras</label>
+                                                        <input type="text" value="Craiova" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Judet</label>
+                                                        <input type="text" value="Dolj" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Email</label>
+                                                        <input type="text" readonly="readonly" value="iliescu.marius.a@gmail.com"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Your country</label>
+                                                        <select class="select">
+                                                            <option value="germany" selected="selected">Romania</option>
+                                                            <option value="france">France</option>
+                                                            <option value="spain">Spain</option>
+                                                            <option value="netherlands">Netherlands</option>
+                                                            <option value="other">...</option>
+                                                            <option value="uk">United Kingdom</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Upload a new cover image</label>
+                                                        <input type="file" class="file-styled">
+                                                        <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Upload a new profile image</label>
+                                                        <input type="file" class="file-styled">
+                                                        <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-right">
+                                                <button type="submit" class="btn btn-primary">Save <i
+                                                            class="icon-arrow-right14 position-right"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /profile info -->
+
+
+                                <!-- Account settings -->
+                                <div class="panel panel-flat">
+                                    <div class="panel-heading">
+                                        <h6 class="panel-title">Account settings</h6>
+                                        <div class="heading-elements">
+                                            <ul class="icons-list">
+                                                <li><a data-action="collapse"></a></li>
+                                                <li><a data-action="reload"></a></li>
+                                                <li><a data-action="close"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <form action="#">
+
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>New password</label>
+                                                        <input type="password" placeholder="Enter new password"
+                                                               class="form-control">
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label>Repeat password</label>
+                                                        <input type="password" placeholder="Repeat new password"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Profile visibility</label>
+
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="visibility" class="styled"
+                                                                       checked="checked">
+                                                                Visible to everyone
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="visibility" class="styled">
+                                                                Visible to friends only
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="visibility" class="styled">
+                                                                Visible to my connections only
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="visibility" class="styled">
+                                                                Visible to my colleagues only
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label>Notifications</label>
+
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="styled" checked="checked">
+                                                                Password expiration notification
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="styled" checked="checked">
+                                                                New message notification
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="styled" checked="checked">
+                                                                New task notification
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" class="styled">
+                                                                New contact request notification
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-right">
+                                                <button type="submit" class="btn btn-primary">Save <i
+                                                            class="icon-arrow-right14 position-right"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /account settings -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+
+                    <!-- Navigation -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Navigation</h6>
+                            <div class="heading-elements">
+                                <a href="#" class="heading-text">See all &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="list-group list-group-borderless no-padding-top">
+                            <a href="#" class="list-group-item"><i class="icon-user"></i> My profile</a>
+                            <a href="#" class="list-group-item"><i class="icon-cash3"></i> Balance</a>
+                            <a href="#" class="list-group-item"><i class="icon-tree7"></i> Connections <span
+                                        class="badge bg-danger pull-right">29</span></a>
+                            <a href="#" class="list-group-item"><i class="icon-users"></i> Friends</a>
+                            <div class="list-group-divider"></div>
+                            <a href="#" class="list-group-item"><i class="icon-calendar3"></i> Events <span
+                                        class="badge bg-teal-400 pull-right">48</span></a>
+                            <a href="#" class="list-group-item"><i class="icon-cog3"></i> Account settings</a>
+                        </div>
+                    </div>
+                    <!-- /navigation -->
+
+
+                    <!-- Share your thoughts -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Share your thoughts</h6>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="close"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <form action="#">
+                                <div class="form-group">
+                                    <textarea name="enter-message" class="form-control mb-15" rows="3" cols="1"
+                                              placeholder="What's on your mind?"></textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="icons-list icons-list-extended mt-10">
+                                            <li><a href="#" data-popup="tooltip" title="Add photo"
+                                                   data-container="body"><i class="icon-images2"></i></a></li>
+                                            <li><a href="#" data-popup="tooltip" title="Add video"
+                                                   data-container="body"><i class="icon-film2"></i></a></li>
+                                            <li><a href="#" data-popup="tooltip" title="Add event"
+                                                   data-container="body"><i class="icon-calendar2"></i></a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-sm-6 text-right">
+                                        <button type="button" class="btn btn-primary btn-labeled btn-labeled-right">
+                                            Share <b><i class="icon-circle-right2"></i></b></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /share your thoughts -->
+
+                    <!-- Connections -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Latest connections</h6>
+                            <div class="heading-elements">
+                                <span class="badge badge-success heading-text">+32</span>
+                            </div>
+                        </div>
+
+                        <ul class="media-list media-list-linked pb-5">
+                            <li class="media-header">Office staff</li>
+
+                            <li class="media">
+                                <a href="#" class="media-link">
+                                    <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                                 class="img-circle" alt=""></div>
+                                    <div class="media-body">
+                                        <span class="media-heading text-semibold">James Alexander</span>
+                                        <span class="media-annotation">UI/UX expert</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <span class="status-mark bg-success"></span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="media">
+                                <a href="#" class="media-link">
+                                    <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                                 class="img-circle" alt=""></div>
+                                    <div class="media-body">
+                                        <span class="media-heading text-semibold">Marius Iliescu</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <span class="status-mark bg-danger"></span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="media">
+                                <a href="#" class="media-link">
+                                    <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                                 class="img-circle" alt=""></div>
+                                    <div class="media-body">
+                                        <div class="media-heading"><span class="text-semibold">Jordana Mills</span>
+                                        </div>
+                                        <span class="text-muted">Sales consultant</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <span class="status-mark bg-grey-300"></span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="media">
+                                <a href="#" class="media-link">
+                                    <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                                 class="img-circle" alt=""></div>
+                                    <div class="media-body">
+                                        <div class="media-heading"><span class="text-semibold">William Miles</span>
+                                        </div>
+                                        <span class="text-muted">SEO expert</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <span class="status-mark bg-success"></span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="media-header">Partners</li>
+
+                            <li class="media">
+                                <a href="#" class="media-link">
+                                    <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                                 class="img-circle" alt=""></div>
+                                    <div class="media-body">
+                                        <span class="media-heading text-semibold">Margo Baker</span>
+                                        <span class="media-annotation">Google</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <span class="status-mark bg-success"></span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="media">
+                                <a href="#" class="media-link">
+                                    <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                                 class="img-circle" alt=""></div>
+                                    <div class="media-body">
+                                        <span class="media-heading text-semibold">Beatrix Diaz</span>
+                                        <span class="media-annotation">Facebook</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <span class="status-mark bg-warning-400"></span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="media">
+                                <a href="#" class="media-link">
+                                    <div class="media-left"><img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                                                 class="img-circle" alt=""></div>
+                                    <div class="media-body">
+                                        <span class="media-heading text-semibold">Richard Vango</span>
+                                        <span class="media-annotation">Microsoft</span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <span class="status-mark bg-grey-300"></span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /connections -->
+
+                </div>
+            </div>
+            <!-- /user profile -->
+
+            <!-- new Post modal -->
+            <div id="newPostModal" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content bg-teal-300">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <div class="modal-body bg-teal-300">
+                                <textarea rows="5" cols="5" class="form-control" placeholder="Post something"></textarea>
+                        </div>
+                        <div class="modal-footer">
+								<button type="button" class="btn bg-teal-600">Post</button>
+						</div>
+                    </div>
+            </div>
+            <!-- /cnew Post modal -->
+
+
+            </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content --
+
+    </div>
+    <!-- /page container -->
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-pref .btn").click(function () {
+                $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+                // $(".tab").addClass("active"); // instead of this do the below
+                $(this).removeClass("btn-default").addClass("btn-primary");
+            });
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/editor_ckeditor.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,2 @@
+[14-Dec-2016 15:45:42 UTC] PHP Fatal error:  Class 'FOS\RestBundle\FOSRestBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 22
+[14-Dec-2016 15:47:51 UTC] PHP Fatal error:  Class 'FOS\RestBundle\FOSRestBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 22
