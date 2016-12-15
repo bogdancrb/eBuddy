@@ -1,0 +1,43 @@
+.background-content-start-page,
+.background-content-register,
+.background-content-info,
+.background-content-about
+{
+    position : relative;
+
+    background-attachment : fixed;
+    background-position   : top center;
+    background-size       : cover;
+
+    margin: -8px;
+
+    height : 110vh;
+}
+
+.background-content-start-page
+{
+    background-image: url("../../images/backgrounds/background_start_page.png");
+}
+
+.background-content-register
+{
+    background-image : url("../../images/backgrounds/background_content_register.png");
+}
+
+.background-content-info
+{
+    background-color: #ECECEC;
+}
+
+.background-content-about
+{
+    background-image : url("../../images/backgrounds/background_content_about.png");
+}
+
+.logo{
+    font-size: 5.2vw;
+    font-family: Aldo, serif;
+    color: #EBEBEB;
+    padding-left: 65px;
+    padding-top: 45px;
+}
