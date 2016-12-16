@@ -94,3 +94,40 @@
     width: 100%;
     margin-top: 70px;
 }
+
+.start-page-info-text-format
+{
+    text-align: center;
+    color: #1F2A31;
+    font-family: CorbelBold, serif;
+}
+
+.start-page-info-text-format .disable-text-select.start-page-info-msg
+{
+    font-size: 3.5vw;
+    padding-top: 5%;
+}
+
+.start-page-info-text-format .start-page-info-facilities
+{
+    font-size: 1.5vw;
+}
+
+img.start-page-info-icons
+{
+    width: 50%;
+}
+
+.start-page-info-spacing-top
+{
+    margin-top: 18px;
+}
+
+.start-page-info-button
+{
+    background-color: #1F2A31;
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    font-size: 22px;
+}
