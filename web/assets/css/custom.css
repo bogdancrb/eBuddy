@@ -102,10 +102,19 @@
     font-family: CorbelBold, serif;
 }
 
+.start-page-about-text-format-heading
+{
+    text-align: center;
+    color: #FEE6DB;
+    font-family: CorbelBold, serif;
+    font-size: 3.5vw;
+    padding-top: 7%;
+}
+
 .start-page-info-text-format .disable-text-select.start-page-info-msg
 {
     font-size: 3.5vw;
-    padding-top: 5%;
+    padding-top: 3%;
 }
 
 .start-page-info-text-format .start-page-info-facilities
@@ -115,12 +124,12 @@
 
 img.start-page-info-icons
 {
-    width: 50%;
+    width: 40%;
 }
 
 .start-page-info-spacing-top
 {
-    margin-top: 18px;
+    margin-top: 35px;
 }
 
 .start-page-info-button
@@ -130,4 +139,9 @@ img.start-page-info-icons
     color: white;
     padding: 15px 35px;
     font-size: 22px;
+}
+
+button.start-page-info-button:hover
+{
+    background-color: #22a4fb;
 }
