@@ -4,14 +4,26 @@
 .background-content-about
 {
     position : relative;
-
     background-attachment : fixed;
     background-position   : top center;
     background-size       : cover;
+}
 
-    margin: -8px;
+.background-content-start-page
+{
+    height : 160vh;
+}
 
+.background-content-register,
+.background-content-info,
+.background-content-about
+{
     height : 110vh;
+}
+
+.background-content-footer
+{
+    height: 30vh;
 }
 
 .background-content-start-page
@@ -34,10 +46,51 @@
     background-image : url("../../images/backgrounds/background_content_about.png");
 }
 
-.logo{
+.background-content-footer
+{
+    background-color: #FFF;
+}
+
+.disable-text-select
+{
+    cursor:default;
+    webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.disable-text-select.logo
+{
     font-size: 5.2vw;
     font-family: Aldo, serif;
     color: #EBEBEB;
     padding-left: 65px;
     padding-top: 45px;
+}
+
+.disable-text-select.start-page-welcome-msg
+{
+    text-align: center;
+    font-size: 5.2vw;
+    color: white;
+    font-family: Corbel, serif;
+    font-weight: 600;
+    margin-top: 13%;
+    text-shadow: 0 0 0.7em #000;
+}
+
+.start-page-welcome-msg .blue
+{
+    color: #22a4fb;
+    display: inline;
+}
+
+.start-page-photo
+{
+    width: 100%;
+    margin-top: 70px;
 }

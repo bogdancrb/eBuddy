@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.css') }}">
     <title>Title</title>
 </head>
 <body>
     <div class="background-content-start-page">
-        <div class="logo">eBuddy</div>
+        <div class="disable-text-select logo">eBuddy</div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="disable-text-select start-page-welcome-msg">
+                Platforma de <div class="blue">socializare</div>
+                <img class="start-page-photo" src="{{ asset('images/content/start_page/catalin.png') }}">
+            </div>
+        </div>
     </div>
+    <div class="background-content-info"></div>
     <div class="background-content-register"></div>
     <div class="background-content-info"></div>
     <div class="background-content-about"></div>
+    <div class="background-content-footer"></div>
 </body>
 </html>
