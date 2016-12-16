@@ -102,7 +102,7 @@
 .start-page-info-text-format .start-page-info-msg
 {
     font-size: 3.5vw;
-    padding-top: 3%;
+    padding-top: 6%;
 }
 
 .start-page-info-text-format .start-page-info-facilities
@@ -220,3 +220,35 @@ a
 {
     text-decoration: none !important;
 }
+
+
+
+#start-page-sticky-menu
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #39464e;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.menu-float {
+    float: left;
+}
+
+.menu-float.element{
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.disable-text-select.logo.menubar{
+    color: white;
+    font-size: 3.2vw;
+    padding-top: 0px;
+    padding-left: 5vw;
+}
+

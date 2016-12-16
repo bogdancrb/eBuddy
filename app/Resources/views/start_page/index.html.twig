@@ -108,5 +108,25 @@
     </div>
 
     <div class="background-content-footer"></div>
+
+    <div id="start-page-sticky-menu" class="hide">
+        <div class="disable-text-select logo menu-float element menubar">eBuddy</div>
+    </div>
+
+<script>
+    startPageMenuContainer = document.getElementById("start-page-sticky-menu");
+
+    var myScrollFunc = function() {
+        var y = window.scrollY;
+        if (y >= 50) {
+            startPageMenuContainer.className = "show";
+        } else {
+            startPageMenuContainer.className = "hide";
+        }
+    };
+
+    window.addEventListener("scroll", myScrollFunc);
+</script>
+
 </body>
 </html>
