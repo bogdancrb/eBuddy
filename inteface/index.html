@@ -1,6 +1,6 @@
- <!DOCTYPE html>
-<html>
-    <head>
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <title>Profile page</title>
         
         <meta charset="utf-8">
@@ -8,45 +8,56 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!-- Bootstrap Main CSS -->
-        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="index_files/bootstrap.css" rel="stylesheet">
         
         <!-- Costom CSS -->
         <link rel="stylesheet" type="text/css" href="css/style.css">
         
         <!-- Include jQuery -->
-        <script src="js/jquery.js"></script>
+        <script src="index_files/jquery.js"></script>
         
         <!-- Bootstrap Main javascript -->
-        <script src="js/bootstrap.js"></script>
+        <script src="index_files/bootstrap.js"></script>
         
         
-        
-                                            <script> 
-                                    $(document).ready(function(){
-                                        $("#flip").click(function(){
-                                            $("#panel").slideDown("slow");
-                                        });
-                                    });
-                                    </script>
+        <!--
+        <script> 
+        $(document).ready(function(){
+            $("#flip").click(function(){
+                $("#panel").slideDown("slow");
+            });
+        });
+        </script>
 
-                                    <style> 
-                                    #panel, #flip {
-                                        padding: 5px;
-                                        text-align: center;
-                                        background-color: #e5eecc;
-                                        border: solid 1px #c3c3c3;
-                                    }
+        <style> 
+        #panel, #flip {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
 
-                                    #panel {
-                                        padding: 50px;
-                                        display: none;
-                                    }
-                                    </style>
+        #panel {
+            padding: 50px;
+            display: none;
+        }
+        </style>
+        -->
+        
+        <script src="js/jquery.js"></script>
+        <script>
+            //Choose if you want the window width to display - 1 = yes, 0 = no
+            var showWidth = 1;
 
-        
-        
-        
-        
+            if(showWidth == 1){
+                $(document).ready(function (){
+                    $(window).resize(function(){
+                        var width = $(window).width();
+                        document.getElementById("output_width").innerHTML='Window Width:'+width.toString();
+                    });
+                });
+            }
+        </script>
         
         
         
@@ -56,7 +67,7 @@
     <body>
         <div id="container">
             
-            <div id="start_page">
+            <div id="start_page" class="page_content">
                 
                 <div id="footrer">
                     <h1 class="logo">eBuddy</h1>
@@ -72,15 +83,15 @@
                 </div>
      
                 <div class="desprenoi">
-                    <button type="button" class="btn btn-primary desprenoi" > DESPRE NOI</button>  
+                    <button type="button" class="btn btn-primary desprenoi"> DESPRE NOI</button>  
                     <button type="button" class="btn btn-primary creazacont" onclick="scrollWin()"> INREGISTRAE </button>  
                 </div>
                 
             </div>
 
             
-            <div id="register_page">
-                <p class="title createacount">FORMULAR PENTRU CREARE CONT</p>
+            <div id="register_page" class="page_content">
+                <p class="title_content2 createacount">FORMULAR PENTRU CREARE CONT</p>
                 <p class="title note">Te rog sa completezi urmatoarele campuri</p>
                 
                 
@@ -97,11 +108,11 @@
                 
                 <div class="form">
                     <div class="form-cell">
-                        <input type="text" class="form-control " placeholder="Nume">
+                        <input class="form-control " placeholder="Nume" type="text">
                     </div>
                     
                     <div class="form-cell">
-                        <input type="text" class="form-control" placeholder="Prenume">
+                        <input class="form-control" placeholder="Prenume" type="text">
                     </div>
                 </div>
                 
@@ -116,10 +127,10 @@
                 
                 <div class="form">
                     <div class="form-cell">
-                        <input type="text" class="form-control" placeholder="Email">
+                        <input class="form-control" placeholder="Email" type="text">
                     </div>
                     <div class="form-cell">
-                        <input type="text" class="form-control" placeholder="Parola">
+                        <input class="form-control" placeholder="Parola" type="text">
                     </div>
                 </div>
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -127,41 +138,41 @@
 
             
             
-            <div id="content_page">
+            <div id="content_page" class="page_content">
                 <p class="title facilitati"> FACILITATI OFERITE </p>
                 
                 <br><br><br><br>
                 
                 <div class="facility">
                     <div class="facility-icon">
-                        <img src="images/icons/friends.png">
+                        <img src="index_files/friends.png">
                         <p class="facility">Conecteaza-te oline <br> cu prietenii</p>
                     </div>
 
                     <div class="facility-icon">
-                        <img src="images/icons/chat.png">
+                        <img src="index_files/chat.png">
                         <p class="facility">Discutii in timp real</p>
                     </div>
                     
                     <div class="facility-icon">
-                        <img src="images/icons/news.png">
+                        <img src="index_files/news.png">
                         <p class="facility">Stai la curent cu ultimele <br> noutati</p>
                     </div>
                 </div>
                 
                 <div class="facility">
                     <div class="facility-icon">
-                        <img src="images/icons/photos.png">
+                        <img src="index_files/photos.png">
                         <p class="facility">Impartaseste poze si momente <br> importante din viata ta</p>
                     </div>
 
                     <div class="facility-icon">
-                        <img src="images/icons/notification.png">
+                        <img src="index_files/notification.png">
                         <p class="facility">Completeaza-ti profilul cu <br> informatii despre tine</p>
                     </div>
                     
                     <div class="facility-icon">
-                        <img src="images/icons/user.png">
+                        <img src="index_files/user.png">
                         <p class="facility">Alege sa primesti notificari <br> pe care tu le consideri importante</p>
                     </div>
                 </div>
@@ -174,11 +185,16 @@
                 
             </div>
 
-            <div id="about_page">
+            <div id="about_page" class="page_content">
                 
                 <p class="title createacount">DESPRE NOI</p>
-                <p class="content">Prin intermediul platformei noastra de socializare, ai posibilitatea de a tine legatura cu toi prietenii tai, oriunde te-ai afla. De asemenea ramai la curent cu toate noutatile si stirile din mediul online <br>
-                eBuddy este in continua dezvoltare, ajuta si tu la inbunatatirea platformei, poti sa iti exprimi punctul de vedere iar noi il vom lua in considerare.<br>
+                <p class="content">Prin intermediul platformei noastra 
+de socializare, ai posibilitatea de a tine legatura cu toi prietenii 
+tai, oriunde te-ai afla. De asemenea ramai la curent cu toate noutatile 
+si stirile din mediul online <br>
+                eBuddy este in continua dezvoltare, ajuta si tu la 
+inbunatatirea platformei, poti sa iti exprimi punctul de vedere iar noi 
+il vom lua in considerare.<br>
                 De aceea te asteptam cu un <a class="feedback" href="www.google.ro">feedback</a> !:)
                 </p>
                 <!-- <p class="ghilimele">"</p>-->
@@ -186,7 +202,7 @@
                 
             </div>
             
-             <div id="footer">
+             <div id="footer" class="page_content">
                  
                  <div class="footer">
                      <div class="footer-cell-left">
@@ -220,5 +236,5 @@
         </script>
             
         
-    </body>
-</html> 
+    
+ </body></html>

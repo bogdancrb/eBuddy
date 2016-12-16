@@ -11,62 +11,51 @@
     overflow:hidden;
     position: relative;
 }
-
-#start_page{
-    
-    background-image: url(../images/background_start_page.png) ;
+/* Elementele comune iecarui element */
+.page_content
+{
     background-repeat: no-repeat;
-    background-size: 100%;
-    height: 1070px;
-    position: relative;
     background-size: cover;
-    background-position:center;
+    background-position:center; 
+    position: relative;
+    height: 1070px;
 }
 
-#register_page{
+#start_page
+{
+    background-image: url(../images/background_start_page.png);
+}
 
+#register_page
+{
     background-image: url(../images/background_content_register.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 1070px;
-    position: relative;
-    background-size: cover;
-    background-position:center;
 }
 
-#content_page{
-    height: 1000px;
+#content_page
+{
     background-image: url(../images/background_content_info.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 1070px;
-    background-size: cover;
-    background-position:center;
 }
 
-#about_page{
-    height: 1000px;
+#about_page
+{
     background-image: url(../images/background_about.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 1070px;
-    background-size: cover;
-    background-position:center;
 }
-
 
 #footrer{
     padding-top: 20px;
     padding-left: 90px;
+    height: auto;
 }
 
+
+
 h1{
-    color: white;
+    color: #EBEBEB;
     position: absolute
 }
 
 h1.logo{
-    font-size: 90px;
+    font-size: 5.3vw;
     font-family: Aldo;
 }
 
@@ -86,28 +75,30 @@ h1.logo{
     background-color: #36424a;
     border-radius: 0px;
     border: 0;
-    font-size: 25px;
+    font-size: 23px;
     color: white;
     font-family: Corbel;
-    
+    font-weight: bold;
 }
 
 .title{
     text-align: center;
-    font-size: 70px;
+    font-size: 5.3vw;
     color: white;
     padding-top: 350px;
     font-family: Corbel;
     font-weight: 600;
 }
-p2{
+
+.p2{
     color: #22a4fb;
 }
 
 
 .btn.btn-primary{
     border-radius: 1px;
-    border-color: aqua;
+    border-color: #a7b2b9;
+    border-width: 2px;
     font-size: 30px;
     font-family: Corbel;
     margin-top: 130px;
@@ -118,19 +109,21 @@ p2{
 
 .btn.btn-primary.desprenoi{
     
-    margin-left: 30%;
-    position: relative
+    margin-left: 25%;
+    position: relative;
     float: left;
 }
 
 .btn.btn-primary.creazacont{
-    margin-right: 30%;
+    margin-right: 25%;
     position: relative;
     float: right;  
 }
 
 .btn.btn-primary:hover{
     background-color: #22a4fb;
+    border-color: #2eaafd;
+    border-width: 2px;
 }
 
 p.title.createacount{
@@ -142,7 +135,6 @@ p.title.note{
     font-size: 30px;
     color: #f9e37a;
 }
-
 
 .form{
     display: table;
@@ -301,4 +293,56 @@ p.teamtx{
 
 p.foter{
     padding-top: 250px;
+}
+
+.title_content2
+{
+    text-align: center;
+    font-size: 3.7vw;
+    color: white;
+    padding-top: 150px;
+    font-family: Corbel;
+    font-weight: 600;
+}
+
+/* Start Media Queries */
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px)  and (max-width : 980px) {
+
+    h1.logo
+    {
+        font-size: 70px;
+    }
+    
+    /*menu schimbat*/
+    
+    .btn.btn-primary.desprenoi{
+        margin-left: 15%;
+    }
+
+    .btn.btn-primary.creazacont{
+        margin-right: 15%;
+    }
+}
+
+/* Small Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 569px) and (max-width : 767px) {
+    
+    .btn.btn-primary.desprenoi{
+        position: static;
+        /*float: center;*/
+    }
+
+    .btn.btn-primary.creazacont{
+        position: absolute;
+        /*float: center;  */
+    }
+    
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width : 240px) and (max-width : 568px) {
+    
+    
 }
