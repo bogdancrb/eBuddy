@@ -9,6 +9,9 @@
 </head>
 <body>
     <div class="background-content-start-page">
+
+
+
         <div class="disable-text-select logo">eBuddy</div>
         <div class="col-md-8 col-md-offset-2">
             <div class="disable-text-select start-page-welcome-msg">
@@ -78,5 +81,25 @@
     <div class="background-content-about"></div>
 
     <div class="background-content-footer"></div>
+
+    <div id="lista">
+        <div class="lisa_float elemnt disable-text-select logo menubar">eBuddy</div>
+    </div>
+
+<script>
+    myId = document.getElementById("lista");
+
+    var myScrollFunc = function() {
+        var y = window.scrollY;
+        if (y >= 150) {
+            myId.className = "lista show"
+        } else {
+            myId.className = "lista hide"
+        }
+    };
+
+    window.addEventListener("scroll", myScrollFunc);
+</script>
+
 </body>
 </html>

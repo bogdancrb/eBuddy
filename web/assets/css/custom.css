@@ -131,3 +131,35 @@ img.start-page-info-icons
     padding: 15px 35px;
     font-size: 22px;
 }
+
+
+
+.lista {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #39464e;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.lista_float {
+    float: left;
+}
+
+.lista_float.element{
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.disable-text-select.logo.menubar{
+    color: white;
+    font-size: 3.2vw;
+    padding-top: 0px;
+    padding-left: 5vw;
+}
+
