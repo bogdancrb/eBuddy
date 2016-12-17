@@ -1,3 +1,9 @@
+/*
+-----------------------------------
+    BACKGROUNDS
+-----------------------------------
+*/
+
 .background-content-start-page,
 .background-content-register,
 .background-content-info,
@@ -51,6 +57,12 @@
     background-color: #FFF;
 }
 
+/*
+-----------------------------------
+    Disable element selection
+-----------------------------------
+*/
+
 .disable-text-select
 {
     cursor:default;
@@ -63,7 +75,110 @@
                                   not supported by any browser */
 }
 
-.disable-text-select.logo
+/*
+-----------------------------------
+    Text formatting
+-----------------------------------
+*/
+
+.start-page-text-format
+{
+    text-align: center;
+    font-family: CorbelBold, serif;
+}
+
+.start-page-info-text-format
+{
+    color: #1F2A31;
+}
+
+.start-page-about-text-format-heading
+{
+    color: #FEE6DB;
+    font-size: 3.5vw;
+    padding-top: 7%;
+}
+
+.start-page-info-text-format .start-page-info-msg
+{
+    font-size: 3.5vw;
+    padding-top: 3%;
+}
+
+.start-page-info-text-format .start-page-info-facilities
+{
+    font-size: 1.5vw;
+}
+
+.start-page-about-content
+{
+    font-family: Corbel, serif;
+    font-size: 2.4vw;
+    color: #fff;
+    /*width: 80%;*/
+    /*margin-left: 10%;*/
+    margin-top: 30px;
+    line-height: 40px;
+}
+
+.start-page-about-quote
+{
+    font-family: ArCena, serif;
+    font-size: 8.5vw;
+    color: #26163d;
+    height: 80px;
+}
+
+.start-page-about-quote-name
+{
+    font-family: Angelina, serif;
+    font-size: 3vw;
+    color: #26163d;
+}
+
+/*
+-----------------------------------
+    Icons
+-----------------------------------
+*/
+
+img.start-page-info-icons
+{
+    width: 40%;
+}
+
+.start-page-info-spacing-top
+{
+    margin-top: 35px;
+}
+
+/*
+-----------------------------------
+    Buttons
+-----------------------------------
+*/
+
+.start-page-info-button
+{
+    background-color: #1F2A31;
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    font-size: 22px;
+}
+
+button.start-page-info-button:hover
+{
+    background-color: #22a4fb;
+}
+
+/*
+-----------------------------------
+    Style elements
+-----------------------------------
+*/
+
+.logo
 {
     font-size: 5.2vw;
     font-family: Aldo, serif;
@@ -72,7 +187,7 @@
     padding-top: 45px;
 }
 
-.disable-text-select.start-page-welcome-msg
+.start-page-welcome-msg
 {
     text-align: center;
     font-size: 5.2vw;
@@ -95,53 +210,13 @@
     margin-top: 70px;
 }
 
-.start-page-info-text-format
-{
-    text-align: center;
-    color: #1F2A31;
-    font-family: CorbelBold, serif;
-}
+/*
+-----------------------------------
+    CSS Default style elements
+-----------------------------------
+*/
 
-.start-page-about-text-format-heading
+a
 {
-    text-align: center;
-    color: #FEE6DB;
-    font-family: CorbelBold, serif;
-    font-size: 3.5vw;
-    padding-top: 7%;
-}
-
-.start-page-info-text-format .disable-text-select.start-page-info-msg
-{
-    font-size: 3.5vw;
-    padding-top: 3%;
-}
-
-.start-page-info-text-format .start-page-info-facilities
-{
-    font-size: 1.5vw;
-}
-
-img.start-page-info-icons
-{
-    width: 40%;
-}
-
-.start-page-info-spacing-top
-{
-    margin-top: 35px;
-}
-
-.start-page-info-button
-{
-    background-color: #1F2A31;
-    border: none;
-    color: white;
-    padding: 15px 35px;
-    font-size: 22px;
-}
-
-button.start-page-info-button:hover
-{
-    background-color: #22a4fb;
+    text-decoration: none !important;
 }
