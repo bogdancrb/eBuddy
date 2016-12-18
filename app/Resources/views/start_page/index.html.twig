@@ -126,6 +126,9 @@
     var waypointAboutEnabled = true;
 
     $(document).ready(function(){
+        var waypointFacilities = new InitWaypoint('waypoint-facilities', 'waypoint-facilities-enable','12%', 25);
+        var waypointABout = new InitWaypoint('waypoint-about', 'waypoint-about-enable', '20%', 85);
+
         var loadStickyMenu = function()
         {
             var y = window.scrollY;
@@ -144,18 +147,15 @@
             }
         };
 
-        var waypointFacilities = new InitWaypoint('waypoint-facilities', 'waypoint-facilities-enable','12%', 25);
-        var waypointABout = new InitWaypoint('waypoint-about', 'waypoint-about-enable', '20%', 85);
+        $(window).on('scroll', function() {
+            loadStickyMenu();
+        });
 
         waypointFacilities.handleWaypoint();
         waypointFacilities.processEnableWaypoint();
 
         waypointABout.handleWaypoint();
         waypointABout.processEnableWaypoint();
-
-        $(window).on('scroll', function() {
-            loadStickyMenu();
-        });
 
         loadStickyMenu();
     });
