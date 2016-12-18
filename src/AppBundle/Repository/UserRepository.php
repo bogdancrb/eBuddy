@@ -23,7 +23,7 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
             ->where('p.email = :profile_email')
             // match id of joined `CursoAcademico`
             ->setParameter('profile_email', $email)
-            ->getQuery()->getResult();
+            ->getQuery()->getSingleResult();
 
         return $user;
     }

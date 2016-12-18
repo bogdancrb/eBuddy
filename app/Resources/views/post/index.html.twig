@@ -1,41 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Posts list</h1>
+{% block javascripts %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Content</th>
-                <th>Onlyfor</th>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for post in posts %}
-            <tr>
-                <td><a href="{{ path('api_post_show', { 'id': post.id }) }}">{{ post.content }}</a></td>
-                <td>{{ post.onlyFor }}</td>
-                <td>{{ post.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('api_post_show', { 'id': post.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('api_post_edit', { 'id': post.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('api_post_new') }}">Create a new post</a>
-        </li>
-    </ul>
 {% endblock %}

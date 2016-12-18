@@ -11,8 +11,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="post")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PostsRepository")
  */
 class Post extends BaseEntity
 {
@@ -46,6 +46,11 @@ class Post extends BaseEntity
     private $comments;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $postedAt;
+
+    /**
      * @return User
      */
     public function getAuthor()
@@ -55,10 +60,12 @@ class Post extends BaseEntity
 
     /**
      * @param User $author
+     * @return Post
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
     }
 
     /**
@@ -71,10 +78,12 @@ class Post extends BaseEntity
 
     /**
      * @param mixed $content
+     * @return Post
      */
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
     }
 
     /**
@@ -87,10 +96,12 @@ class Post extends BaseEntity
 
     /**
      * @param mixed $onlyFor
+     * @return Post
      */
     public function setOnlyFor($onlyFor)
     {
         $this->onlyFor = $onlyFor;
+        return $this;
     }
 
     /**
@@ -103,10 +114,12 @@ class Post extends BaseEntity
 
     /**
      * @param Appreciation[] $appreciations
+     * @return Post
      */
     public function setAppreciations($appreciations)
     {
         $this->appreciations = $appreciations;
+        return $this;
     }
 
     /**
@@ -119,9 +132,28 @@ class Post extends BaseEntity
 
     /**
      * @param Comment[] $comments
+     * @return Post
      */
     public function setComments($comments)
     {
         $this->comments = $comments;
+        return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPostedAt()
+    {
+        return $this->postedAt;
+    }
+
+    /**
+     * @param mixed $postedAt
+     */
+    public function setPostedAt($postedAt)
+    {
+        $this->postedAt = $postedAt;
+    }
+
 }

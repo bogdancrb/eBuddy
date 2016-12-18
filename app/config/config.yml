@@ -59,6 +59,22 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+fos_rest:
+    body_listener: true
+    param_fetcher_listener: true
+    exception:
+      codes:
+          'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+    view:
+        formats:
+            json: true
+            html: false
+        view_response_listener: 'force'
+    format_listener:
+        rules:
+            - { path: ^/api, priorities: [ json ], fallback_format: json, prefer_extension: false }
+            - { path: ^/*, priorities: [ html ], fallback_format: html, prefer_extension: false }
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"

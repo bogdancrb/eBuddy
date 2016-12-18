@@ -5,3 +5,15 @@
 [14-Dec-2016 15:40:37 UTC] PHP Fatal error:  Class 'FOS\RestBundle\FOSRestBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
 [14-Dec-2016 15:41:07 UTC] PHP Fatal error:  Class 'FOS\RestBundle\FOSRestBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
 [14-Dec-2016 18:16:48 UTC] PHP Fatal error:  Call to a member function format() on string in /home/zenoth/public_html/paw/env2.marius/vendor/doctrine/dbal/lib/Doctrine/DBAL/Types/DateTimeType.php on line 53
+[16-Dec-2016 12:08:50 UTC] PHP Fatal error:  Call to a member function getId() on array in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestPostController.php on line 72
+[16-Dec-2016 12:42:43 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestPostController.php on line 34
+[16-Dec-2016 12:42:57 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestPostController.php on line 34
+[16-Dec-2016 21:59:13 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestCommentsController.php on line 112
+[16-Dec-2016 22:01:20 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestCommentsController.php on line 113
+[16-Dec-2016 22:01:21 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestCommentsController.php on line 113
+[16-Dec-2016 22:01:21 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestCommentsController.php on line 113
+[16-Dec-2016 22:10:26 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 112
+[16-Dec-2016 22:10:26 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 112
+[16-Dec-2016 22:49:18 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 113
+[16-Dec-2016 22:49:18 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 113
+[16-Dec-2016 22:49:18 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 113
