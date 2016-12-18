@@ -1,0 +1,29 @@
+@font-face
+{
+    font-family: Aldo;
+    src:url("../fonts/AldoPC.ttf");
+}
+
+@font-face
+{
+    font-family: Corbel;
+    src:url(../fonts/CORBEL_0.TTF);
+}
+
+@font-face
+{
+    font-family: CorbelBold;
+    src:url(../fonts/CORBELB_0.TTF);
+}
+
+@font-face
+{
+    font-family: ArCena;
+    src:url(../fonts/ARCENA.ttf);
+}
+
+@font-face
+{
+    font-family: Angelina;
+    src:url(../fonts/angelina.TTF);
+}

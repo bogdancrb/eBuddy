@@ -1,0 +1,438 @@
+/*
+-----------------------------------
+    BACKGROUNDS
+-----------------------------------
+*/
+
+.background-content-start-page,
+.background-content-join,
+.background-content-info,
+.background-content-about
+{
+    position : relative;
+    background-attachment: fixed;
+    background-position: top center;
+    background-size: cover;
+}
+
+.background-content-start-page
+{
+    height : 160vh;
+}
+
+.background-content-join,
+.background-content-info,
+.background-content-about
+{
+    height : 110vh;
+}
+
+.background-content-footer
+{
+    /*height: 28vh;*/
+}
+
+.background-content-start-page
+{
+    background-image: url("../../images/backgrounds/background_start_page.png");
+}
+
+.background-content-join
+{
+    background-image : url("../../images/backgrounds/background_content_register.png");
+}
+
+.background-content-info
+{
+    background-color: #ECECEC;
+}
+
+.background-content-about
+{
+    background-image : url("../../images/backgrounds/background_content_about.png");
+}
+
+.background-content-footer
+{
+    background-color: #FFF;
+}
+
+/*
+-----------------------------------
+    Disable element selection
+-----------------------------------
+*/
+
+.disable-text-select
+{
+    cursor:default;
+    webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+/*
+-----------------------------------
+    Text formatting
+-----------------------------------
+*/
+
+.start-page-text-format
+{
+    text-align: center;
+    font-family: CorbelBold, serif;
+}
+
+.start-page-info-text-format
+{
+    color: #1F2A31;
+}
+
+.start-page-about-text-format-heading
+{
+    color: #FEE6DB;
+    font-size: 3.5vw;
+    padding-top: 5%;
+}
+
+.start-page-info-text-format .start-page-info-msg
+{
+    font-size: 3.5vw;
+    padding-top: 6%;
+}
+
+.start-page-info-text-format .start-page-info-facilities
+{
+    font-size: 1.5vw;
+}
+
+.start-page-about-content
+{
+    font-family: Corbel, serif;
+    font-size: 2.4vw;
+    color: #fff;
+    margin-top: 30px;
+    line-height: 122%;
+}
+
+.start-page-about-quote
+{
+    font-family: ArCena, serif;
+    font-size: 8.5vw;
+    color: #26163d;
+    line-height: 10px;
+    padding-top: 15%;
+}
+
+.start-page-about-quote-name
+{
+    font-family: Angelina, serif;
+    font-size: 3vw;
+    color: #26163d;
+}
+
+.start-page-join-title
+{
+    color: #fff;
+    padding-top: 12%;
+    font-size: 2.8vw;
+}
+
+.start-page-join-content
+{
+    color: #fff;
+    text-align: left;
+    padding-top: 11%;
+    font-size: 1.8vw;
+}
+
+.start-page-info-heading
+{
+    text-align: left;
+    font-size: 2.6vw;
+}
+
+.start-page-info-content
+{
+    text-align: left;
+    padding-top: 10px;
+    font-size: 1.4vw;
+}
+
+/*
+-----------------------------------
+    Icons
+-----------------------------------
+*/
+
+img.start-page-info-icons
+{
+    width: 40%;
+}
+
+.start-page-info-spacing-top
+{
+    margin-top: 35px;
+}
+
+/*
+-----------------------------------
+    Buttons
+-----------------------------------
+*/
+
+button.start-page-info-button
+{
+    background-color: #1F2A31;
+    border: none;
+    color: white;
+    padding: 1.1vw 2.4vw;
+    font-size: 1.6vw;
+}
+
+button.start-page-info-button:hover
+{
+    background-color: #22a4fb;
+}
+
+button.start-page-menu-button
+{
+    font-family: CorbelBold, serif;
+    color: #fff;
+    background-color: #39464e;
+    border-color: #313f47;
+    border-style: solid;
+    padding: 0.5vw 1.8vw;
+    font-size: 1.25vw;
+}
+
+button.start-page-menu-button:hover
+{
+    background-color: #4B5D69;
+    border-color: #4B5D69;
+}
+
+.start-page-sticky-menu table.start-page-top tr td.start-page-menu ul li button.start-page-menu-button
+{
+    padding: 0.2vw 0.8vw;
+    background-color: transparent;
+    border: none;
+}
+
+/*
+-----------------------------------
+    Menu
+-----------------------------------
+*/
+
+.start-page-sticky-menu
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #39464e;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.menu-float {
+    float: left;
+}
+
+.menu-float.element{
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.disable-text-select.logo.menubar{
+    color: white;
+    font-size: 2.5vw;
+    padding-top: 0;
+    padding-left: 5vw;
+}
+
+table.start-page-top td.start-page-menu
+{
+    width: 100%;
+    padding-right: 8%;
+}
+
+ul.start-page-menu-list
+{
+    list-style-type: none;
+    overflow: hidden;
+}
+
+ul.start-page-menu-list li
+{
+    float: right;
+    margin-left: 5%;
+    padding-top: 50px;
+}
+
+.start-page-sticky-menu table.start-page-top tr td.start-page-menu ul.start-page-menu-list li
+{
+    margin-left: 2%;
+}
+
+.start-page-sticky-menu table.start-page-top tr td.start-page-menu ul li
+{
+    padding-top: 10px;
+}
+
+/*
+-----------------------------------
+    Style elements
+-----------------------------------
+*/
+
+.logo
+{
+    font-size: 5.2vw;
+    font-family: Aldo, serif;
+    color: #EBEBEB;
+    padding-left: 65px;
+    padding-top: 25px;
+}
+
+.start-page-welcome-msg
+{
+    text-align: center;
+    font-size: 5.2vw;
+    color: white;
+    font-family: Corbel, serif;
+    font-weight: 600;
+    margin-top: 13%;
+    text-shadow: 0 0 0.7em #000;
+}
+
+.start-page-welcome-msg .blue
+{
+    color: #22a4fb;
+    display: inline;
+}
+
+.start-page-photo
+{
+    width: 100%;
+    margin-top: 70px;
+}
+
+.start-page-footer-globe
+{
+    background-image: url(../../images/footer/social_globe.png);
+    height: 20vw;
+    width: 150%;
+    margin-top: -20%;
+    margin-left: 10px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+table.start-page-join
+{
+    margin-top: 25%;
+}
+
+table.start-page-join tr td
+{
+    width: 30%;
+    padding: 15px;
+}
+
+table.start-page-join tr td img
+{
+    width: 100%;
+}
+
+img.start-page-info-sample
+{
+    width: 100%;
+    margin-top: 20px;
+    border: 1px #22a4fb;
+    border-style: dashed;
+}
+
+.start-page-info-samples
+{
+    padding-top: 3%;
+}
+
+.start-page-info-heading-spacing
+{
+    margin-top: 20px;
+}
+
+.Modal {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-transition: 0.5s;
+    overflow: auto;
+    transition: all 0.3s linear;
+}
+
+.Modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 4px;
+    max-width: 300px;
+    height: 450px;
+}
+
+.ModalOpen { overflow: hidden; }
+
+.is-hidden { display: none; }
+
+.is-visuallyHidden { opacity: 0; }
+
+.Close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 16px;
+}
+
+.Close:hover, .Close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.is-blurred {
+    position: absolute;
+    background-color: black;
+    opacity: 0.2;
+
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+}
+
+/*
+-----------------------------------
+    CSS Default style elements
+-----------------------------------
+*/
+
+a
+{
+    text-decoration: none !important;
+}
