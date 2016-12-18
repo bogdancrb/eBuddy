@@ -5,11 +5,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.css') }}">
+
+    <script src="{{ asset('assets/javascript/jquery-3.1.1.js') }}"></script>
+    <script src="{{ asset('assets/javascript/jquery.waypoints.js') }}"></script>
+    <script src="{{ asset('assets/javascript/customWaypoints.js') }}"></script>
     <title>Title</title>
 </head>
 <body>
     <div class="background-content-start-page">
-        <div class="disable-text-select logo">eBuddy</div>
+        <div id="main-logo" class="disable-text-select logo">eBuddy</div>
 
         <div class="col-md-8 col-md-offset-2">
             <div class="disable-text-select start-page-welcome-msg">
@@ -19,10 +23,12 @@
         </div>
     </div>
 
+    <div id="waypoint-facilities-enable"></div>
+
     <div class="background-content-info">
         <div class="start-page-text-format start-page-info-text-format">
             <div class="col-md-6 col-md-offset-3">
-                <div class="disable-text-select start-page-info-msg">
+                <div id="waypoint-facilities" class="disable-text-select start-page-info-msg">
                     FACILITATI OFERITE
                 </div>
             </div>
@@ -66,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-md-offset-3">
+            <div id="waypoint-test" class="col-md-6 col-md-offset-3">
                 <button class="start-page-info-button">
                     +MULTE ALTELE
                 </button>
@@ -78,11 +84,13 @@
 
     <div class="background-content-info"></div>
 
+    <div id="waypoint-about-enable"></div>
+
     <div class="background-content-about">
         <div class="start-page-text-format">
             <div class="start-page-about-text-format-heading">
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="disable-text-select start-page-info-msg">
+                    <div id="waypoint-about" class="disable-text-select start-page-info-msg">
                         DESPRE NOI
                     </div>
                 </div>
@@ -109,23 +117,48 @@
 
     <div class="background-content-footer"></div>
 
-    <div id="start-page-sticky-menu" class="hide">
+    <div class="start-page-sticky-menu hide">
         <div class="disable-text-select logo menu-float element menubar">eBuddy</div>
     </div>
 
 <script>
-    startPageMenuContainer = document.getElementById("start-page-sticky-menu");
+    var waypointFacilitiesEnabled = true;
+    var waypointAboutEnabled = true;
 
-    var myScrollFunc = function() {
-        var y = window.scrollY;
-        if (y >= 50) {
-            startPageMenuContainer.className = "show";
-        } else {
-            startPageMenuContainer.className = "hide";
-        }
-    };
+    $(document).ready(function(){
+        var loadStickyMenu = function()
+        {
+            var y = window.scrollY;
+            var startPageMenuContainer = $('.start-page-sticky-menu');
+            var mainLogoContainer = $('#main-logo');
 
-    window.addEventListener("scroll", myScrollFunc);
+            if (y >= 50)
+            {
+                startPageMenuContainer.removeClass('hide');
+                mainLogoContainer.css('visibility', 'hidden');
+            }
+            else
+            {
+                startPageMenuContainer.addClass('hide');
+                mainLogoContainer.css('visibility', '');
+            }
+        };
+
+        var waypointFacilities = new InitWaypoint('waypoint-facilities', 'waypoint-facilities-enable','12%', 25);
+        var waypointABout = new InitWaypoint('waypoint-about', 'waypoint-about-enable', '20%', 85);
+
+        waypointFacilities.handleWaypoint();
+        waypointFacilities.processEnableWaypoint();
+
+        waypointABout.handleWaypoint();
+        waypointABout.processEnableWaypoint();
+
+        $(window).on('scroll', function() {
+            loadStickyMenu();
+        });
+
+        loadStickyMenu();
+    });
 </script>
 
 </body>

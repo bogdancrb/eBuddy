@@ -96,7 +96,7 @@
 {
     color: #FEE6DB;
     font-size: 3.5vw;
-    padding-top: 7%;
+    padding-top: 5%;
 }
 
 .start-page-info-text-format .start-page-info-msg
@@ -115,8 +115,6 @@
     font-family: Corbel, serif;
     font-size: 2.4vw;
     color: #fff;
-    /*width: 80%;*/
-    /*margin-left: 10%;*/
     margin-top: 30px;
     line-height: 40px;
 }
@@ -178,6 +176,35 @@ button.start-page-info-button:hover
 -----------------------------------
 */
 
+.start-page-sticky-menu
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #39464e;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.menu-float {
+    float: left;
+}
+
+.menu-float.element{
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.disable-text-select.logo.menubar{
+    color: white;
+    font-size: 2.5vw;
+    padding-top: 0;
+    padding-left: 5vw;
+}
+
 .logo
 {
     font-size: 5.2vw;
@@ -220,35 +247,3 @@ a
 {
     text-decoration: none !important;
 }
-
-
-
-#start-page-sticky-menu
-{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #39464e;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.menu-float {
-    float: left;
-}
-
-.menu-float.element{
-    display: block;
-    color: white;
-    text-decoration: none;
-}
-
-.disable-text-select.logo.menubar{
-    color: white;
-    font-size: 3.2vw;
-    padding-top: 0px;
-    padding-left: 5vw;
-}
-
