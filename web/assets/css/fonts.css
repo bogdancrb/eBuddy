@@ -27,3 +27,9 @@
     font-family: Angelina;
     src:url(../fonts/angelina.TTF);
 }
+
+@font-face
+{
+    font-family: "Eraslght";
+    src:url(../fonts/ERASLGHT.TTF);
+}

@@ -15,8 +15,35 @@
     <div id="myModal" class="Modal is-hidden is-visuallyHidden">
         <!-- Modal content -->
         <div class="Modal-content">
-            <span id="closeModal" class="Close">&times;</span>
-            <p>Simple Modal</p>
+            <div id="closeModal" class="Close">&times;</div>
+            <div class="start-page-text-format modal-heading">INREGISTRARE</div>
+            <table class="modal-container">
+                <tr>
+                    <td>
+                        <input class="big-input" type="text" name="prenume" placeholder="PRENUME*">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="big-input" type="text" name="nume" placeholder="NUME">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="big-input" type="text" name="email" placeholder="ADRESA DE EMAIL*">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="big-input" type="password" name="password" placeholder="PAROLA*">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="modal-button">AUTENTIFICARE</button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
     <div id="myContainer">
@@ -29,10 +56,10 @@
                     <td class="start-page-menu">
                         <ul class="start-page-menu-list">
                             <li>
-                                <button id="myBtn" class="start-page-menu-button">AUTENTIFICARE</button>
+                                <button class="start-page-menu-button">AUTENTIFICARE</button>
                             </li>
                             <li>
-                                <button class="start-page-menu-button">INREGISTRARE</button>
+                                <button id="myBtn" class="start-page-menu-button">INREGISTRARE</button>
                             </li>
                         </ul>
                     </td>
@@ -226,7 +253,7 @@
                                 <button class="start-page-menu-button">AUTENTIFICARE</button>
                             </li>
                             <li>
-                                <button class="start-page-menu-button">INREGISTRARE</button>
+                                <button id="myBtn2" class="start-page-menu-button">INREGISTRARE</button>
                             </li>
                         </ul>
                     </td>
@@ -288,12 +315,22 @@
 
 // Get the open button
         var btnOpen = document.getElementById("myBtn");
+        var btnOpen2 = document.getElementById("myBtn2");
 
 // Get the close button
         var btnClose = document.getElementById("closeModal");
 
 // Open the modal
         btnOpen.onclick = function() {
+            modal.className = "Modal is-visuallyHidden";
+            setTimeout(function() {
+                container.className = "MainContainer is-blurred";
+                modal.className = "Modal";
+            }, 100);
+            container.parentElement.className = "ModalOpen";
+        };
+
+        btnOpen2.onclick = function() {
             modal.className = "Modal is-visuallyHidden";
             setTimeout(function() {
                 container.className = "MainContainer is-blurred";
