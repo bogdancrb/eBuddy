@@ -15,7 +15,7 @@ InitWaypoint.prototype = function() {
                 if (thisObj.waypointEnabled) {
                     $('html, body').animate({
                         scrollTop: $("#" + thisObj.elemName).offset().top - thisObj.scrollTopCorrection
-                    }, 500);
+                    },500);
 
                     thisObj.waypointEnabled = false;
                 }
@@ -28,10 +28,7 @@ InitWaypoint.prototype = function() {
         var waypointAboutEnable = new Waypoint({
             element: document.getElementById(thisObj.elemNameEnable),
             handler: function(direction) {
-                setTimeout(function() {
-                    thisObj.waypointEnabled = true;
-                }, 25);
-                thisObj.waypointEnabled = false;
+                thisObj.waypointEnabled = direction == 'down';
             },
             offset: '30%'
         });

@@ -12,113 +12,227 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="background-content-start-page">
-        <div id="main-logo" class="disable-text-select logo">eBuddy</div>
-
-        <div class="col-md-8 col-md-offset-2">
-            <div class="disable-text-select start-page-welcome-msg">
-                Platforma de <div class="blue">socializare</div>
-                <img class="start-page-photo" src="{{ asset('images/content/start_page/catalin.png') }}">
-            </div>
+    <div id="myModal" class="Modal is-hidden is-visuallyHidden">
+        <!-- Modal content -->
+        <div class="Modal-content">
+            <span id="closeModal" class="Close">&times;</span>
+            <p>Simple Modal</p>
         </div>
     </div>
+    <div id="myContainer">
+        <div class="background-content-start-page">
+            <table id="menu" class="start-page-top">
+                <tr>
+                    <td>
+                        <div class="disable-text-select logo">eBuddy</div>
+                    </td>
+                    <td class="start-page-menu">
+                        <ul class="start-page-menu-list">
+                            <li>
+                                <button id="myBtn" class="start-page-menu-button">AUTENTIFICARE</button>
+                            </li>
+                            <li>
+                                <button class="start-page-menu-button">INREGISTRARE</button>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 
-    <div id="waypoint-facilities-enable"></div>
-
-    <div class="background-content-info">
-        <div class="start-page-text-format start-page-info-text-format">
-            <div class="col-md-6 col-md-offset-3">
-                <div id="waypoint-facilities" class="disable-text-select start-page-info-msg">
-                    FACILITATI OFERITE
+            <div class="col-md-8 col-md-offset-2">
+                <div class="disable-text-select start-page-welcome-msg">
+                    Platforma de <div class="blue">socializare</div>
+                    <img class="start-page-photo" src="{{ asset('images/content/start_page/catalin.png') }}">
                 </div>
-            </div>
-
-            <div class="start-page-info-facilities">
-                <div class="col-md-4 start-page-info-spacing-top">
-                    <div class="col-md-8 col-md-offset-2">
-                        <img class="start-page-info-icons" src="{{ asset('images/icons/friends.png') }}">
-                        <p>Conecteaza-te online cu prietenii</p>
-                    </div>
-                </div>
-                <div class="col-md-4 start-page-info-spacing-top">
-                    <div class="col-md-8 col-md-offset-2">
-                        <img class="start-page-info-icons" src="{{ asset('images/icons/chat.png') }}">
-                        <p>Discuta in timp real</p>
-                    </div>
-                </div>
-                <div class="col-md-4 start-page-info-spacing-top">
-                    <div class="col-md-8 col-md-offset-2">
-                        <img class="start-page-info-icons" src="{{ asset('images/icons/news.png') }}">
-                        <p>Stai la curent cu ultimele stiri si noutati</p>
-                    </div>
-                </div>
-                <div class="col-md-4 start-page-info-spacing-top">
-                    <div class="col-md-8 col-md-offset-2">
-                        <img class="start-page-info-icons" src="{{ asset('images/icons/photos.png') }}">
-                        <p>Impartaseste poze si momente importante din viata ta</p>
-                    </div>
-                </div>
-                <div class="col-md-4 start-page-info-spacing-top">
-                    <div class="col-md-8 col-md-offset-2">
-                        <img class="start-page-info-icons" src="{{ asset('images/icons/user.png') }}">
-                        <p>Completeaza-ti profilul cu informatii despre tine</p>
-                    </div>
-                </div>
-                <div class="col-md-4 start-page-info-spacing-top">
-                    <div class="col-md-8 col-md-offset-2">
-                        <img class="start-page-info-icons" src="{{ asset('images/icons/notification.png') }}">
-                        <p>Alege sa primesti notificari pe care tu le consideri importante</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="waypoint-test" class="col-md-6 col-md-offset-3">
-                <button class="start-page-info-button">
-                    +MULTE ALTELE
-                </button>
             </div>
         </div>
-    </div>
 
-    <div class="background-content-register"></div>
+        <div id="waypoint-facilities-enable"></div>
 
-    <div class="background-content-info"></div>
-
-    <div id="waypoint-about-enable"></div>
-
-    <div class="background-content-about">
-        <div class="start-page-text-format">
-            <div class="start-page-about-text-format-heading">
+        <div class="background-content-info">
+            <div class="start-page-text-format start-page-info-text-format">
                 <div class="col-md-6 col-md-offset-3">
-                    <div id="waypoint-about" class="disable-text-select start-page-info-msg">
-                        DESPRE NOI
+                    <div id="waypoint-facilities" class="disable-text-select start-page-info-msg">
+                        FACILITATI OFERITE
+                    </div>
+                </div>
+
+                <div class="start-page-info-facilities">
+                    <div class="col-md-4 start-page-info-spacing-top">
+                        <div class="col-md-8 col-xs-4 col-md-offset-2 col-xs-offset-4">
+                            <img class="start-page-info-icons" src="{{ asset('images/icons/friends.png') }}">
+                            <p>Conecteaza-te online cu prietenii</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 start-page-info-spacing-top">
+                        <div class="col-md-8 col-xs-4 col-md-offset-2 col-xs-offset-4">
+                            <img class="start-page-info-icons" src="{{ asset('images/icons/chat.png') }}">
+                            <p>Discuta in timp real</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 start-page-info-spacing-top">
+                        <div class="col-md-8 col-xs-4 col-md-offset-2 col-xs-offset-4">
+                            <img class="start-page-info-icons" src="{{ asset('images/icons/news.png') }}">
+                            <p>Stai la curent cu ultimele stiri si noutati</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 start-page-info-spacing-top">
+                        <div class="col-md-8 col-xs-4 col-md-offset-2 col-xs-offset-4">
+                            <img class="start-page-info-icons" src="{{ asset('images/icons/photos.png') }}">
+                            <p>Impartaseste poze si momente importante din viata ta</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 start-page-info-spacing-top">
+                        <div class="col-md-8 col-xs-4 col-md-offset-2 col-xs-offset-4">
+                            <img class="start-page-info-icons" src="{{ asset('images/icons/user.png') }}">
+                            <p>Completeaza-ti profilul cu informatii despre tine</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 start-page-info-spacing-top">
+                        <div class="col-md-8 col-xs-4 col-md-offset-2 col-xs-offset-4">
+                            <img class="start-page-info-icons" src="{{ asset('images/icons/notification.png') }}">
+                            <p>Alege sa primesti notificari pe care tu le consideri importante</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="waypoint-test" class="col-md-6 col-md-offset-3">
+                    <button class="start-page-info-button">
+                        +MULTE ALTELE
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="waypoint-join-enable"></div>
+
+        <div class="background-content-join">
+            <div class="col-md-4 col-xs-8 col-sm-6 col-md-offset-1 col-xs-offset-2 col-sm-offset-3">
+                <table id="waypoint-join" class="start-page-join">
+                    <tr>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture1.png') }}"></td>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture2.png') }}"></td>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture3.png') }}"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture4.png') }}"></td>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture5.png') }}"></td>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture6.png') }}"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture7.png') }}"></td>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture8.png') }}"></td>
+                        <td><img src="{{ asset('images/profile_pictures/profilepicture9.png') }}"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-md-4 col-xs-8 col-sm-7 col-md-offset-1 col-xs-offset-2 col-sm-offset-2">
+                <div class="start-page-text-format start-page-join-title">
+                    Everybody is on eBuddy
+                </div>
+            </div>
+
+            <div class="start-page-text-format start-page-join-content">
+                <div class="col-md-6 col-xs-8 col-sm-7 col-md-offset-0 col-xs-offset-2 col-sm-offset-2">
+                    Avem peste 10.000+ de utilizatori inregistrati ! <br>
+                    <br>
+                    Cine stie, poate prietenii tai au deja cont si asteapta sa li te alaturi. Poti sa iti faci un cont si
+                    sa incepi deja sa ii cauti ! De asemenea, ai posibilitatea sa cunosti diverse
+                    persoane, din intreaga lume.<br>
+                    <br>
+                    Te lasam pe tine sa aflii ce alte surprize ti-am pregatit in continuare. ;)
+                </div>
+            </div>
+        </div>
+
+        <div id="waypoint-samples-enable"></div>
+
+        <div class="background-content-info">
+            <div class="start-page-text-format start-page-info-text-format start-page-info-samples">
+                <div class="col-md-10 col-md-offset-1">
+                    <div id="waypoint-samples" class="col-md-7">
+                        <img class="start-page-info-sample" src="{{ asset('images/samples/profile-example1.png') }}">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="start-page-info-heading start-page-info-heading-spacing">Este vorba despre tine</div>
+                        <div class="start-page-info-content">
+                            Personalizeaza-ti profilul, adauga o poza de profil, informatii despre tine, background si multe multe altele !
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-7">
+                        <img class="start-page-info-sample" src="{{ asset('images/samples/profile-example2.png') }}">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="start-page-info-heading start-page-info-heading-spacing">Gandurile prietenilor</div>
+                        <div class="start-page-info-content">
+                            Totul este negru pe alb, afla parerea prietenilor tai referitor la ce ai publicat. Apreciaza
+                            continutul adaugat de prietenii tai. Poti chiar sa-l distribui mai departe pe profilul tau.
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-10 col-md-offset-1">
-                <div class="start-page-about-content">
-                    Prin intermediul platformei noastre de socializare ai posiblitatea de a tine
-                    legatura cu toti prietenii tai, oriunde te-ai afla. De asemenea, ramai la curent cu toate noutatile si stirile din mediul online.<br>
-                    <br>
-                    eBuddy este in continua dezvoltare, ajuta si tu la imbunatatirea
-                    platformei. Poti sa iti exprimi punctul de vedere,  iar noi il vom lua in considerare.<br>
-                    De aceea te asteptam cu un <a href="#">feedback</a> ! :)
+        <div id="waypoint-about-enable"></div>
+
+        <div class="background-content-about">
+            <div class="start-page-text-format">
+                <div class="start-page-about-text-format-heading">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div id="waypoint-about" class="disable-text-select start-page-info-msg">
+                            DESPRE NOI
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="start-page-about-content">
+                        Prin intermediul platformei noastre de socializare ai posiblitatea de a tine
+                        legatura cu toti prietenii tai, oriunde te-ai afla. De asemenea, ramai la curent cu toate noutatile si stirile din mediul online.<br>
+                        <br>
+                        eBuddy este in continua dezvoltare, ajuta si tu la imbunatatirea
+                        platformei. Poti sa iti exprimi punctul de vedere,  iar noi il vom lua in considerare.<br>
+                        De aceea te asteptam cu un <a href="#">feedback</a> ! :)
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="disable-text-select start-page-about-quote">“</div>
+
+                    <div class="disable-text-select start-page-about-quote-name">Echipa eBuddy</div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-4 col-md-offset-4">
-                <div class="disable-text-select start-page-about-quote">“</div>
-
-                <div class="disable-text-select start-page-about-quote-name">Echipa eBuddy</div>
+        <div class="background-content-footer">
+            <div class="col-md-4 col-xs-4 col-md-offset-3 col-xs-offset-3">
+                <div class="start-page-footer-globe"></div>
             </div>
         </div>
-    </div>
 
-    <div class="background-content-footer"></div>
-
-    <div class="start-page-sticky-menu hide">
-        <div class="disable-text-select logo menu-float element menubar">eBuddy</div>
+        <div class="start-page-sticky-menu hide">
+            <table class="start-page-top">
+                <tr>
+                    <td>
+                        <div class="disable-text-select logo menu-float element menubar">eBuddy</div>
+                    </td>
+                    <td class="start-page-menu">
+                        <ul class="start-page-menu-list">
+                            <li>
+                                <button class="start-page-menu-button">AUTENTIFICARE</button>
+                            </li>
+                            <li>
+                                <button class="start-page-menu-button">INREGISTRARE</button>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
 <script>
@@ -127,13 +241,15 @@
 
     $(document).ready(function(){
         var waypointFacilities = new InitWaypoint('waypoint-facilities', 'waypoint-facilities-enable','12%', 25);
-        var waypointAbout = new InitWaypoint('waypoint-about', 'waypoint-about-enable', '20%', 85);
+        var waypointAbout = new InitWaypoint('waypoint-about', 'waypoint-about-enable', '20%', 83);
+        var waypointJoin = new InitWaypoint('waypoint-join', 'waypoint-join-enable', '30%', 130);
+        var waypointSamples = new InitWaypoint('waypoint-samples', 'waypoint-samples-enable', '20%', 60);
 
         var loadStickyMenu = function()
         {
             var y = window.scrollY;
             var startPageMenuContainer = $('.start-page-sticky-menu');
-            var mainLogoContainer = $('#main-logo');
+            var mainLogoContainer = $('#menu');
 
             if (y >= 50)
             {
@@ -152,12 +268,57 @@
         });
 
         waypointFacilities.handleWaypoint();
-        waypointFacilities.processEnableWaypoint();
-
         waypointAbout.handleWaypoint();
+        waypointJoin.handleWaypoint();
+        waypointSamples.handleWaypoint();
+
+        waypointFacilities.processEnableWaypoint();
         waypointAbout.processEnableWaypoint();
+        waypointJoin.processEnableWaypoint();
+        waypointSamples.processEnableWaypoint();
 
         loadStickyMenu();
+
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+// Get the main container and the body
+        var body = document.getElementsByTagName('body');
+        var container = document.getElementById('myContainer');
+
+// Get the open button
+        var btnOpen = document.getElementById("myBtn");
+
+// Get the close button
+        var btnClose = document.getElementById("closeModal");
+
+// Open the modal
+        btnOpen.onclick = function() {
+            modal.className = "Modal is-visuallyHidden";
+            setTimeout(function() {
+                container.className = "MainContainer is-blurred";
+                modal.className = "Modal";
+            }, 100);
+            container.parentElement.className = "ModalOpen";
+        };
+
+// Close the modal
+        btnClose.onclick = function() {
+            modal.className = "Modal is-hidden is-visuallyHidden";
+            body.className = "";
+            container.className = "MainContainer";
+            container.parentElement.className = "";
+        };
+
+// When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.className = "Modal is-hidden";
+                body.className = "";
+                container.className = "MainContainer";
+                container.parentElement.className = "";
+            }
+        };
     });
 </script>
 
