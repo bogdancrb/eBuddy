@@ -127,7 +127,7 @@
 
     $(document).ready(function(){
         var waypointFacilities = new InitWaypoint('waypoint-facilities', 'waypoint-facilities-enable','12%', 25);
-        var waypointABout = new InitWaypoint('waypoint-about', 'waypoint-about-enable', '20%', 85);
+        var waypointAbout = new InitWaypoint('waypoint-about', 'waypoint-about-enable', '20%', 85);
 
         var loadStickyMenu = function()
         {
@@ -154,8 +154,8 @@
         waypointFacilities.handleWaypoint();
         waypointFacilities.processEnableWaypoint();
 
-        waypointABout.handleWaypoint();
-        waypointABout.processEnableWaypoint();
+        waypointAbout.handleWaypoint();
+        waypointAbout.processEnableWaypoint();
 
         loadStickyMenu();
     });
