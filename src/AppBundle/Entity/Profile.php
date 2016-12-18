@@ -46,11 +46,6 @@ class Profile extends BaseEntity
     private $address;
 
     /**
-     * @ORM\Column(length=140, name = "phone_number")
-     */
-    private $phoneNumber;
-
-    /**
      * @ORM\Column(type="datetime", name="last_change")
      */
     private $lastChange;
