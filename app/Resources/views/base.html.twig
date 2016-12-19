@@ -30,6 +30,9 @@
     <script type="text/javascript" src="{{ asset('limitless-assets/js/core/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('limitless-assets/js/pages/user_pages_profile.js') }}"></script>
 
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
 
     {% block stylesheets %}
 

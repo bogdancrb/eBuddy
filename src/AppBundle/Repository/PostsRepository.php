@@ -48,11 +48,27 @@ class PostsRepository extends EntityRepository
             ->join('p.author', 'a')
             ->where('a.id = :author_id')
             ->setParameter('author_id', $userId)
-            ->setMaxResults( $limit )
-            ->setFirstResult( $offset )
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
             ->orderBy('p.postedAt', 'DESC')
             ->getQuery()->getArrayResult();
 
         return $posts;
+    }
+
+    /**
+     * @param $postId
+     * @return null
+     */
+    public function getPostById($postId)
+    {
+        /** @var array */
+        $posts = $this->createQueryBuilder('p')
+            ->where('p.id = ' . $postId)
+            ->getQuery()->getArrayResult();
+        if (count($posts) == 1) {
+            return $posts[0];
+        }
+        return null;
     }
 }

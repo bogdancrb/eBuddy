@@ -21,7 +21,7 @@ class RestCommentsController extends BaseRestController
     /**
      * @param Request $request
      * @Rest\View
-     * @Rest\Route("/api/v1/add_new_comment/{postId}", name="add_new_comment")
+     * @Rest\Route("/api/v1/add_new_comment/{postId}", options={"expose"=true}, name="add_new_comment")
      * @return string
      */
     public function addNewPostAction(Request $request, $postId)
@@ -41,7 +41,9 @@ class RestCommentsController extends BaseRestController
             }
 
             /** @var Post $post */
-            $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($postId);
+            $post = $this->getDoctrine()
+                ->getRepository('AppBundle:Post')
+                ->find($postId);
 
             $comment = new Comment();
             $comment->setUser($this->getLoggedUser())
@@ -49,7 +51,9 @@ class RestCommentsController extends BaseRestController
                 ->setPostedAt(new \DateTime("now"))
                 ->setPost($post);
 
-            $this->getDoctrine()->getRepository('AppBundle:Comment')->saveCommant($comment);
+            $this->getDoctrine()
+                ->getRepository('AppBundle:Comment')
+                ->saveComment($comment);
 
         } catch (\Exception $ex) {
             $response['error'] = true;
@@ -62,10 +66,10 @@ class RestCommentsController extends BaseRestController
     /**
      * @param Request $request
      * @Rest\View
-     * @Rest\Route("/api/v1/get_post_comments_with_limit_and_offset/{postId}/{limit}/{offset}", name="get_post_comments_with_limit_and_offset")
+     * @Rest\Route("/api/v1/get_post_comments_with_limit_and_offset/{postId}/{limit}/{offset}", options={"expose"=true}, name="get_post_comments_with_limit_and_offset")
      * @return string
      */
-    public function getAllUserPostsWithLimitAndOffsetAction(Request $request, $postId, $limit, $offset)
+    public function getAllPostCommentsWithLimitAndOffsetAction(Request $request, $postId, $limit, $offset)
     {
         $response = array(
             'error' => false,
@@ -95,7 +99,7 @@ class RestCommentsController extends BaseRestController
     /**
      * @param Request $request
      * @Rest\View
-     * @Rest\Route("/api/v1/get_last_comment_from_a_post/{postId}", name="get_last_comment_from_a_post")
+     * @Rest\Route("/api/v1/get_last_comment_from_a_post/{postId}", options={"expose"=true}, name="get_last_comment_from_a_post")
      * @return Response
      */
     public function getLastCommentFromAPost(Request $request, $postId)

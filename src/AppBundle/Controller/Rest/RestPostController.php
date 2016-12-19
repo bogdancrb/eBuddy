@@ -10,8 +10,8 @@ namespace AppBundle\Controller\Rest;
 
 
 use AppBundle\Entity\Post;
-use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Acl\Exception\Exception;
 
@@ -35,7 +35,7 @@ class RestPostController extends BaseRestController
 
         try {
 
-            if(!isset($requestData['post_content'])){
+            if (!isset($requestData['post_content'])) {
                 throw new Exception('A post need to have a content');
             }
 
@@ -72,10 +72,10 @@ class RestPostController extends BaseRestController
 
         try {
 
-            if(!isset($requestData['limit'])){
+            if (!isset($requestData['limit'])) {
                 throw new Exception('Put limit in the payload');
             }
-            if(!isset($requestData['offset'])){
+            if (!isset($requestData['offset'])) {
                 throw new Exception('Put offset in the payload');
             }
 
@@ -103,7 +103,7 @@ class RestPostController extends BaseRestController
     /**
      * @param Request $request
      * @Rest\View
-     * @Rest\Route("/api/v1/get-post_by_id/{postId}", name="get-post_by_id")
+     * @Rest\Route("/api/v1/get_post_by_id/{postId}", options={"expose"=true}, name="get_post_by_id")
      * @return string
      */
     public function getPostByIdAction(Request $request, $postId)
@@ -116,10 +116,10 @@ class RestPostController extends BaseRestController
 
         try {
             /** @var Post $posts */
-            $posts = $this->getDoctrine()->getRepository('AppBundle:Post')
-                ->find($postId);
+            $post = $this->getDoctrine()->getRepository('AppBundle:Post')
+                ->getPostById($postId);
 
-            $response['response'] = json_encode($posts);
+            $response['response'] = json_encode($post);
 
         } catch (\Exception $ex) {
             $response['error'] = true;

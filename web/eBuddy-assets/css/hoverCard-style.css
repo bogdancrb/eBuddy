@@ -105,3 +105,25 @@
 .navbar-header {
     min-width: auto;
 }
+
+.post-actions .custom-responsive-action-img
+{
+    max-width: 20%;
+    padding-left: 10px;
+}
+
+.comment_box{
+    padding: 0;
+
+}
+.comment_box input{
+    color: black;
+    background-color: darkgray;
+    font-family: "Times New Roman", Times, serif;
+    font-size: medium;
+}
+
+.postCommentsInModal{
+    max-height: 35em;
+    overflow-y: scroll;
+}

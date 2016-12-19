@@ -17,11 +17,11 @@ use Symfony\Component\Security\Acl\Exception\Exception;
 class CommentsRepository extends EntityRepository
 {
     /**
-     * @param Comment $p
+     * @param Comment $c
      */
-    public function saveCommant(Post $p)
+    public function saveComment(Comment $c)
     {
-        $this->getEntityManager()->persist($p);
+        $this->getEntityManager()->persist($c);
         $this->getEntityManager()->flush();
     }
 
@@ -104,7 +104,7 @@ class CommentsRepository extends EntityRepository
         /** @var array */
         $comment = $this->createQueryBuilder('c')
             ->join('c.post', 'p')
-            ->where('p.id = 5')
+            ->where('p.id ='.$postId)
             ->orderBy('c.postedAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()->getArrayResult();

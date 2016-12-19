@@ -9,10 +9,18 @@
     <script type="text/javascript">
         var apiGETpostsUrl = "{{ url('get_user_posts_with_limit_and_offset') }}";
         var apiAddNewPostUrl = "{{ url("add_new_post") }}";
-        var apliGetLastCommentFromApost = "{{ url('get_last_comment_from_a_post',{'postId': 5})}}";
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/core/libraries/jquery_ui/autocomplete.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/pickers/location/typeahead_addresspicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/pickers/location/autocomplete_addresspicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/pickers/location/location.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/ui/prism.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/pages/picker_location.js') }}"></script>
+
 {% endblock %}
 {% block globaljavascripts %}
     <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
@@ -33,7 +41,7 @@
     <!-- Main navbar -->
     <div class="navbar navbar-inverse">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html"><img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" alt=""></a>
+            <a class="navbar-brand" href="index.html"><img src="{{ asset('limitless-assets/images/logo_light.jpg') }}" alt=""></a>
 
             <ul class="nav navbar-nav pull-right visible-xs-block">
                 <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -452,7 +460,7 @@
 
                                         <div class="timeline-row loading3 col-centered" style="display: none">
                                             <div></div><div></div><div></div>
-                                            <div></div><div></div><div></div>
+                                            <div></div><div></div>
                                         </div>
 
                                     </div>
@@ -494,34 +502,45 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Oras</label>
-                                                        <input type="text" value="Craiova" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Judet</label>
-                                                        <input type="text" value="Dolj" class="form-control">
-                                                    </div>
+                                                    <div class="panel panel-flat">
+                                                        <div class="panel-heading">
+                                                            <h5 class="panel-title">Typeahead address picker</h5>
+                                                            <div class="heading-elements">
+                                                                <ul class="icons-list">
+                                                                    <li><a data-action="collapse"></a></li>
+                                                                    <li><a data-action="reload"></a></li>
+                                                                    <li><a data-action="close"></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="panel-body">
+                                                            <div class="form-group">
+                                                                <label>Address input</label>
+                                                                <input id="address" class="form-control typeahead" type="text" placeholder="Enter an address">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div id="map" class="map-wrapper content-group-sm"></div>
+                                                                <span class="help-block">You can drag and drop the marker to the correct location</span>
+                                                                </di<div class="col-md-6">v>
+
+                                                                    <div class="form-group">
+                                                                        <label>Response</label>
+                                                                        <pre class="language-javascript" id="response"><code>Address Output</code></pre>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <label>Email</label>
                                                         <input type="text" readonly="readonly" value="iliescu.marius.a@gmail.com"
                                                                class="form-control">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Your country</label>
-                                                        <select class="select">
-                                                            <option value="germany" selected="selected">Romania</option>
-                                                            <option value="france">France</option>
-                                                            <option value="spain">Spain</option>
-                                                            <option value="netherlands">Netherlands</option>
-                                                            <option value="other">...</option>
-                                                            <option value="uk">United Kingdom</option>
-                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -881,12 +900,12 @@
             <!-- new Post modal -->
             <div id="postModal" class="modal fade">
                 <div class="modal-dialog modal-lg">
-                    <div class="modal-content bg-teal-300">
+                    <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
-                        <div class="modal-body bg-teal-300">
+                        <div class="modal-body">
                             <div class="row">
                             <div class="col-lg-8 postContentInModal"></div>
                             <div class = "col-lg-4 postCommentsInModal"></div>
