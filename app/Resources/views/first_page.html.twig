@@ -1,0 +1,283 @@
+{% extends 'base.html.twig' %}
+{% block title %}First page{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .prettyline {
+            height: 5px;
+            border-top: 0;
+            background: #c4e17f;
+            border-radius: 5px;
+            background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        }
+    </style>
+
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <hr class="prettyline">
+        <br>
+        <center>
+            <button class="btn btn-primary btn-lg" href="#signup" data-toggle="modal" data-target=".bs-modal-sm">Sign
+                In/Register
+            </button>
+        </center>
+        <br>
+        <hr class="prettyline">
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <br>
+                <div class="bs-example bs-example-tabs">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+                        <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+                    </ul>
+                </div>
+                <div class="modal-body">
+                    <div id="myTabContent" class="tab-content">
+
+                        <div class="tab-pane fade active in" id="signin">
+                            <div id = "loginMessages"></div>
+                            <form id="login-form" class="form"  action="http://env2.paw.bogdancrb.com/web/app_dev.php//login_check" method="post">
+                                <fieldset>
+                                    <!-- Sign In Form -->
+                                    <!-- Text input-->
+                                    <div class="control-group">
+                                        <label class="control-label" for="userid">Email:</label>
+                                        <div class="controls">
+                                            <input required="" id="userid" name="userid" type="text"
+                                                   class="form-control input-medium" placeholder="somewone@example.com">
+                                        </div>
+                                    </div>
+
+                                    <!-- Password input-->
+                                    <div class="control-group">
+                                        <label class="control-label" for="passwordinput">Password:</label>
+                                        <div class="controls">
+                                            <input required="" id="passwordinput" name="passwordinput"
+                                                   class="form-control input-medium" type="password"
+                                                   placeholder="********">
+                                        </div>
+                                    </div>
+
+                                    <!-- Multiple Checkboxes (inline) -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="rememberme"></label>
+                                        <div class="controls">
+                                            <label class="checkbox-inline" for="rememberme-0">
+                                                <input type="checkbox" name="rememberme" id="rememberme-0"
+                                                       value="Remember me">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="signinButton"></label>
+                                        <div class="controls">
+                                            <button id="signinButton" name="signin" class="btn btn-success">Sign In</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="signup">
+                            <div id = "registerMessages"></div>
+                            <form id="register-form" class="form-horizontal">
+                                <fieldset>
+
+                                    <div class="row">
+                                        <!-- Text input-->
+                                        <div class="control-group col-lg-6">
+                                            <label class="control-label" for="userid">First Name</label>
+                                            <div class="controls">
+                                                <input id="first_name" name="first_name"
+                                                       class="form-control input-large" type="text" placeholder="Marius"
+                                                       required>
+                                            </div>
+                                        </div>
+                                        <!-- Text input-->
+                                        <div class="control-group col-lg-6">
+                                            <label class="control-label" for="userid">Last Name</label>
+                                            <div class="controls">
+                                                <input id="last_name" name="last_name" class="form-control input-large"
+                                                       type="text" placeholder="Iliescu" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="Email">Email:</label>
+                                        <div class="controls">
+                                            <input id="Email" name="email" class="form-control input-large" type="text"
+                                                   placeholder="somewone@example.com" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Password input-->
+                                    <div class="control-group">
+                                        <label class="control-label" for="password">Password:</label>
+                                        <div class="controls">
+                                            <input id="password" name="password" class="form-control input-large"
+                                                   type="password" placeholder="********" required>
+                                            <em>1-8 Characters</em>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="control-group">
+                                        <label class="control-label" for="reenterpassword">Re-Enter Password:</label>
+                                        <div class="controls">
+                                            <input id="reenterpassword" class="form-control input-large"
+                                                   name="reenterpassword" type="password" placeholder="********"
+                                                   required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="confirmsignup"></label>
+                                        <div class="controls">
+                                            <button id="confirmsignup" type="submit" name="confirmsignup" class="btn btn-success">Sign
+                                                Up
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function () { //shorthand document.ready function
+            var registerForm  = $('#register-form');
+            var loginForm = $('#login-form');
+
+            registerForm.on('submit', function (e) { //use on if jQuery 1.7+
+                e.preventDefault();  //prevent form from submitting
+                registerUser()
+            });
+
+            loginForm.on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url : $(this).attr('action') || window.location.pathname,
+                    type: "GET",
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (jXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            });
+
+            /*loginForm.on('submit', function (e) { //use on if jQuery 1.7+
+                e.preventDefault($(this).serialize());  //prevent form from submitting
+                checkLogin()
+            });*/
+
+        });
+
+
+        function registerUser(){
+            var paramObj = {};
+            var registerForm  = $('#register-form');
+
+            $.each(registerForm.find(":input").serializeArray(), function(_, kv) {
+                if (paramObj.hasOwnProperty(kv.name)) {
+                    paramObj[kv.name] = $.makeArray(paramObj[kv.name]);
+                    paramObj[kv.name].push(kv.value);
+                }
+                else {
+                    paramObj[kv.name] = kv.value;
+                }
+            });
+
+            $.ajax({
+                method: 'POST',
+                url: '{{ url("user_register_handle", {'format': 'json'}) }}',
+                data: JSON.stringify(paramObj),
+                error: function(data) {
+                },
+                success: function(data) {
+                    console.log(data.error);
+                    var messageFieldRegister = $('#registerMessages');
+                    var messageFieldLogin = $('#loginMessages');
+
+                    //remove old messages
+                    messageFieldRegister.html('');messageFieldLogin.html('');
+
+                    if (data.error != true) {
+                        $('a[href="#signin"]').tab('show');
+                        messageFieldLogin.html(
+                                '<div class="panel panel-success">'+
+                                    '<div class="panel-heading">You have been register succesfuly</div>'+
+                                    '<div class="panel-body"></div>'+
+                                '</div>'
+                        );
+                    } else {
+                        messageFieldRegister.html(
+                                '<div class="alert alert-danger" role="alert">' +
+                                    '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' +
+                                    '<span class="sr-only">Error:</span>' +
+                                    JSON.parse(data.message)[0] +
+                                '</div>'
+                        );
+                    }
+                }
+
+            });
+        }
+
+        function checkLogin(){
+            var registerForm  = $('#for');
+
+            $.each(registerForm.find(":input").serializeArray(), function(_, kv) {
+                if (paramObj.hasOwnProperty(kv.name)) {
+                    paramObj[kv.name] = $.makeArray(paramObj[kv.name]);
+                    paramObj[kv.name].push(kv.value);
+                }
+                else {
+                    paramObj[kv.name] = kv.value;
+                }
+            });
+            $.ajax({
+                method: 'POST',
+                url: '{{ url("user_sign_up")}}',
+                data: form,
+                error: function() {
+                    $('#errors').html('<p>An error has occurred</p>');
+                },
+                success: function(data) {
+                    console.log(data);
+                }
+
+            });
+        }
+
+    </script>
+{% endblock %}
