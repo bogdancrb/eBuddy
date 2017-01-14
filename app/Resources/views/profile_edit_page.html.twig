@@ -12,15 +12,8 @@
         var apiAddNewPostUrl = "{{ url("add_new_post") }}";
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
-    <script type="text/javascript" src="{{ asset('limitless-assets/js/core/libraries/jquery_ui/autocomplete.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/pickers/location/typeahead_addresspicker.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/pickers/location/autocomplete_addresspicker.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/pickers/location/location.js') }}"></script>
     <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/ui/prism.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('limitless-assets/js/pages/picker_location.js') }}"></script>
 
 {% endblock %}
 {% block globaljavascripts %}
@@ -30,8 +23,13 @@
     <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/editors/wysihtml5/parsers.js') }}"></script>
     <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ua-UA.js') }}"></script>
     <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/notifications/jgrowl.min.js') }}"></script>
-
     <script type="text/javascript" src="{{ asset('limitless-assets/js/core/app.js') }}"></script>
+
+
+    <!-- Theme JS files -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+
+
     <script type="text/javascript" src="{{ asset('limitless-assets/js/pages/editor_wysihtml5.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('eBuddy-assets/js/timeNormalizer.js') }}"></script>
@@ -41,7 +39,7 @@
 
 {% block body %}
     <!-- Main navbar -->
-    <div class="navbar navbar-inverse">
+    <div class="navbar navbar-inverse navbar-fixed-top sticky" role="navigation">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html"><img src="{{ asset('limitless-assets/images/logo_light.jpg') }}" alt=""></a>
 
@@ -349,8 +347,8 @@
 
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{asset(user.profile.profilePicture.path) }}" alt="">
-                        <span>
+                        <img class = "logged_user_picture" src="{{asset(user.profile.profilePicture.path) }}" alt="">
+                        <span class = "full_logged_user_name" >
                             {% if user is defined %}
                                 {{user.profile.firstName }} {{  user.profile.lastName }}
                             {% endif %}
@@ -371,7 +369,7 @@
         </div>
     </div>
     <!-- /main navbar -->
-
+    <br/><br/>
     <!-- Page container -->
     <div class="page-container">
 
@@ -400,6 +398,7 @@
             </div>
             <!-- /main sidebar -->
             <!-- Main content -->
+            <!-- Main content -->
             <div class="content-wrapper">
 
                 <!-- Cover area -->
@@ -408,13 +407,13 @@
                 </div>
                 <div class="media">
                     <div class="media-left">
-                        <a href="#" class="profile-thumb">
-                            <img src="{{asset(user.profile.profilePicture.path) }}" class="img-circle" alt="">
+                        <a href="#" class="profile-thumb logged_user_picture">
+                            <img class="logged_user_picture img-circle profile_picture" src="{{asset(user.profile.profilePicture.path) }}" alt="">
                         </a>
                     </div>
 
                     <div class="media-body">
-                        <h1>
+                        <h1 class = "full_logged_user_name">
                             {% if user is defined %}
                                 {{user.profile.firstName }} {{  user.profile.lastName }}
                             {% endif %}
@@ -440,13 +439,13 @@
                 </ul>
 
                 <div class="navbar-collapse collapse" id="navbar-filter">
-                    <ul class="nav navbar-nav element-active-slate-400">
+                    <ul class="nav navbar-nav ">
                         <li class="active"><a href="#activity" data-toggle="tab"><i
                                         class="icon-menu7 position-left"></i> Timline</a></li>
                         <li><a href="#settings" data-toggle="tab"><i class="icon-cog3 position-left"></i> Settings</a></li>
                     </ul>
 
-                    <div class="navbar-right">
+                    <div class="navbar-right element-active-slate-400">
                         <ul class="nav navbar-nav">
                             <li><a href="#"><i class="icon-collaboration position-left"></i> Friends</a></li>
                             <li><a href="#"><i class="icon-images3 position-left"></i> Photos</a></li>
@@ -462,7 +461,7 @@
                 <div class="col-lg-9">
                     <div class="tabbable">
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="activity">
+                            <div class="tab-pane fade" id="activity">
 
                                 <!-- Timeline -->
                                 <div class="timeline timeline-left content-group">
@@ -481,7 +480,7 @@
                             </div>
 
 
-                            <div class="tab-pane fade" id="settings">
+                            <div class="tab-pane fade in active" id="settings">
 
                                 <!-- Profile info -->
                                 <div class="panel panel-flat">
@@ -497,54 +496,37 @@
                                     </div>
 
                                     <div class="panel-body">
-                                        <form action="#">
+                                        <form id ="profile_update_form" class="form">
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>First Name</label>
-                                                        <input type="text" value="{{ user.profile.firstName }}" class="form-control">
+                                                        <input name= "first_name" type="text" value="{{ user.profile.firstName }}" class="form-control">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Full name</label>
-                                                        <input type="text" value="{{ user.profile.lastName }}" class="form-control">
+                                                        <input name= "last_name" type="text" value="{{ user.profile.lastName }}" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <div class="panel panel-flat">
-                                                        <div class="panel-heading">
-                                                            <h5 class="panel-title">Typeahead address picker</h5>
-                                                            <div class="heading-elements">
-                                                                <ul class="icons-list">
-                                                                    <li><a data-action="collapse"></a></li>
-                                                                    <li><a data-action="reload"></a></li>
-                                                                    <li><a data-action="close"></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="panel-body">
-                                                            <div class="form-group">
-                                                                <label>Address input</label>
-                                                                <input id="address" class="form-control typeahead" type="text" placeholder="Enter an address">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <div id="map" class="map-wrapper content-group-sm"></div>
-                                                                <span class="help-block">You can drag and drop the marker to the correct location</span>
-                                                                <div class="col-md-6">v>
-
-                                                                    <div class="form-group">
-                                                                        <label>Response</label>
-                                                                        <pre class="language-javascript" id="response"><code>Address Output</code></pre>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-md-4">
+                                                        <label>Country</label>
+                                                        <input name= "country" type="text" value="{{ address.country }}" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>County</label>
+                                                        <input name= "county" type="text" value="{{ address.county }}" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>City</label>
+                                                        <input name= "city" type="text" value="{{ address.city }}" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
+
 
                                             <div class="form-group">
                                                 <div class="row">
@@ -560,12 +542,12 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Upload a new cover image</label>
-                                                        <input type="file" class="file-styled">
+                                                        <input name= "profile_picture" type="file" class="file-styled">
                                                         <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Upload a new profile image</label>
-                                                        <input type="file" class="file-styled">
+                                                        <input name= "cover_picture" type="file" class="file-styled">
                                                         <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
                                                     </div>
                                                 </div>

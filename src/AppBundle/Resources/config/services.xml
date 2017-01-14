@@ -34,6 +34,17 @@
                 <argument type="service" id="doctrine.orm.default_entity_manager"/>
             </call>
         </service>
+        <service id="api.profile.service" class="AppBundle\Service\ProfileApiService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+            <call method="setUploadDirPath">
+                <argument type="string">%images_upload_dir%</argument>
+            </call>
+            <call method="setPathInServer">
+                <argument type="string">%kernel.root_dir%/../web/</argument>
+            </call>
+        </service>
     </services>
 
 </container>

@@ -59,6 +59,7 @@ class BaseService
     public function setEntityManager($entityManager)
     {
         $this->entityManager = $entityManager;
+
         return $this;
     }
 

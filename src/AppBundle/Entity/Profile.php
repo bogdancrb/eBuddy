@@ -50,7 +50,7 @@ class Profile extends BaseEntity
     /**
      * @var Address
      *
-     * @ORM\OneToOne(targetEntity="Address")
+     * @ORM\OneToOne(targetEntity="Address", cascade={"all"})
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      */
     private $address;

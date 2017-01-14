@@ -1,4 +1,82 @@
 $(document).ready(function () {
+
+    $('#profile_update_form').on("submit",function(event) {
+        event.preventDefault();
+
+        var form = $("#profile_update_form");
+
+
+        var formData = new FormData();
+        formData.append('profile_picture', $('input[type=file]')[0].files[0]);
+        formData.append('cover_picture', $('input[type=file]')[1].files[0]);
+        formData.append('other_data', form.serialize());
+
+        // Apply animation once per click
+        $(this).parents(".panel").addClass("animated flipOutX").one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
+            $(this).removeClass("animated flipOutX");
+        });
+
+
+    $.ajax({
+            url: Routing.generate('profile_update'),
+            type: 'POST',
+            xhr: function() {  // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){ // Check if upload property exists
+                    myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                }
+                return myXhr;
+            },
+            //Ajax events
+            success: function(result) {
+                var data = JSON.parse(result);
+                if(!data.error) {
+                    var response = data.response;
+                    redrawUserInformation(response);
+                }else{
+                    alert(result.message);
+                }
+            },
+            error: function(result) {
+                console.log("not ok")
+            },
+            // Form data
+            data: formData,
+            //Options to tell jQuery not to process data or worry about content-type.
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+
+
+    function redrawUserInformation(data){
+        var fullLoggedUserName = $('.full_logged_user_name');
+        var logged_user_picture= $('.logged_user_picture');
+        var profileCoverImg = $('.profile-cover-img');
+        var req =  data;
+
+        fullLoggedUserName.each(function(i, obj) {
+            $(obj).val(req.full_name);
+        });
+
+        logged_user_picture.each(function(i, obj) {
+            console.log(obj);
+            $(obj).prop('src', '/web/'+req.profile_picture);
+        });
+
+        profileCoverImg.each(function(i, obj) {
+            console.log(obj);
+            $(obj).css('background-image', 'url("/web/'+req.cover_image+'")');
+        });
+    }
+
+    function progressHandlingFunction(e){
+        if(e.lengthComputable){
+            $('progress').attr({value:e.loaded,max:e.total});
+        }
+    }
+
     $('#newPostModal').on('shown.bs.modal', function () {
         $('#newPostContent').wysihtml5();
     });
@@ -76,7 +154,6 @@ $(document).ready(function () {
                 var data = JSON.parse(result.content);
                 if (!data.error) {
                     data.response.forEach(function (value, index) {
-                        console.log(value);
                         var userHtml = getRecomandedFriendHtml(value);
                         $('#recomanderBlock').append(userHtml);
                     });
@@ -255,7 +332,6 @@ function getHtmlModalComment(comment){
 }
 
 function getLastCommentHtml(comment) {
-    console.log(comment);
     if(comment != null){
         return '<br/><h6 class="content-group">'+
             '    <i class="icon-comment-discussion position-left"></i>'+
@@ -305,7 +381,7 @@ function popupPostModal(e) {
     });
 
 
-    function loadComments() {
+/*    function loadComments() {
         $.ajax({
             method: 'GET',
             url: Routing.generate('get_post_comments_with_limit_and_offset', {
@@ -333,7 +409,7 @@ function popupPostModal(e) {
             }
 
         });
-    }
+    }*/
 
     function loadPost() {
         $.ajax({
