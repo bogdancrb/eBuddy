@@ -34,12 +34,12 @@
 
 .background-content-start-page
 {
-    background-image: url("../../images/backgrounds/background_start_page.png");
+    background-image: url("../images/backgrounds/background_start_page.png");
 }
 
 .background-content-join
 {
-    background-image : url("../../images/backgrounds/background_content_register.png");
+    background-image : url("../images/backgrounds/background_content_register.png");
 }
 
 .background-content-info
@@ -49,7 +49,7 @@
 
 .background-content-about
 {
-    background-image : url("../../images/backgrounds/background_content_about.png");
+    background-image : url("../images/backgrounds/background_content_about.png");
 }
 
 .background-content-footer
@@ -373,7 +373,7 @@ ul.start-page-menu-list li
 
 .start-page-footer-globe
 {
-    background-image: url(../../images/footer/social_globe.png);
+    background-image: url(../images/footer/social_globe.png);
     height: 20vw;
     width: 150%;
     margin-top: -20%;
