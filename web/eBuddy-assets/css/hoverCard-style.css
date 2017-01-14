@@ -24,8 +24,8 @@
     padding-top: 5px;
 }
 
-.frind-request-btn{
-    background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/138580-200.png");
+.friend-request-btn{
+    background-image: url("../images/icons/fr-request-static.png");
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
     background-position: center center;
@@ -34,7 +34,7 @@
     border-radius: 50%;
 }
 
-.frind-request-btn:hover{
+.friend-request-btn:hover{
     box-shadow:0px 0px 15px 0px blue;
 }
 

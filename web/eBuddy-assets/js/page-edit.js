@@ -430,7 +430,7 @@ function getRecomandedFriendHtml(friend){
             '<span class="media-annotation">'+friend.name+'</span>'+
             '</div>'+
             '<div class="media-right media-middle">'+
-            '<button class="btn img-circle frind-request-btn transition"></button>'+
+            '<button class="btn img-circle friend-request-btn transition"></button>'+
             '</div>'+
             '</div>'+
             '</li>';
