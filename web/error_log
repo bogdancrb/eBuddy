@@ -1,0 +1,116 @@
+[14-Dec-2016 14:04:10 UTC] PHP Fatal error:  Class 'JMS\SerializerBundle\JMSSerializerBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 20
+[14-Dec-2016 14:31:48 UTC] PHP Fatal error:  Call to undefined method AppBundle\Controller\UserController::isUserLoggedIn() in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/UserController.php on line 109
+[14-Dec-2016 15:37:42 UTC] PHP Fatal error:  Class 'FOS\RestBundle\FOSRestBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
+[14-Dec-2016 15:39:49 UTC] PHP Fatal error:  Class 'FOS\RestBundle\FOSRestBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
+[14-Dec-2016 15:40:37 UTC] PHP Fatal error:  Class 'FOS\RestBundle\FOSRestBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
+[14-Dec-2016 15:41:07 UTC] PHP Fatal error:  Class 'FOS\RestBundle\FOSRestBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
+[14-Dec-2016 18:16:48 UTC] PHP Fatal error:  Call to a member function format() on string in /home/zenoth/public_html/paw/env2.marius/vendor/doctrine/dbal/lib/Doctrine/DBAL/Types/DateTimeType.php on line 53
+[16-Dec-2016 12:08:50 UTC] PHP Fatal error:  Call to a member function getId() on array in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestPostController.php on line 72
+[16-Dec-2016 12:42:43 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestPostController.php on line 34
+[16-Dec-2016 12:42:57 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestPostController.php on line 34
+[16-Dec-2016 21:59:13 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestCommentsController.php on line 112
+[16-Dec-2016 22:01:20 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestCommentsController.php on line 113
+[16-Dec-2016 22:01:21 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestCommentsController.php on line 113
+[16-Dec-2016 22:01:21 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestCommentsController.php on line 113
+[16-Dec-2016 22:10:26 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 112
+[16-Dec-2016 22:10:26 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 112
+[16-Dec-2016 22:49:18 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 113
+[16-Dec-2016 22:49:18 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 113
+[16-Dec-2016 22:49:18 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Repository/CommentsRepository.php on line 113
+[18-Dec-2016 20:01:38 UTC] PHP Fatal error:  Class 'FOS\JsRoutingBundle\FOSJsRoutingBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
+[12-Jan-2017 10:23:58 UTC] PHP Fatal error:  Call to undefined method Symfony\Component\Security\Core\Encoder\UserPasswordEncoder::setToken() in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php on line 83
+[12-Jan-2017 11:36:35 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestUserController.php on line 41
+[12-Jan-2017 13:53:13 UTC] PHP Fatal error:  Call to a member function getUsername() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php on line 33
+[12-Jan-2017 13:53:39 UTC] PHP Fatal error:  Call to a member function getUsername() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php on line 35
+[12-Jan-2017 14:00:07 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php on line 31
+[12-Jan-2017 14:03:00 UTC] PHP Warning:  Uncaught exception 'Symfony\Component\Debug\Exception\ContextErrorException' with message 'Warning: var_export does not handle circular references' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php:39
+Stack trace:
+#0 [internal function]: Symfony\Component\Debug\ErrorHandler->handleError(2, 'var_export does...', '/home/zenoth/pu...', 39, Array)
+#1 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php(39): var_export(Object(AppBundle\Entity\User))
+#2 [internal function]: AppBundle\Controller\TokenController->newTokenAction(Object(Symfony\Component\HttpFoundation\Request))
+#3 /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php(144): call_user_func_array(Array, Array)
+#4 /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php(64): Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object(Symfony\Component\HttpFoundation\Request), in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php on line 39
+[12-Jan-2017 14:03:00 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 247463925 bytes) in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php on line 39
+[12-Jan-2017 14:03:06 UTC] PHP Warning:  Uncaught exception 'Symfony\Component\Debug\Exception\ContextErrorException' with message 'Warning: var_export does not handle circular references' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php:39
+Stack trace:
+#0 [internal function]: Symfony\Component\Debug\ErrorHandler->handleError(2, 'var_export does...', '/home/zenoth/pu...', 39, Array)
+#1 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php(39): var_export(Object(AppBundle\Entity\User))
+#2 [internal function]: AppBundle\Controller\TokenController->newTokenAction(Object(Symfony\Component\HttpFoundation\Request))
+#3 /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php(144): call_user_func_array(Array, Array)
+#4 /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php(64): Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object(Symfony\Component\HttpFoundation\Request), in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php on line 39
+[12-Jan-2017 14:03:06 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 249823216 bytes) in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/TokenController.php on line 39
+[12-Jan-2017 14:17:55 UTC] PHP Fatal error:  Call to a member function getId() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php on line 52
+[12-Jan-2017 14:20:03 UTC] PHP Fatal error:  Call to a member function getId() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php on line 52
+[12-Jan-2017 14:20:16 UTC] PHP Fatal error:  Call to a member function getId() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php on line 52
+[12-Jan-2017 16:14:31 UTC] PHP Warning:  Uncaught exception 'Symfony\Component\Debug\Exception\ContextErrorException' with message 'Warning: var_export does not handle circular references' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php:136
+Stack trace:
+#0 [internal function]: Symfony\Component\Debug\ErrorHandler->handleError(2, 'var_export does...', '/home/zenoth/pu...', 136, Array)
+#1 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php(136): var_export(Object(Symfony\Component\HttpFoundation\Session\Session))
+#2 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php(122): AppBundle\Service\UserApiService->loginUser(Object(Proxies\__CG__\AppBundle\Entity\Account))
+#3 [internal function]: AppBundle\Service\UserApiService->dummyUserSignUp(Array)
+#4 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/BaseService.php(38): call_user_func_array('AppBundle\\Servi...', Array)
+#5 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/Rest in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php on line 136
+[12-Jan-2017 16:14:31 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 249561086 bytes) in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php on line 136
+[12-Jan-2017 16:14:57 UTC] PHP Warning:  Uncaught exception 'Symfony\Component\Debug\Exception\ContextErrorException' with message 'Warning: var_export does not handle circular references' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php:136
+Stack trace:
+#0 [internal function]: Symfony\Component\Debug\ErrorHandler->handleError(2, 'var_export does...', '/home/zenoth/pu...', 136, Array)
+#1 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php(136): var_export(Array)
+#2 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php(122): AppBundle\Service\UserApiService->loginUser(Object(Proxies\__CG__\AppBundle\Entity\Account))
+#3 [internal function]: AppBundle\Service\UserApiService->dummyUserSignUp(Array)
+#4 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/BaseService.php(38): call_user_func_array('AppBundle\\Servi...', Array)
+#5 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestUserController.php(59): AppBundle\Service\BaseServi in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php on line 136
+[12-Jan-2017 16:14:57 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 249561129 bytes) in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/UserApiService.php on line 136
+[13-Jan-2017 10:28:16 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/CommentsApiService.php on line 104
+[13-Jan-2017 10:28:16 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/CommentsApiService.php on line 104
+[13-Jan-2017 10:28:18 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/CommentsApiService.php on line 104
+[13-Jan-2017 10:28:23 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/CommentsApiService.php on line 104
+[13-Jan-2017 10:28:24 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/CommentsApiService.php on line 104
+[13-Jan-2017 10:35:03 UTC] PHP Fatal error:  Call to a member function getContent() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/CommentsApiService.php on line 113
+[13-Jan-2017 10:35:03 UTC] PHP Fatal error:  Call to a member function getContent() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/CommentsApiService.php on line 113
+[13-Jan-2017 11:20:31 UTC] PHP Fatal error:  Call to a member function getContent() on array in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php on line 92
+[13-Jan-2017 11:21:18 UTC] PHP Fatal error:  Call to a member function getContent() on array in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php on line 92
+[13-Jan-2017 11:23:17 UTC] PHP Warning:  Uncaught exception 'Symfony\Component\Debug\Exception\ContextErrorException' with message 'Warning: var_export does not handle circular references' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php:57
+Stack trace:
+#0 [internal function]: Symfony\Component\Debug\ErrorHandler->handleError(2, 'var_export does...', '/home/zenoth/pu...', 57, Array)
+#1 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php(57): var_export(Array)
+#2 [internal function]: AppBundle\Service\PostApiService->getAllUserPostsWithLimitAndOffset(Array)
+#3 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/BaseService.php(38): call_user_func_array('AppBundle\\Servi...', Array)
+#4 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RestPostController.php(56): AppBundle\Service\BaseService->doRequest('getAllUserPosts...', Array)
+#5 [internal function]: AppBundle\Controller\Rest\RestPostController->getAllUserPostsWithLimitAndOffsetAction(Object(Symfony\C in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php on line 57
+[13-Jan-2017 11:23:17 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 249561088 bytes) in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/PostApiService.php on line 57
+[13-Jan-2017 11:38:07 UTC] PHP Fatal error:  Call to a member function getContent() on array in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/CommentsApiService.php on line 120
+[13-Jan-2017 14:13:20 UTC] PHP Fatal error:  Cannot use Symfony\Component\HttpFoundation\Request as Request because the name is already in use in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/RecommenderEngineRestController.php on line 15
+[13-Jan-2017 16:44:37 UTC] PHP Fatal error:  Call to a member function getId() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 47
+[13-Jan-2017 16:46:15 UTC] PHP Fatal error:  Call to a member function getPath() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 49
+[13-Jan-2017 16:50:54 UTC] PHP Fatal error:  Call to a member function getPath() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 49
+[13-Jan-2017 16:52:28 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 34
+[13-Jan-2017 16:52:41 UTC] PHP Warning:  Uncaught exception 'Symfony\Component\Debug\Exception\ContextErrorException' with message 'Warning: var_export does not handle circular references' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php:34
+Stack trace:
+#0 [internal function]: Symfony\Component\Debug\ErrorHandler->handleError(2, 'var_export does...', '/home/zenoth/pu...', 34, Array)
+#1 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php(34): var_export(Object(AppBundle\Entity\Profile))
+#2 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php(24): AppBundle\Service\RecommenderEngineApiService->filterUsers(Array)
+#3 [internal function]: AppBundle\Service\RecommenderEngineApiService->getAllFriends(NULL)
+#4 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/BaseService.php(38): call_user_func_array('AppBundle\\Servi...', Array)
+#5 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/Recommende in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 34
+[13-Jan-2017 16:52:43 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 249823208 bytes) in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 34
+[13-Jan-2017 17:06:47 UTC] PHP Fatal error:  Call to a member function getId() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 35
+[13-Jan-2017 17:09:24 UTC] PHP Warning:  Uncaught exception 'Symfony\Component\Debug\Exception\ContextErrorException' with message 'Warning: var_export does not handle circular references' in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php:35
+Stack trace:
+#0 [internal function]: Symfony\Component\Debug\ErrorHandler->handleError(2, 'var_export does...', '/home/zenoth/pu...', 35, Array)
+#1 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php(35): var_export(Object(AppBundle\Entity\Profile))
+#2 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php(24): AppBundle\Service\RecommenderEngineApiService->filterUsers(Array)
+#3 [internal function]: AppBundle\Service\RecommenderEngineApiService->getAllFriends(NULL)
+#4 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/BaseService.php(38): call_user_func_array('AppBundle\\Servi...', Array)
+#5 /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Controller/Rest/Recommende in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 35
+[13-Jan-2017 17:09:24 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 251658253 bytes) in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 35
+[13-Jan-2017 17:10:22 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 35
+[14-Jan-2017 10:30:02 UTC] PHP Fatal error:  Uncaught exception 'Symfony\Component\DependencyInjection\Exception\InvalidArgumentException' with message 'There is no extension able to load the configuration for "fos_user" (in /home/zenoth/public_html/paw/env2.marius/app/config/config.yml). Looked for namespace "fos_user", found "framework", "security", "twig", "monolog", "swiftmailer", "doctrine", "sensio_framework_extra", "app", "jms_serializer", "white_october_pagerfanta", "lexik_jwt_authentication", "fos_rest", "fos_js_routing"' in /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Loader/YamlFileLoader.php:399
+Stack trace:
+#0 /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Loader/YamlFileLoader.php(369): Symfony\Component\DependencyInjection\Loader\YamlFileLoader->validate(Array, '/home/zenoth/pu...')
+#1 /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Loader/YamlFileLoader.php(44):  in /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/Config/Loader/FileLoader.php on line 133
+[14-Jan-2017 10:30:29 UTC] PHP Fatal error:  Uncaught exception 'Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException' with message 'The service "authentication_handler" has a dependency on a non-existent service "fos_user.user_manager".' in /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Compiler/CheckExceptionOnInvalidReferenceBehaviorPass.php:58
+Stack trace:
+#0 /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Compiler/CheckExceptionOnInvalidReferenceBehaviorPass.php(42): Symfony\Component\DependencyInjection\Compiler\CheckExceptionOnInvalidReferenceBehaviorPass->processReferences(Array)
+#1 /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Compiler/CheckExceptionOnInvalidReferenceBehaviorPass.php(36): Symfony\Component\DependencyInjection\Compiler\CheckExceptionOnInvalidReferenceBehaviorPass->processDefinition(Object(Symfony\Component\DependencyInjection\Definitio in /home/zenoth/public_html/paw/env2.marius/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Compiler/CheckExceptionOnInvalidReferenceBehaviorPass.php on line 58
+[14-Jan-2017 10:46:34 UTC] PHP Fatal error:  Call to a member function getPath() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 50
+[14-Jan-2017 12:18:48 UTC] PHP Fatal error:  Call to a member function getPath() on null in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Service/RecommenderEngineApiService.php on line 50
