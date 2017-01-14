@@ -12,10 +12,10 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="myModal" class="Modal is-hidden is-visuallyHidden">
+    <div id="myModal-register" class="Modal is-hidden is-visuallyHidden">
         <!-- Modal content -->
         <div class="Modal-content">
-            <div id="closeModal" class="Close">&times;</div>
+            <div id="closeRegisterModal" class="Close">&times;</div>
             <div class="start-page-text-format modal-heading">INREGISTRARE</div>
             <table class="modal-container">
                 <tr>
@@ -40,7 +40,31 @@
                 </tr>
                 <tr>
                     <td>
-                        <button class="modal-button">AUTENTIFICARE</button>
+                        <button id="login" class="modal-button">INREGISTRARE</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="myModal-login" class="Modal is-hidden is-visuallyHidden">
+        <!-- Modal content -->
+        <div class="Modal-content">
+            <div id="closeLoginModal" class="Close">&times;</div>
+            <div class="start-page-text-format modal-heading">LOGIN</div>
+            <table class="modal-container">
+                <tr>
+                    <td>
+                        <input class="big-input" type="text" name="email" placeholder="ADRESA DE EMAIL">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="big-input" type="password" name="password" placeholder="PAROLA">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="authenticate" class="modal-button">AUTENTIFICARE</button>
                     </td>
                 </tr>
             </table>
@@ -56,10 +80,10 @@
                     <td class="start-page-menu">
                         <ul class="start-page-menu-list">
                             <li>
-                                <button class="start-page-menu-button">AUTENTIFICARE</button>
+                                <button id="loginButtonMenu" class="start-page-menu-button">AUTENTIFICARE</button>
                             </li>
                             <li>
-                                <button id="myBtn" class="start-page-menu-button">INREGISTRARE</button>
+                                <button id="registerButtonMenu" class="start-page-menu-button">INREGISTRARE</button>
                             </li>
                         </ul>
                     </td>
@@ -250,10 +274,10 @@
                     <td class="start-page-menu">
                         <ul class="start-page-menu-list">
                             <li>
-                                <button class="start-page-menu-button">AUTENTIFICARE</button>
+                                <button id="loginButtonStickyMenu" class="start-page-menu-button">AUTENTIFICARE</button>
                             </li>
                             <li>
-                                <button id="myBtn2" class="start-page-menu-button">INREGISTRARE</button>
+                                <button id="registerButtonStickyMenu" class="start-page-menu-button">INREGISTRARE</button>
                             </li>
                         </ul>
                     </td>
@@ -307,50 +331,79 @@
         loadStickyMenu();
 
         // Get the modal
-        var modal = document.getElementById('myModal');
+        var modalRegister = document.getElementById('myModal-register');
+        var modalLogin = document.getElementById('myModal-login');
 
-// Get the main container and the body
+        // Get the main container and the body
         var body = document.getElementsByTagName('body');
         var container = document.getElementById('myContainer');
 
-// Get the open button
-        var btnOpen = document.getElementById("myBtn");
-        var btnOpen2 = document.getElementById("myBtn2");
+        // Get the open button
+        var btnOpen = document.getElementById("registerButtonMenu");
+        var btnOpen2 = document.getElementById("registerButtonStickyMenu");
+        var btnOpen3 = document.getElementById("loginButtonMenu");
+        var btnOpen4 = document.getElementById("loginButtonStickyMenu");
 
-// Get the close button
-        var btnClose = document.getElementById("closeModal");
+        // Get the close button
+        var btnCloseRegister = document.getElementById("closeRegisterModal");
+        var btnCloseLogin = document.getElementById("closeLoginModal");
 
-// Open the modal
+        // Open the modal
         btnOpen.onclick = function() {
-            modal.className = "Modal is-visuallyHidden";
+            modalRegister.className = "Modal is-visuallyHidden";
             setTimeout(function() {
                 container.className = "MainContainer is-blurred";
-                modal.className = "Modal";
+                modalRegister.className = "Modal";
             }, 100);
             container.parentElement.className = "ModalOpen";
         };
 
         btnOpen2.onclick = function() {
-            modal.className = "Modal is-visuallyHidden";
+            modalRegister.className = "Modal is-visuallyHidden";
             setTimeout(function() {
                 container.className = "MainContainer is-blurred";
-                modal.className = "Modal";
+                modalRegister.className = "Modal";
             }, 100);
             container.parentElement.className = "ModalOpen";
         };
 
-// Close the modal
-        btnClose.onclick = function() {
-            modal.className = "Modal is-hidden is-visuallyHidden";
+        btnOpen3.onclick = function() {
+            modalLogin.className = "Modal is-visuallyHidden";
+            setTimeout(function() {
+                container.className = "MainContainer is-blurred";
+                modalLogin.className = "Modal";
+            }, 100);
+            container.parentElement.className = "ModalOpen";
+        };
+
+        btnOpen4.onclick = function() {
+            modalLogin.className = "Modal is-visuallyHidden";
+            setTimeout(function() {
+                container.className = "MainContainer is-blurred";
+                modalLogin.className = "Modal";
+            }, 100);
+            container.parentElement.className = "ModalOpen";
+        };
+
+        // Close the modal
+        btnCloseRegister.onclick = function() {
+            modalRegister.className = "Modal is-hidden is-visuallyHidden";
             body.className = "";
             container.className = "MainContainer";
             container.parentElement.className = "";
         };
 
-// When the user clicks anywhere outside of the modal, close it
+        btnCloseLogin.onclick = function() {
+            modalLogin.className = "Modal is-hidden is-visuallyHidden";
+            body.className = "";
+            container.className = "MainContainer";
+            container.parentElement.className = "";
+        };
+
+        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.className = "Modal is-hidden";
+            if (event.target == modalRegister) {
+                modalRegister.className = "Modal is-hidden";
                 body.className = "";
                 container.className = "MainContainer";
                 container.parentElement.className = "";
