@@ -38,7 +38,7 @@ class DefaultController extends Controller
             return $this->render('welcome.html.twig' );
         }
 
-        return $this->render('first_page.html.twig');
+        return $this->render('start_page/index.html.twig');
     }
     /**
      * Is the current user logged in?
