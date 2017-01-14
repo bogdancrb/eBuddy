@@ -17,13 +17,6 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class ProfileEditController extends Controller
 {
-    /**
-     * @Route("/profile_edit", name="profile_edit")
-     */
-    public function indexAction(Request $request)
-    {
-        return $this->render('profile_edit_page.html.twig');
-    }
 
     /**
      * @param Request $request

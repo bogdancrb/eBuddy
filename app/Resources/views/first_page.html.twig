@@ -41,14 +41,14 @@
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
                         <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
-                        <div id = "errors"></div>
                     </ul>
                 </div>
                 <div class="modal-body">
                     <div id="myTabContent" class="tab-content">
 
                         <div class="tab-pane fade active in" id="signin">
-                            <form id="login-form" class="form">
+                            <div id = "loginMessages"></div>
+                            <form id="login-form" class="form"  action="http://env2.paw.bogdancrb.com/web/app_dev.php//login_check" method="post">
                                 <fieldset>
                                     <!-- Sign In Form -->
                                     <!-- Text input-->
@@ -84,15 +84,16 @@
 
                                     <!-- Button -->
                                     <div class="control-group">
-                                        <label class="control-label" for="signin"></label>
+                                        <label class="control-label" for="signinButton"></label>
                                         <div class="controls">
-                                            <button id="signin" name="signin" class="btn btn-success">Sign In</button>
+                                            <button id="signinButton" name="signin" class="btn btn-success">Sign In</button>
                                         </div>
                                     </div>
                                 </fieldset>
                             </form>
                         </div>
                         <div class="tab-pane fade" id="signup">
+                            <div id = "registerMessages"></div>
                             <form id="register-form" class="form-horizontal">
                                 <fieldset>
 
@@ -148,7 +149,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="confirmsignup"></label>
                                         <div class="controls">
-                                            <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign
+                                            <button id="confirmsignup" type="submit" name="confirmsignup" class="btn btn-success">Sign
                                                 Up
                                             </button>
                                         </div>
@@ -171,23 +172,40 @@
 {% block javascripts %}
     <script type="text/javascript">
         $(function () { //shorthand document.ready function
-            var registerForm = $('#register-form');
+            var registerForm  = $('#register-form');
             var loginForm = $('#login-form');
 
             registerForm.on('submit', function (e) { //use on if jQuery 1.7+
                 e.preventDefault();  //prevent form from submitting
                 registerUser()
             });
-            loginForm.on('submit', function (e) { //use on if jQuery 1.7+
-                e.preventDefault();  //prevent form from submitting
-                checkLogin()
+
+            loginForm.on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url : $(this).attr('action') || window.location.pathname,
+                    type: "GET",
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (jXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
             });
+
+            /*loginForm.on('submit', function (e) { //use on if jQuery 1.7+
+                e.preventDefault($(this).serialize());  //prevent form from submitting
+                checkLogin()
+            });*/
 
         });
 
 
         function registerUser(){
             var paramObj = {};
+            var registerForm  = $('#register-form');
 
             $.each(registerForm.find(":input").serializeArray(), function(_, kv) {
                 if (paramObj.hasOwnProperty(kv.name)) {
@@ -203,23 +221,54 @@
                 method: 'POST',
                 url: '{{ url("user_register_handle", {'format': 'json'}) }}',
                 data: JSON.stringify(paramObj),
-                error: function() {
-                    $('#errors').html('<p>An error has occurred</p>');
+                error: function(data) {
                 },
                 success: function(data) {
-                    console.log(data);
+                    console.log(data.error);
+                    var messageFieldRegister = $('#registerMessages');
+                    var messageFieldLogin = $('#loginMessages');
+
+                    //remove old messages
+                    messageFieldRegister.html('');messageFieldLogin.html('');
+
+                    if (data.error != true) {
+                        $('a[href="#signin"]').tab('show');
+                        messageFieldLogin.html(
+                                '<div class="panel panel-success">'+
+                                    '<div class="panel-heading">You have been register succesfuly</div>'+
+                                    '<div class="panel-body"></div>'+
+                                '</div>'
+                        );
+                    } else {
+                        messageFieldRegister.html(
+                                '<div class="alert alert-danger" role="alert">' +
+                                    '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' +
+                                    '<span class="sr-only">Error:</span>' +
+                                    JSON.parse(data.message)[0] +
+                                '</div>'
+                        );
+                    }
                 }
 
             });
         }
 
         function checkLogin(){
-            var email =
+            var registerForm  = $('#for');
 
+            $.each(registerForm.find(":input").serializeArray(), function(_, kv) {
+                if (paramObj.hasOwnProperty(kv.name)) {
+                    paramObj[kv.name] = $.makeArray(paramObj[kv.name]);
+                    paramObj[kv.name].push(kv.value);
+                }
+                else {
+                    paramObj[kv.name] = kv.value;
+                }
+            });
             $.ajax({
                 method: 'POST',
-                url: '{{ url("security_login_check")}}',
-                data: JSON.stringify(paramObj),
+                url: '{{ url("user_sign_up")}}',
+                data: form,
                 error: function() {
                     $('#errors').html('<p>An error has occurred</p>');
                 },

@@ -9,94 +9,53 @@
 namespace AppBundle\Controller\Rest;
 
 
-use AppBundle\Entity\Post;
+use AppBundle\Service\PostApiService;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Acl\Exception\Exception;
 
+/**
+ * Class RestPostController
+ * @package AppBundle\Controller\Rest
+ */
 class RestPostController extends BaseRestController
 {
     /**
      * @param Request $request
      * @Rest\View
      * @Rest\Route("/api/v1/add_new_post", name="add_new_post")
-     * @return string
+     * @return Response
      */
     public function addNewPostAction(Request $request)
     {
-        $response = array(
-            'error' => false,
-            'message' => '',
-            'response' => true
-        );
+        $this->denyAccessUnlessGranted('ROLE_USER');
 
-        $requestData = json_decode($request->getContent(), true);
+        /** @var PostApiService $postApiService */
+        $postApiService = $this->get(PostApiService::SERVICE_NAME);
 
-        try {
+        $data = json_decode($request->getContent(), true);
 
-            if (!isset($requestData['post_content'])) {
-                throw new Exception('A post need to have a content');
-            }
+        $result = $postApiService->doRequest(__FUNCTION__, $data);
 
-            $post = new Post();
-            $post->setAuthor($this->getLoggedUser())
-                ->setContent($requestData['post_content'])
-                ->setPostedAt(new \DateTime("now"));
-
-            $this->getDoctrine()->getRepository('AppBundle:Post')->savePost($post);
-
-        } catch (\Exception $ex) {
-            $response['error'] = true;
-            $response['message'] = $ex->getMessage();
-        }
-
-        return new Response(json_encode($response));
+        return new Response($result);
     }
 
     /**
      * @param Request $request
      * @Rest\View
      * @Rest\Route("/api/v1/get_user_posts_with_limit_and_offset", name="get_user_posts_with_limit_and_offset")
-     * @return string
+     * @return Response
      */
     public function getAllUserPostsWithLimitAndOffsetAction(Request $request)
     {
-        $response = array(
-            'error' => false,
-            'message' => '',
-            'response' => true
-        );
+        /** @var PostApiService $postApiService */
+        $postApiService = $this->get(PostApiService::SERVICE_NAME);
 
-        $requestData = json_decode($request->getContent(), true);
+        $data = json_decode($request->getContent(), true);
 
-        try {
+        $result = $postApiService->doRequest(__FUNCTION__, $data);
 
-            if (!isset($requestData['limit'])) {
-                throw new Exception('Put limit in the payload');
-            }
-            if (!isset($requestData['offset'])) {
-                throw new Exception('Put offset in the payload');
-            }
-
-            $limit = $requestData['limit'];
-            $offset = $requestData['offset'];
-
-            $posts = $this->getDoctrine()->getRepository('AppBundle:Post')
-                ->getUserPostsWithLimitAndOffset(
-                    $this->getLoggedUser()->getId(),
-                    $limit,
-                    $offset
-                );
-
-            $response['response'] = json_encode($posts);
-
-        } catch (\Exception $ex) {
-            $response['error'] = true;
-            $response['message'] = $ex->getMessage();
-        }
-
-        return new Response(json_encode($response));
+        return new Response($result);
     }
 
 
@@ -104,29 +63,20 @@ class RestPostController extends BaseRestController
      * @param Request $request
      * @Rest\View
      * @Rest\Route("/api/v1/get_post_by_id/{postId}", options={"expose"=true}, name="get_post_by_id")
-     * @return string
+     * @return Response
      */
     public function getPostByIdAction(Request $request, $postId)
     {
-        $response = array(
-            'error' => false,
-            'message' => '',
-            'response' => true
-        );
+        /** @var PostApiService $postApiService */
+        $postApiService = $this->get(PostApiService::SERVICE_NAME);
 
-        try {
-            /** @var Post $posts */
-            $post = $this->getDoctrine()->getRepository('AppBundle:Post')
-                ->getPostById($postId);
+        $data = json_decode($request->getContent(), true);
 
-            $response['response'] = json_encode($post);
+        $data['post_id'] = $postId;
 
-        } catch (\Exception $ex) {
-            $response['error'] = true;
-            $response['message'] = $ex->getMessage();
-        }
+        $result = $postApiService->doRequest(__FUNCTION__, $data);
 
-        return new Response(json_encode($response));
+        return new Response($result);
     }
 
 }

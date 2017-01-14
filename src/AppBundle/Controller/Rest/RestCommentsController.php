@@ -8,119 +8,92 @@
 
 namespace AppBundle\Controller\Rest;
 
-
-use AppBundle\Entity\Comment;
-use AppBundle\Entity\Post;
+use AppBundle\Service\CommentsApiService;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\Security\Acl\Exception\Exception;
 
+/**
+ * Class RestCommentsController
+ * @package AppBundle\Controller\Rest
+ */
 class RestCommentsController extends BaseRestController
 {
     /**
      * @param Request $request
+     * @param int $postId
+     *
      * @Rest\View
      * @Rest\Route("/api/v1/add_new_comment/{postId}", options={"expose"=true}, name="add_new_comment")
+     *
      * @return string
      */
     public function addNewPostAction(Request $request, $postId)
     {
-        $response = array(
-            'error' => false,
-            'message' => '',
-            'response' => true
-        );
+        /** @var CommentsApiService $commentsApiService */
+        $commentsApiService = $this->get(CommentsApiService::SERVICE_NAME);
 
-        $requestData = json_decode($request->getContent(), true);
+        $data = json_decode($request->getContent(), true);
 
-        try {
+        $data['post_id'] = $postId;
 
-            if(!isset($requestData['comment_content'])){
-                throw new \Exception('A post need to have a content');
-            }
+        $result = $commentsApiService->doRequest(__FUNCTION__, $data);
 
-            /** @var Post $post */
-            $post = $this->getDoctrine()
-                ->getRepository('AppBundle:Post')
-                ->find($postId);
-
-            $comment = new Comment();
-            $comment->setUser($this->getLoggedUser())
-                ->setContent($requestData['comment_content'])
-                ->setPostedAt(new \DateTime("now"))
-                ->setPost($post);
-
-            $this->getDoctrine()
-                ->getRepository('AppBundle:Comment')
-                ->saveComment($comment);
-
-        } catch (\Exception $ex) {
-            $response['error'] = true;
-            $response['message'] = $ex->getMessage();
-        }
-
-        return new Response(json_encode($response));
+        return new Response($result);
     }
 
     /**
      * @param Request $request
+     * @param int $postId
+     * @param int $limit
+     * @param int $offset
+     *
      * @Rest\View
      * @Rest\Route("/api/v1/get_post_comments_with_limit_and_offset/{postId}/{limit}/{offset}", options={"expose"=true}, name="get_post_comments_with_limit_and_offset")
+     *
      * @return string
      */
     public function getAllPostCommentsWithLimitAndOffsetAction(Request $request, $postId, $limit, $offset)
     {
-        $response = array(
-            'error' => false,
-            'message' => '',
-            'response' => true
+        $req = array(
+            'post_id' => $postId,
+            'limit' => $limit,
+            'offset' => $offset
         );
 
-        try {
+        /** @var CommentsApiService $commentsApiService */
+        $commentsApiService = $this->get(CommentsApiService::SERVICE_NAME);
 
-            $comments = $this->getDoctrine()->getRepository('AppBundle:Comment')
-                ->getAllPostCommentsWithLimitAndOffset(
-                    $postId,
-                    $limit,
-                    $offset
-                );
+        $data = json_decode($request->getContent(), true);
 
-            $response['response'] = json_encode($comments);
+        $data['post_id'] = $postId;
 
-        } catch (\Exception $ex) {
-            $response['error'] = true;
-            $response['message'] = $ex->getMessage();
-        }
+        $result = $commentsApiService->doRequest(__FUNCTION__, $req);
 
-        return new Response(json_encode($response));
+        return new Response($result);
+
     }
 
     /**
      * @param Request $request
+     * @param int $postId
+     *
      * @Rest\View
      * @Rest\Route("/api/v1/get_last_comment_from_a_post/{postId}", options={"expose"=true}, name="get_last_comment_from_a_post")
+     *
      * @return Response
      */
-    public function getLastCommentFromAPost(Request $request, $postId)
+    public function getLastCommentFromAPostAction(Request $request, $postId)
     {
-        $response = array(
-            'error' => false,
-            'message' => '',
-            'response' => true
-        );
+        /** @var CommentsApiService $commentsApiService */
+        $commentsApiService = $this->get(CommentsApiService::SERVICE_NAME);
 
-        try {
-            /** @var Comment $comment */
-            $comment = $this->getDoctrine()->getRepository('AppBundle:Comment')
-                ->getLastCommentOfAPost(intval($postId));
-            $response['response'] = json_encode($comment);
+        $data = json_decode($request->getContent(), true);
 
-        } catch (\Exception $ex) {
-            $response['error'] = true;
-            $response['message'] = $ex->getMessage();
-        }
+        $data['post_id'] = $postId;
 
-        return new Response(json_encode($response));
+        $result = $commentsApiService->doRequest(__FUNCTION__, $data);
+
+        return new Response($result);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,19 +10,32 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/profile_edit", name="profile_edit")
      */
     public function indexAction(Request $request)
     {
         if(!$this->isUserLoggedIn()){
-            return $this->render('profile_edit_page.html.twig' );
+            return $this->render('profile_edit_page.html.twig', array(
+                'user' => $this->getLoggedUser()
+            ));
         }
 
         return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            'user' => $this->getLoggedUser()
         ));
     }
 
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function welcomeAction(Request $request)
+    {
+        if($this->isUserLoggedIn()){
+            return $this->render('welcome.html.twig' );
+        }
+
+        return $this->render('first_page.html.twig');
+    }
     /**
      * Is the current user logged in?
      *
@@ -31,5 +45,13 @@ class DefaultController extends Controller
     {
         return $this->container->get('security.authorization_checker')
             ->isGranted('IS_AUTHENTICATED_FULLY');
+    }
+
+    /**
+     * @return \AppBundle\Entity\User
+     */
+    public function getLoggedUser()
+    {
+        return $this->getDoctrine()->getRepository('AppBundle:User')->findUserByEmail('test@data.com');
     }
 }

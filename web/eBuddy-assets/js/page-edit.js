@@ -12,6 +12,7 @@ $(document).ready(function () {
 
     timeLine.html(getLoaderHtml());
     loadPosts();
+    getRecomandedFriends();
 
     $(".btn-pref .btn").click(function () {
         $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
@@ -51,12 +52,33 @@ $(document).ready(function () {
 
             success: function(result) {
                 if (!result.error) {
-                    JSON.parse(result.response).forEach(function (value, index) {
+                    result.response.forEach(function (value, index) {
                         offset++;
                         var postHtml = getHtmlPost(value);
                         $('#postsTimeline .timeline-row:last').before(postHtml);
                         appendLastCommentInTimeLine(value.id);
 
+                    });
+                    $('.loading3').hide();
+                    timelineScrollEnded = true;
+                }
+            }
+        });
+    }
+
+    function getRecomandedFriends(){
+        $.ajax({
+            method: 'GET',
+            url: Routing.generate('get_recomanded_friends'),
+
+            success: function(result) {
+
+                var data = JSON.parse(result.content);
+                if (!data.error) {
+                    data.response.forEach(function (value, index) {
+                        console.log(value);
+                        var userHtml = getRecomandedFriendHtml(value);
+                        $('#recomanderBlock').append(userHtml);
                     });
                     $('.loading3').hide();
                     timelineScrollEnded = true;
@@ -134,10 +156,8 @@ function appendLastCommentInTimeLine(postId){
 
             if(!data.error){
                 var latestPostId = '#post_'+postId;
-                var responseContent = JSON.parse(response.response);
-                console.log(responseContent);
-                var comment = responseContent != [] ? responseContent[0] : null;
-                $(latestPostId).find(".lastComment").html(getLastCommentHtml(comment));
+                var responseContent = response.response;
+                $(latestPostId).find(".lastComment").html(getLastCommentHtml(responseContent));
             }else{
                 console.log(data.message);
             }
@@ -148,15 +168,15 @@ function appendLastCommentInTimeLine(postId){
 function getHtmlPost(postData){
     var myvar = '<div id= "post_'+postData.id+'" class="timeline-row">'+
         '   <div class="timeline-icon">'+
-        '         <img alt="img" src = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg">'+
+        '         <img alt="img" src = "/web/'+postData.author_picure_path+'">'+
         '     </div>'+
         ''+
         '     <div class="panel panel-flat timeline-content">'+
         '         <div class="panel-heading">'+
-        '             <h6 class="panel-title">Post Id '+postData.id+'</h6>'+
+        '             <h6 class="panel-title"></h6>'+
         '             <div class="heading-elements">'+
-        '                 <span class="heading-text"><i'+
-        '                             class="icon-checkmark-circle position-left text-success"></i>'+postData.postedAt.date+'</span>'+
+        '                 <span class="heading-text" data-livestamp='+postData.posted_at.date+'><i'+
+        '                             class="icon-checkmark-circle position-left text-success"></i></span>'+
         '                 <ul class="icons-list">'+
         '                     <li class="dropdown">'+
         '                         <a href="#" class="dropdown-toggle"'+
@@ -216,41 +236,35 @@ function getHtmlPost(postData){
 }
 
 function getHtmlModalPost(postData){
-    var myvar =
-        '         <div class="panel-body">'+
-        '             '+postData.content+
-        '         </div>';
-
-    return myvar;
+    return '         <div class="panel-body">' +
+           '             ' + postData.content +
+           '         </div>';
 }
 
 function getHtmlModalComment(comment){
-    var myvar =
-        '<li class="">'+
-        '   <div class="panel-heading">'+
-        '       <p class="panel-title">Comment id '+comment.id+'</p>'+
-        '   <div class="heading-elements">'+
-        '   </div>'+
-        '   <div class="panel-body">'+
-        '       <p>'+comment.content+'<p>'+
-        '   </div>'+
-        '</li>';
-
-
-
-    return myvar;
+    return '<div class="media">'+
+            '<p class="pull-right"><small data-livestamp='+comment.posted_at.date+'></small></p>'+
+            '<a class="media-left" href="#">'+
+            '   <img src="/web/'+comment.author_picure_path+'" class="img-circle">'+
+            '</a>'+
+            '<div class="media-body">'+
+                '<h4 class="media-heading user_name">'+comment.author_name+'</h4>'+
+                    comment.content+
+            '</div>'+
+        '</div>';
 }
 
 function getLastCommentHtml(comment) {
+    console.log(comment);
     if(comment != null){
         return '<br/><h6 class="content-group">'+
             '    <i class="icon-comment-discussion position-left"></i>'+
-            '        Las comment from <a href="#">Marius Iliescu</a>:'+
+            '        Las comment from <a href="#">'+comment.author_name+'</a>:'+
             '</h6>'+
             ''+
             '<blockquote>'+
             '    <p>'+comment.content+'</p>'+
-            '    <footer>Marius, <cite title="Source Title">'+comment.postedAt.date+'</cite>'+
+            '    <footer><cite title="Source Title" data-livestamp='+comment.posted_at.date+'></cite>'+
             '    </footer>'+
             '</blockquote>';
     }else{
@@ -331,7 +345,6 @@ function popupPostModal(e) {
             success: function (data) {
 
                 if (!data.error) {
-                    console.log(data.response);
                     var response = JSON.parse(data.response);
                     modalContent.unblock();
                     modalContent.html(getHtmlModalPost(response));
@@ -346,17 +359,13 @@ function popupPostModal(e) {
     loadComments();
 }
 
-
 function showUpCommentBox(e){
-    console.log("comment box")
     e = e || window.event;
 
     var target = e.target || e.srcElement;
 
     var postId = $(target).closest(".timeline-row").attr('id');
     postId = postId.substr(postId.indexOf("_") + 1);
-
-    console.log("post Id: "+postId);
 
     var commentBox = $(target).closest(".panel-footer").siblings(".comment_box");
 
@@ -403,10 +412,26 @@ function postComment(postId, commentContent){
 }
 
 function getLoaderHtml() {
-    var loaderT =
-        '<div class="timeline-row loading3 col-centered" style="display: none">'+
-        '   <div></div><div></div><div></div>'+
-        '   <div></div><div></div>'+
-        '</div>';
-    return loaderT;
+    return  '<div class="timeline-row loading3 col-centered" style="display: none">' +
+            '   <div></div><div></div><div></div>' +
+            '   <div></div><div></div>' +
+            '</div>';
+}
+
+
+function getRecomandedFriendHtml(friend){
+
+    return  '<li class="media">'+
+            '<div class="media-link">'+
+            '<div class="media-left"><img src="/web/'+friend.picture+'"'+
+            'class="img-circle" alt="no picture"></div>'+
+            '<div class="media-body">'+
+            '<span class="media-heading text-semibold">'+friend.name+'</span>'+
+            '<span class="media-annotation">'+friend.name+'</span>'+
+            '</div>'+
+            '<div class="media-right media-middle">'+
+            '<button class="btn img-circle frind-request-btn transition"></button>'+
+            '</div>'+
+            '</div>'+
+            '</li>';
 }

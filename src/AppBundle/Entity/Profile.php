@@ -12,47 +12,65 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProfileRepository")
  * @ORM\Table(name="profile")
  */
 class Profile extends BaseEntity
 {
     /**
-     * @ORM\Column(type="string", length=32, unique=true, nullable=false, name="first_name")
+     * @var string
+     *
+     * @ORM\Column(type="string", length=32, nullable=false, name="first_name")
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=32, unique=true, nullable=false, name="last_name")
+     * @var string
+     *
+     * @ORM\Column(type="string", length=32, nullable=false, name="last_name")
      * */
     private $lastName;
 
     /**
-     * @ORM\OneToOne(targetEntity="ProfilePicture")
+     * @var Picture
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Picture", cascade={"all"})
      * @ORM\JoinColumn(name="profile_picture_id", referencedColumnName="id")
      */
     private $profilePicture;
 
     /**
-     * @ORM\OneToOne(targetEntity="CoverPicture")
+     * @var Picture
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Picture", cascade={"all"})
      * @ORM\JoinColumn(name="cover_picture_id", referencedColumnName="id")
      */
     private $coverPicture;
 
     /**
+     * @var Address
+     *
      * @ORM\OneToOne(targetEntity="Address")
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      */
     private $address;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="datetime", name="last_change")
      */
     private $lastChange;
 
+    /**
+     * @var  User
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", mappedBy="profile")
+     */
+    private $user;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFirstName()
     {
@@ -60,7 +78,7 @@ class Profile extends BaseEntity
     }
 
     /**
-     * @param mixed $firstName
+     * @param string $firstName
      * @return Profile
      */
     public function setFirstName($firstName)
@@ -70,7 +88,7 @@ class Profile extends BaseEntity
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLastName()
     {
@@ -78,7 +96,7 @@ class Profile extends BaseEntity
     }
 
     /**
-     * @param mixed $lastName
+     * @param string $lastName
      * @return Profile
      */
     public function setLastName($lastName)
@@ -88,7 +106,43 @@ class Profile extends BaseEntity
     }
 
     /**
-     * @return mixed
+     * @return Picture
+     */
+    public function getProfilePicture()
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * @param Picture $profilePicture
+     * @return Profile
+     */
+    public function setProfilePicture($profilePicture)
+    {
+        $this->profilePicture = $profilePicture;
+        return $this;
+    }
+
+    /**
+     * @return Picture
+     */
+    public function getCoverPicture()
+    {
+        return $this->coverPicture;
+    }
+
+    /**
+     * @param Picture $coverPicture
+     * @return Profile
+     */
+    public function setCoverPicture($coverPicture)
+    {
+        $this->coverPicture = $coverPicture;
+        return $this;
+    }
+
+    /**
+     * @return Address
      */
     public function getAddress()
     {
@@ -96,7 +150,7 @@ class Profile extends BaseEntity
     }
 
     /**
-     * @param mixed $address
+     * @param Address $address
      * @return Profile
      */
     public function setAddress($address)
@@ -106,57 +160,7 @@ class Profile extends BaseEntity
     }
 
     /**
-     * @return mixed
-     */
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
-    /**
-     * @param mixed $phoneNumber
-     * @return Profile
-     */
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->phoneNumber = $phoneNumber;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProfilePicture()
-    {
-        return $this->profilePicture;
-    }
-
-    /**
-     * @param mixed $profilePicture
-     */
-    public function setProfilePicture($profilePicture)
-    {
-        $this->profilePicture = $profilePicture;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCoverPicture()
-    {
-        return $this->coverPicture;
-    }
-
-    /**
-     * @param mixed $coverPicture
-     */
-    public function setCoverPicture($coverPicture)
-    {
-        $this->coverPicture = $coverPicture;
-    }
-
-    /**
-     * @return mixed
+     * @return string
      */
     public function getLastChange()
     {
@@ -164,10 +168,30 @@ class Profile extends BaseEntity
     }
 
     /**
-     * @param mixed $lastChange
+     * @param string $lastChange
+     * @return Profile
      */
     public function setLastChange($lastChange)
     {
         $this->lastChange = $lastChange;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return Profile
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
     }
 }

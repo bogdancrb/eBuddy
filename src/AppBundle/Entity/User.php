@@ -18,14 +18,14 @@ class User extends BaseEntity
 {
     /**
      * @var  Account
-     * @ORM\OneToOne(targetEntity="Account",cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Account", cascade={"all"}, orphanRemoval=true)
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      */
     private $account;
 
     /**
      * @var  Profile
-     * @ORM\OneToOne(targetEntity="Profile",cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Profile",cascade={"all"}, orphanRemoval=true)
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      */
     private $profile;
@@ -35,7 +35,7 @@ class User extends BaseEntity
      *
      * The people who I think are my friends.
      *
-     * @ORM\OneToMany(targetEntity="Friendship", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Friendship", mappedBy="user", orphanRemoval=true)
      */
     private $friends;
 

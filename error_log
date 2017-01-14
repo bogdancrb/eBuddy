@@ -5,3 +5,4 @@
 [18-Dec-2016 19:58:01 UTC] PHP Fatal error:  Class 'FOS\JsRoutingBundle\FOSJsRoutingBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
 [18-Dec-2016 19:58:57 UTC] PHP Fatal error:  Class 'FOS\JsRoutingBundle\FOSJsRoutingBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
 [18-Dec-2016 19:59:44 UTC] PHP Fatal error:  Class 'FOS\JsRoutingBundle\FOSJsRoutingBundle' not found in /home/zenoth/public_html/paw/env2.marius/app/AppKernel.php on line 23
+[14-Jan-2017 09:30:43 UTC] PHP Fatal error:  Access level to AppBundle\Entity\Account::$id must be protected (as in class FOS\UserBundle\Model\User) or weaker in /home/zenoth/public_html/paw/env2.marius/src/AppBundle/Entity/Account.php on line 14

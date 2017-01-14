@@ -13,6 +13,7 @@ use AppBundle\Entity\Account;
 use AppBundle\Entity\Profile;
 use AppBundle\Entity\User;
 use AppBundle\Repository\UserRepository;
+use AppBundle\Service\UserApiService;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,67 +30,35 @@ class RestUserController extends FOSRestController
      */
     public function registerHandleAction(Request $request)
     {
-        $errors = array();
-
         $data = json_decode($request->getContent(), true);
 
-        $email = isset($data['email']) ?
-            $data['email'] : (null AND  $errors[] = '"email" is required');
+        /** @var UserApiService $userApiService */
+        $userApiService = $this->get(UserApiService::SERVICE_NAME);
 
-        $plainPassword = isset($data['plain_password']) ?
-            $data['plain_password'] : (null AND $errors[] = '"password" is required');
+        $data = json_decode($request->getContent(), true);
+        $result = $userApiService->doRequest(__FUNCTION__, $data);
 
-        $firstName = isset($data['first_name']) ?
-            $data['first_name'] : (null AND $errors[] = 'please put your first name');
-
-        $lastName = isset($data['last_name']) ?
-            $data['last_name'] : (null AND $errors[] = 'please put yout last name');
-
-        /** @var UserRepository $userRepository */
-        $userRepository = $this->getDoctrine()
-            ->getRepository('AppBundle:User');
-
-        // make sure we don't already have this user!
-        if ($existingUser = $userRepository->findUserByEmail($email)) {
-            $errors[] = 'A user with this email is already registered!';
-        }
-
-        $user = new User();
-        $account = new Account();
-        $profile = new Profile();
-
-        $profile->setFirstName($firstName)->setLastName($lastName)->setLastChange(new \DateTime("now"));
-
-        $encodedPassword = $this->container->get('security.password_encoder')
-            ->encodePassword($account, $plainPassword);
-        $account->setEmail($email)->setPassword($encodedPassword);
-
-        $user->setAccount($account);
-        $user->setProfile($profile);
-
-        // errors? Show them!
-        if (count($errors) > 0) {
-            return new Response(json_encode($errors));
-        }
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
-
-        $this->loginUser($user->getAccount());
-
-        return new Response('ok');
+        return new Response($result);
     }
+
 
     /**
-     * Logs this user into the system
-     *
-     * @param User $user
+     * @param Request $request
+     * @Rest\View
+     * @Rest\Route("/api/v1/user_sign_up", name="user_sign_up")
+     * @return Response
      */
-    public function loginUser(Account $userAccount)
+    public function dummyUserSignUpAction(Request $request)
     {
-        $token = new UsernamePasswordToken($userAccount, $userAccount->getPassword(), 'main', $userAccount->getRoles());
+        $data = json_decode($request->getContent(), true);
 
-        $this->container->get('security.token_storage')->setToken($token);
+        /** @var UserApiService $userApiService */
+        $userApiService = $this->get(UserApiService::SERVICE_NAME);
+
+        $data = json_decode($request->getContent(), true);
+        $result = $userApiService->doRequest(__FUNCTION__, $data);
+
+        return new Response($result);
     }
+
 }

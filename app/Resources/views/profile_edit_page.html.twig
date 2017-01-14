@@ -5,6 +5,7 @@
     <link href="{{ asset('eBuddy-assets/css/hoverCard-style.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('eBuddy-assets/css/loader-animation.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
+
 {% block javascripts %}
     <script type="text/javascript">
         var apiGETpostsUrl = "{{ url('get_user_posts_with_limit_and_offset') }}";
@@ -33,6 +34,7 @@
     <script type="text/javascript" src="{{ asset('limitless-assets/js/core/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('limitless-assets/js/pages/editor_wysihtml5.js') }}"></script>
 
+    <script type="text/javascript" src="{{ asset('eBuddy-assets/js/timeNormalizer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('eBuddy-assets/js/page-edit.js') }}"></script>
 
 {% endblock %}
@@ -347,8 +349,13 @@
 
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('limitless-assets/images/placeholder.jpg') }}" alt="">
-                        <span>Marius Iliescu</span>
+                        <img src="{{asset(user.profile.profilePicture.path) }}" alt="">
+                        <span>
+                            {% if user is defined %}
+                                {{user.profile.firstName }} {{  user.profile.lastName }}
+                            {% endif %}
+
+                        </span>
                         <i class="caret"></i>
                     </a>
 
@@ -397,17 +404,20 @@
 
                 <!-- Cover area -->
                 <div class="profile-cover">
-                    <div class="profile-cover-img" style="background-image:url({{ asset('limitless-assets/images/cover.jpg') }})">
+                    <div class="profile-cover-img" style="background-image:url({{asset(user.profile.coverPicture.path) }})">
                 </div>
                 <div class="media">
                     <div class="media-left">
                         <a href="#" class="profile-thumb">
-                            <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="img-circle" alt="">
+                            <img src="{{asset(user.profile.profilePicture.path) }}" class="img-circle" alt="">
                         </a>
                     </div>
 
                     <div class="media-body">
-                        <h1>Marius Iliescu
+                        <h1>
+                            {% if user is defined %}
+                                {{user.profile.firstName }} {{  user.profile.lastName }}
+                            {% endif %}
                         </h1>
                     </div>
 
@@ -492,11 +502,11 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>First Name</label>
-                                                        <input type="text" value="Marius" class="form-control">
+                                                        <input type="text" value="{{ user.profile.firstName }}" class="form-control">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Full name</label>
-                                                        <input type="text" value="Iliescu" class="form-control">
+                                                        <input type="text" value="{{ user.profile.lastName }}" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -523,7 +533,7 @@
                                                             <div class="form-group">
                                                                 <div id="map" class="map-wrapper content-group-sm"></div>
                                                                 <span class="help-block">You can drag and drop the marker to the correct location</span>
-                                                                </di<div class="col-md-6">v>
+                                                                <div class="col-md-6">v>
 
                                                                     <div class="form-group">
                                                                         <label>Response</label>
@@ -532,6 +542,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -539,7 +550,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <label>Email</label>
-                                                        <input type="text" readonly="readonly" value="iliescu.marius.a@gmail.com"
+                                                        <input type="text" readonly="readonly" value="{{ user.account.email }}"
                                                                class="form-control">
                                                     </div>
                                                 </div>
@@ -754,115 +765,14 @@
                     <!-- Connections -->
                     <div class="panel panel-flat">
                         <div class="panel-heading">
-                            <h6 class="panel-title">Latest connections</h6>
+                            <h6 class="panel-title">You might also know</h6>
                             <div class="heading-elements">
                                 <span class="badge badge-success heading-text">+32</span>
                             </div>
                         </div>
 
-                        <ul class="media-list media-list-linked pb-5">
-                            <li class="media-header">Office staff</li>
+                        <ul id="recomanderBlock" class="media-list media-list-linked pb-5">
 
-                            <li class="media">
-                                <a href="#" class="media-link">
-                                    <div class="media-left"><img src="{{ asset('limitless-assets/images/placeholder.jpg') }}"
-                                                                 class="img-circle" alt=""></div>
-                                    <div class="media-body">
-                                        <span class="media-heading text-semibold">James Alexander</span>
-                                        <span class="media-annotation">UI/UX expert</span>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <span class="status-mark bg-success"></span>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="media">
-                                <a href="#" class="media-link">
-                                    <div class="media-left"><img src="{{ asset('limitless-assets/images/placeholder.jpg') }}"
-                                                                 class="img-circle" alt=""></div>
-                                    <div class="media-body">
-                                        <span class="media-heading text-semibold">Marius Iliescu</span>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <span class="status-mark bg-danger"></span>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="media">
-                                <a href="#" class="media-link">
-                                    <div class="media-left"><img src="{{ asset('limitless-assets/images/placeholder.jpg') }}"
-                                                                 class="img-circle" alt=""></div>
-                                    <div class="media-body">
-                                        <div class="media-heading"><span class="text-semibold">Jordana Mills</span>
-                                        </div>
-                                        <span class="text-muted">Sales consultant</span>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <span class="status-mark bg-grey-300"></span>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="media">
-                                <a href="#" class="media-link">
-                                    <div class="media-left"><img src="{{ asset('limitless-assets/images/placeholder.jpg') }}"
-                                                                 class="img-circle" alt=""></div>
-                                    <div class="media-body">
-                                        <div class="media-heading"><span class="text-semibold">William Miles</span>
-                                        </div>
-                                        <span class="text-muted">SEO expert</span>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <span class="status-mark bg-success"></span>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="media-header">Partners</li>
-
-                            <li class="media">
-                                <a href="#" class="media-link">
-                                    <div class="media-left"><img src="{{ asset('limitless-assets/images/placeholder.jpg') }}"
-                                                                 class="img-circle" alt=""></div>
-                                    <div class="media-body">
-                                        <span class="media-heading text-semibold">Margo Baker</span>
-                                        <span class="media-annotation">Google</span>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <span class="status-mark bg-success"></span>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="media">
-                                <a href="#" class="media-link">
-                                    <div class="media-left"><img src="{{ asset('limitless-assets/images/placeholder.jpg') }}"
-                                                                 class="img-circle" alt=""></div>
-                                    <div class="media-body">
-                                        <span class="media-heading text-semibold">Beatrix Diaz</span>
-                                        <span class="media-annotation">Facebook</span>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <span class="status-mark bg-warning-400"></span>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="media">
-                                <a href="#" class="media-link">
-                                    <div class="media-left"><img src="{{ asset('limitless-assets/images/placeholder.jpg') }}"
-                                                                 class="img-circle" alt=""></div>
-                                    <div class="media-body">
-                                        <span class="media-heading text-semibold">Richard Vango</span>
-                                        <span class="media-annotation">Microsoft</span>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <span class="status-mark bg-grey-300"></span>
-                                    </div>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                     <!-- /connections -->

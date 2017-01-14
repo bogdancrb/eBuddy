@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="api.user.service" class="AppBundle\Service\UserApiService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+            <call method="setSecurityPasswordEncoder">
+                <argument type="service" id="security.password_encoder"/>
+            </call>
+            <call method="setTokenStorage">
+                <argument type="service" id="security.token_storage"/>
+            </call>
+            <call method="setSession">
+                <argument type="service" id="session"/>
+            </call>
+        </service>
+        <service id="api.post.service" class="AppBundle\Service\PostApiService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+        </service>
+        <service id="recc.api.service" class="AppBundle\Service\RecommenderEngineApiService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+        </service>
+        <service id="api.comment.service" class="AppBundle\Service\CommentsApiService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+        </service>
+    </services>
+
+</container>

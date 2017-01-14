@@ -30,7 +30,7 @@ class ApiToken
     private $notes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Account")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

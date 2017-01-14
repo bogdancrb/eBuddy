@@ -15,18 +15,19 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class UserController extends Controller
 {
-
     /**
-     * @Route("/register", name="user_register")
-     * @Method("GET")
+     * @Route("/login", name="security_login_form")
      */
-    public function registerAction()
+    public function loginAction(Request $request)
     {
         if ($this->isUserLoggedIn()) {
             return $this->redirect($this->generateUrl('homepage'));
         }
 
-        return $this->render('user/register.twig', array('user' => new Account()));
+        return $this->render('login.twig', array(
+            'error'         => $this->get('security.authentication_utils')->getLastAuthenticationError(),
+            'last_username' => $this->get('security.authentication_utils')->getLastUsername()
+        ));
     }
 
     /**
@@ -57,21 +58,6 @@ class UserController extends Controller
         $this->container->get('security.token_storage')->setToken($token);
     }
 
-    /**
-     * @Route("/login", name="security_login_form")
-     */
-    public function loginAction(Request $request)
-    {
-        if ($this->isUserLoggedIn()) {
-            return $this->redirect($this->generateUrl('homepage'));
-        }
-
-        return $this->render('user/login.twig', array(
-            'error'         => $this->container->get('security.authentication_utils')->getLastAuthenticationError(),
-            'last_username' => $this->container->get('security.authentication_utils')->getLastUserName()
-        ));
-    }
-
     public function addFlash($message, $positiveNotice = true)
     {
         /** @var Request $request */
@@ -88,7 +74,7 @@ class UserController extends Controller
      */
     public function isUserLoggedIn()
     {
-        return $this->container->get('security.authorization_checker')
+        return $this->get('security.authorization_checker')
             ->isGranted('IS_AUTHENTICATED_FULLY');
     }
 }

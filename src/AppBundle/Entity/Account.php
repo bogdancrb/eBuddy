@@ -22,12 +22,22 @@ class Account implements AccountInterface
     /**
      * @ORM\Column(type="string", unique=true)
      */
+    private $username;
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=64)
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $salt;
 
     public function getId()
     {
@@ -42,6 +52,7 @@ class Account implements AccountInterface
     public function setUsername($username)
     {
         $this->email = $username;
+        $this->username = $username;
 
         return $this;
     }
@@ -75,12 +86,34 @@ class Account implements AccountInterface
         return array('ROLE_USER');
     }
 
+    /**
+     * @param mixed $id
+     * @return Account
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @param mixed $salt
+     * @return Account
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
     public function getSalt()
     {
-        return;
+        return $this->salt;
     }
 
     public function eraseCredentials()
     {
     }
+
 }

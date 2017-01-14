@@ -11,9 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"picture" = "Picture", "profile_picture" = "ProfilePicture",  "cover_picture" = "CoverPicture"})
+ * @ORM\Table(name="picture")
  */
 class Picture extends BaseEntity
 {
@@ -33,4 +31,40 @@ class Picture extends BaseEntity
      * @ORM\Column(type="string", columnDefinition="ENUM('profile_picture', 'cover_picture','regular_picture')", nullable=false, options={"unsigned":true, "default":"regular_picture"})
      */
     private $was;
-}
+
+    /**
+     * @return mixed
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * @param mixed $path
+     * @return Picture
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWas()
+    {
+        return $this->was;
+    }
+
+    /**
+     * @param mixed $was
+     * @return Picture
+     */
+    public function setWas($was)
+    {
+        $this->was = $was;
+        return $this;
+    }
+    }

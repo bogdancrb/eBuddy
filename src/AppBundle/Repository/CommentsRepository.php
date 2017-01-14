@@ -40,7 +40,7 @@ class CommentsRepository extends EntityRepository
             ->setParameter(':postId', $postId)
             ->setParameter(':author_id', $userId)
             ->orderBy('c.postedAt', 'DESC')
-            ->getQuery()->getArrayResult();
+            ->getQuery()->getResult();
 
         return $comments;
     }
@@ -85,12 +85,13 @@ class CommentsRepository extends EntityRepository
         /** @var array */
         $comments = $this->createQueryBuilder('c')
             ->join('c.post', 'p')
+            ->innerJoin('c.user', 'user')
             ->where('p.id = :postId')
             ->setParameter('postId', $postId)
             ->setMaxResults( $limit )
             ->setFirstResult( $offset )
             ->orderBy('c.postedAt', 'DESC')
-            ->getQuery()->getArrayResult();
+            ->getQuery()->getResult();
 
         return $comments;
     }
@@ -104,10 +105,11 @@ class CommentsRepository extends EntityRepository
         /** @var array */
         $comment = $this->createQueryBuilder('c')
             ->join('c.post', 'p')
+            ->innerJoin('c.user', 'user')
             ->where('p.id ='.$postId)
             ->orderBy('c.postedAt', 'DESC')
             ->setMaxResults(1)
-            ->getQuery()->getArrayResult();
+            ->getQuery()->getOneOrNullResult();
 
         return $comment;
     }

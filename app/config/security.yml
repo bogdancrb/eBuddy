@@ -4,7 +4,8 @@ security:
 
     providers:
         database_users:
-            entity: { class: AppBundle:Account }
+            entity: {class: AppBundle:Account, property: username}
+
 
     firewalls:
         api:
@@ -16,7 +17,8 @@ security:
                     - 'jwt_token_authenticator'
         main:
             pattern: ^/
-            anonymous: true
+            anonymous: ~
+            provider: database_users
             form_login:
                 # The route name that the login form submits to
                 check_path: security_login_check
@@ -25,12 +27,11 @@ security:
             logout:
                 # The route name the user can go to in order to logout
                 path: security_logout
+                target: /
 
     access_control:
-        - { path: ^/_wdt|_profiler, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # allow anonymous API - if auth is needed, it's handled in the controller
         - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+
+        - { path: ^/login roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_wdt|_profiler, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/home, roles: IS_AUTHENTICATED_FULLY }

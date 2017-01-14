@@ -51,7 +51,7 @@ class PostsRepository extends EntityRepository
             ->setMaxResults($limit)
             ->setFirstResult($offset)
             ->orderBy('p.postedAt', 'DESC')
-            ->getQuery()->getArrayResult();
+            ->getQuery()->getResult();
 
         return $posts;
     }

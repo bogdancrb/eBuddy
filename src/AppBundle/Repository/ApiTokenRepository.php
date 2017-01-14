@@ -6,6 +6,10 @@ use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\User;
 use AppBundle\Entity\ApiToken;
 
+/**
+ * Class ApiTokenRepository
+ * @package AppBundle\Repository
+ */
 class ApiTokenRepository extends EntityRepository
 {
     /**

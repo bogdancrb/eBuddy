@@ -25,7 +25,7 @@ class Comment extends BaseEntity
 
     /**
      * @var  User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments",  cascade={"all"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -74,7 +74,7 @@ class Comment extends BaseEntity
     }
 
     /**
-     * @return mixed
+     * @return User
      */
     public function getUser()
     {
@@ -82,7 +82,7 @@ class Comment extends BaseEntity
     }
 
     /**
-     * @param mixed $user
+     * @param User $user
      * @return Comment
      */
     public function setUser($user)
