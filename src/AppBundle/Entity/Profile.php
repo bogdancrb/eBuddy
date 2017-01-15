@@ -70,6 +70,11 @@ class Profile extends BaseEntity
     private $user;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Picture", mappedBy="author", cascade={"all"})
+     */
+    private $pictures;
+
+    /**
      * @return string
      */
     public function getFirstName()
@@ -192,6 +197,24 @@ class Profile extends BaseEntity
     public function setUser($user)
     {
         $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * @param mixed $pictures
+     * @return Profile
+     */
+    public function setPictures($pictures)
+    {
+        $this->pictures = $pictures;
         return $this;
     }
 }

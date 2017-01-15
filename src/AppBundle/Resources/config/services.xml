@@ -45,6 +45,12 @@
                 <argument type="string">%kernel.root_dir%/../web/</argument>
             </call>
         </service>
+
+        <service id="api.picture.service" class="AppBundle\Service\PictureApiService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+        </service>
     </services>
 
 </container>

@@ -1,0 +1,165 @@
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-main">
+            <div class="sidebar-content">
+
+                <!-- Main navigation -->
+                <div class="sidebar-category sidebar-category-visible">
+                    <div class="category-content no-padding">
+                        <ul class="navigation navigation-main navigation-accordion">
+
+                            <!-- Main -->
+                            <li class="navigation-header"><span>Main</span> <i class="icon-menu"
+                                                                               title="Main pages"></i></li>
+                            <li><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /main navigation -->
+
+            </div>
+        </div>
+        <!-- /main sidebar -->
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Cover area -->
+            {% include 'cover_area.html.twig' with {'user': user} %}
+            <!-- /cover area -->
+            <!-- Toolbar -->
+            {% include 'toolbar.html.twig' with {'user': user} %}
+            <!-- /toolbar -->
+            <!-- User profile -->
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="tabbable">
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="activity">
+
+                                <!-- Timeline -->
+                                <div class="timeline timeline-left content-group">
+                                    <div id="postsTimeline" class="timeline-container">
+
+                                        <div class="timeline-row loading3 col-centered" style="display: none">
+                                            <div></div><div></div><div></div>
+                                            <div></div><div></div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- /timeline -->
+
+                            </div>
+                            {% include 'timeline_in_profile_edit.html.twig' with {'user': user} %}
+                            {% include 'profile_settings.html.twig' with {'user': user} %}
+                            {% include 'gallery_grid.html.twig' with {'user': user} %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 hidden-xs hidden-sm hidden-md">
+
+                    <!-- Navigation -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Navigation</h6>
+                            <div class="heading-elements">
+                                <a href="#" class="heading-text">See all &rarr;</a>
+                            </div>
+                        </div>
+
+                        <div class="list-group list-group-borderless no-padding-top">
+                            <a href="#" class="list-group-item"><i class="icon-user"></i> My profile</a>
+                            <a href="#" class="list-group-item"><i class="icon-cash3"></i> Balance</a>
+                            <a href="#" class="list-group-item"><i class="icon-tree7"></i> Connections <span
+                                        class="badge bg-danger pull-right">29</span></a>
+                            <a href="#" class="list-group-item"><i class="icon-users"></i> Friends</a>
+                            <div class="list-group-divider"></div>
+                            <a href="#" class="list-group-item"><i class="icon-calendar3"></i> Events <span
+                                        class="badge bg-teal-400 pull-right">48</span></a>
+                            <a href="#" class="list-group-item"><i class="icon-cog3"></i> Account settings</a>
+                        </div>
+                    </div>
+                    <!-- /navigation -->
+
+
+                    <!-- Share your thoughts -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Share your thoughts</h6>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="close"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <form action="#">
+                                <div class="form-group">
+                                    <textarea name="enter-message" class="form-control mb-15" rows="3" cols="1"
+                                              placeholder="What's on your mind?"></textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="icons-list icons-list-extended mt-10">
+                                            <li><a href="#" data-popup="tooltip" title="Add photo"
+                                                   data-container="body"><i class="icon-images2"></i></a></li>
+                                            <li><a href="#" data-popup="tooltip" title="Add video"
+                                                   data-container="body"><i class="icon-film2"></i></a></li>
+                                            <li><a href="#" data-popup="tooltip" title="Add event"
+                                                   data-container="body"><i class="icon-calendar2"></i></a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-sm-6 text-right">
+                                        <button type="button" class="btn btn-primary btn-labeled btn-labeled-right">
+                                            Share <b><i class="icon-circle-right2"></i></b></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /share your thoughts -->
+
+                    <!-- Connections -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">You might also know</h6>
+                            <div class="heading-elements">
+                                <span class="badge badge-success heading-text">+32</span>
+                            </div>
+                        </div>
+
+                        <ul id="recomanderBlock" class="media-list media-list-linked pb-5">
+
+                        </ul>
+                    </div>
+                    <!-- /connections -->
+
+                </div>
+            </div>
+            <!-- /user profile -->
+
+            <!-- new Post modal -->
+            {% include 'newPostModal.html.twig' with {'user': user} %}
+            <!-- end post modal-->
+
+            <!-- new Post modal -->
+            {% include 'postModal.html.twig' with {'user': user} %}
+            <!-- end post modal-->
+
+
+
+
+        </div>
+        <!-- Main content -->
+    </div>
+</div>

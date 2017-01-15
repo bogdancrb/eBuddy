@@ -37,10 +37,19 @@ class Picture extends BaseEntity
      */
     private $was;
 
+    /** @ORM\Column(type="datetime", name="posted_at") */
+    private $postedAt;
+
     /**
      * @ORM\Column(type="string", columnDefinition="ENUM('custom', 'default')", nullable=false, options={"unsigned":true, "default":"default"})
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Profile", inversedBy="pictures", cascade={"all"})
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     */
+    private $author;
 
     /**
      * @return mixed
@@ -94,6 +103,42 @@ class Picture extends BaseEntity
     {
         $this->type = $type;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param mixed $author
+     * @return Picture
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostedAt()
+    {
+        return $this->postedAt;
+    }
+
+    /**
+     * @param mixed $postedAt
+     * @return Picture
+     */
+    public function setPostedAt($postedAt)
+    {
+        $this->postedAt = $postedAt;
         return $this;
     }
 }
