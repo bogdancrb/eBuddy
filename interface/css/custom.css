@@ -1,0 +1,350 @@
+/*@font-face {*/
+/*font-family: Bell Gothic Std;*/
+/*src: url("../fonts/bellgothicstd-bold.eot") !* EOT file for IE *!*/
+/*}*/
+/*@font-face {*/
+/*font-family: Bell Gothic Std;*/
+/*src: url("../fonts/bellgothicstd-bold.ttf") !* TTF file for CSS3 browsers *!*/
+/*}*/
+
+@font-face{
+    font-family: Aldo;
+    src:url(../fonts/AldoPC.ttf);
+}
+
+h1.logo{
+    font-family: Aldo;
+}
+
+.post-body
+{
+    border: 2px solid #ededec;
+    border-radius: 6px;
+    padding: 20px;
+    padding-left: 45px;
+    padding-right: 0px;
+    margin-top: 50px;
+}
+
+.post-actions
+{
+    float: right;
+}
+
+table.post-containter
+{
+    margin-top: 20px;
+}
+
+table.post-containter td
+{
+    padding-right: 30px;
+}
+
+.post-separator
+{
+    width: 120%;
+}
+
+.post-separator hr
+{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ededec;
+    margin-top: 8px;
+}
+
+.post-comment-body,
+.post-add-comment-body
+{
+    padding-top: 15px;
+    padding-left: 55px;
+    padding-bottom: 15px;
+}
+
+.post-comment-body
+{
+    background-color: #ededec;
+    margin-top: -10px;
+}
+
+table.post-comment-container td
+{
+    padding-right: 35px;
+}
+
+table.post-add-comment-container td
+{
+    padding-right: 35px;
+    
+}
+
+.post-comment-time
+{
+    float: right;
+    padding-right: 40px;
+}
+
+.post-add-comment-body
+{
+    background-color: #39464e;
+    margin-bottom: 30px;
+}
+
+.post-add-comment-input
+{
+    width: 320%;
+    height: 60px;
+    resize: none;
+}
+
+.post-actions .custom-responsive-action-img
+{
+    max-width: 20%;
+    padding-left: 10px;
+}
+
+.post-comment-actions .custom-responsive-action-img
+{
+    max-width: 32px;
+    padding-right: 10px;
+    padding-top: 15px;
+}
+
+.post-avatar img
+{
+    width: 75px;
+    height: 75px;
+    margin-top: -70px;
+}
+
+.post-comment-avatar img,
+.post-add-comment-avatar img
+{
+    width: 60px;
+    height: 60px;
+    border: 2px solid white;
+}
+
+.post-author, .post-comment-author
+{
+    font-family: 'Bell Gothic Std';
+}
+
+.post-author
+{
+    font-size: 1.5em;
+}
+
+.post-time
+{
+    color: #39464e;
+}
+
+.post-comment-author
+{
+    font-size: 1.1em;
+}
+
+.post-comment-time
+{
+    font-size: 0.85em;
+}
+
+.post-comment-content-text
+{
+    padding-top: 10px;
+}
+
+
+/* De aici incepe CSS-ul - Dorin*/
+
+.profile{
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    height: 700px;
+    
+}
+
+.header{
+    background-color: #39464E;
+    height: 70px;
+    width: 100%;
+    margin: auto;
+    color: aliceblue
+}
+
+.search{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.prifile-picture{
+    position: absolute;
+    margin-top: 500px
+}
+.profile-picture-size{
+    width: 250px;
+    height: 250px;
+}
+.profilename{
+    text-align: center;
+    font-size: 200%;
+}
+
+.footer{
+    margin-top: 570px;
+    padding-top: 10px;
+    height: 60px;
+    text-decoration: none;
+    font-size: 25px;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+a.text{
+    color: white;
+}
+
+a.navbar-buttons{
+    color: white;
+    font-size: 30px;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+a.navbar-buttons:hover{
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.info{
+    margin-top: 10px;
+    height: 200px;
+}
+.info-text{
+    padding-top: 10px;
+    text-indent: 20px;
+}
+
+.friends{
+    margin-top: 30px;
+}
+
+.image-friend-size{
+    width: 15%;
+    height: 15%;
+}
+
+.album{
+    margin-top: 20px;
+    max-width: 20%;
+}
+
+.container{
+    
+}
+
+.post{
+    border: 2px solid #ededec;
+    border-radius: 6px;
+    padding: 20px;
+    padding-left: 45px;
+    padding-right: 0px;
+    margin-top: 50px;
+}
+
+.comment{
+    padding-top: 15px;
+    padding-left: 55px;
+    padding-bottom: 15px;
+}
+
+.add-coment{
+    background-color: #39464E;
+}
+
+.coment-form{
+    margin-top: 30px;
+}
+
+.left_photo{
+    width: 10%;
+    float: left;
+    
+}
+
+.right_info{
+    width: 90%;
+    float: right;
+}
+
+.right-aligng{
+    float: right;
+}
+
+img.album-photo{
+    height: 300px;
+}
+
+img.friend-list-picture{
+    height: 60px;
+    width: 60px;
+}
+
+/*----Imagine rotunda---------------------*/
+.img-crop,
+.img-crop img{
+	width: 100%; /* gotta be responsive these days */
+}
+.img-crop{
+	background-color: #ededed; /* some background color for short images */
+	overflow: hidden;
+	
+	/* remove white-space for inline-block elements */
+	letter-spacing: -0.31em; /* webkit */
+	*letter-spacing: normal; /* reset IE < 8 */
+	word-spacing: -0.43em; /* IE < 8 && gecko */
+	
+	border-radius: 50%; width: 60px;height: 60px;
+}
+.img-crop:before,
+.img-crop img{
+	/* vertically center the image */
+	display: inline-block;
+	vertical-align: middle;
+}
+.img-crop:before{
+	/* pseudo element to vertically align image to */
+	content: "";
+	
+	/* Magic Number */
+	/* Set this to your desired height(to width) ratio */
+	padding-top: 75%; /* % of original image width */ 
+}
+.img-crop img{
+	/* removes(sorta) image from the flow */
+	padding-left: 100%;
+	margin: -999em -100%;
+}
+
+
+@media screen and (max-width: 770px) {
+    .info{
+        height: 450px;
+    }
+    .profile-picture-size{
+        width: 0px;
+        height: 0px;
+    }
+    .profilename{
+        text-align: center;
+        font-size: 20%;
+    }
+    
+    .post-add-comment-input
+{
+    width: 220%;
+}
+}

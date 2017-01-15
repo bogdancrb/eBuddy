@@ -1,0 +1,124 @@
+.profile{
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    height: 700px;
+    
+}
+
+.header{
+    background-color: #39464E;
+    height: 70px;
+    width: 100%;
+    margin: auto;
+    color: aliceblue
+}
+
+.search{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.prifile-picture{
+    position: absolute;
+    margin-top: 500px
+}
+.profile-picture-size{
+    width: 250px;
+    height: 250px;
+}
+.profilename{
+    text-align: center;
+    font-size: 200%;
+}
+
+.footer{
+    margin-top: 570px;
+    padding-top: 10px;
+    height: 60px;
+    text-decoration: none;
+    font-size: 25px;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+a.text:link{
+    color: black;
+    
+}
+
+.info{
+    margin-top: 10px;
+    height: 200px;
+}
+.info-text{
+    padding-top: 10px;
+    text-indent: 20px;
+}
+
+.friends{
+    margin-top: 30px;
+}
+
+.image-friend-size{
+    width: 15%;
+    height: 15%;
+}
+
+.album{
+    margin-top: 20px;
+    max-width: 20%;
+}
+
+.container{
+    
+}
+
+.post{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    margin-top: 100px;
+}
+
+.comment{
+    width: 99%;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #EDEDEC;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-coment{
+    background-color: #39464E;
+}
+
+.coment-form{
+    margin-top: 30px;
+}
+
+.left_photo{
+    width: 10%;
+    float: left;
+    
+}
+
+.right_info{
+    width: 90%;
+    float: right;
+}
+
+
+@media screen and (max-width: 770px) {
+    .info{
+        height: 450px;
+    }
+    .profile-picture-size{
+        width: 0px;
+        height: 0px;
+    }
+    .profilename{
+        text-align: center;
+        font-size: 20%;
+    }
+}
