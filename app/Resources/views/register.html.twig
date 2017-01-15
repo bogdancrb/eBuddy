@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+                <h4>Inregistrare</h4>
+
+            {{ form_start(registerForm) }}
+                {{ form_row(registerForm.email) }}
+                {{ form_row(registerForm.plainPassword.first, {
+                    'label': 'Parola'
+                }) }}
+                {{ form_row(registerForm.plainPassword.second, {
+                    'label': 'Repetati parola'
+                }) }}
+            <button type="submit">Register</button>
+            {{ form_end(registerForm) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+

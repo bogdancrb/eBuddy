@@ -16,18 +16,12 @@ security:
                 authenticators:
                     - 'jwt_token_authenticator'
         main:
-            pattern: ^/
             anonymous: ~
-            provider: database_users
-            form_login:
-                # The route name that the login form submits to
-                check_path: security_login_check
-                login_path: security_login_form
-
+            guard:
+                authenticators:
+                    - app.security_user
             logout:
-                # The route name the user can go to in order to logout
-                path: security_logout
-                target: /
+                path: /logout
 
     access_control:
         - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }

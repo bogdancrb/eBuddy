@@ -7,3 +7,13 @@ services:
     jwt_token_authenticator:
         class: AppBundle\Security\JwtTokenAuthenticator
         autowire: true
+
+    app.doctrine.hash_password_listener:
+         class: AppBundle\Doctrine\HashPasswordListener
+         autowire: true
+         tags:
+             - { name: doctrine.event_subscriber }
+
+    app.security_user:
+        class: AppBundle\Security\LoginFormAuthenticator
+        autowire: true

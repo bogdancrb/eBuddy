@@ -21,7 +21,7 @@ class DefaultController extends Controller
                 $this->getLoggedUser()->getProfile()->getAddress()->getId())
             );
 
-        if(!$this->isUserLoggedIn()){
+        if($this->isUserLoggedIn()){
             return $this->render('profile_edit_page.html.twig', array(
                 'user' => $this->getLoggedUser(),
                 'address' =>$address

@@ -13,15 +13,11 @@
             </div>
         </div>
     {% endif %}
-
-        <form class="form-login" action="{{ path('security_login_check') }}" method="post">
-            <fieldset>
-                {{ macros.form_field('text', '_username', 'Email', last_username, 'foo@example.com') }}
-                {{ macros.form_field('password', '_password', 'Password', '', '') }}
-                <div class="form-group">
-                    <button type="submit" class="btn">Login</button>
-                </div>
-            </fieldset>
-        </form>
-
+    {{ form_start(loginForm) }}
+    {{ form_row(loginForm.username) }}
+    {{ form_row(loginForm.password) }}
+    <div class="form-group">
+        <button type="submit" class="btn">Login</button>
+    </div>
+    {{ form_end(loginForm) }}
 {% endblock %}
