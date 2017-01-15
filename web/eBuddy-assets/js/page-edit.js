@@ -49,25 +49,15 @@ $(document).ready(function () {
         });
     });
 
-
     function redrawUserInformation(data){
         var fullLoggedUserName = $('.full_logged_user_name');
-        var logged_user_picture= $('.logged_user_picture');
-        var profileCoverImg = $('.profile-cover-img');
         var req =  data;
+
+        redrawProfilePicture(req.profile_picture);
+        redrawCoverPicture(req.cover_image);
 
         fullLoggedUserName.each(function(i, obj) {
             $(obj).val(req.full_name);
-        });
-
-        logged_user_picture.each(function(i, obj) {
-            console.log(obj);
-            $(obj).prop('src', '/web/'+req.profile_picture);
-        });
-
-        profileCoverImg.each(function(i, obj) {
-            console.log(obj);
-            $(obj).css('background-image', 'url("/web/'+req.cover_image+'")');
         });
     }
 
@@ -165,36 +155,56 @@ $(document).ready(function () {
     }
 });
 
-function addNewPostAction(postContent){
+
+function redrawProfilePicture(path){
+    var logged_user_picture= $('.logged_user_picture');
+
+    logged_user_picture.each(function(i, obj) {
+        $(obj).prop('src', '/web/'+path);
+    });
+}
+
+function redrawCoverPicture(path)
+{
+    var profileCoverImg = $('.profile-cover-img');
+
+    profileCoverImg.each(function (i, obj) {
+        console.log(obj);
+        $(obj).css('background-image', 'url("/web/' + path + '")');
+    });
+}
+
+
+function addNewPostAction(postContent) {
     var payload = {
-        "post_content":postContent
+        "post_content": postContent
     };
 
     $.ajax({
         method: 'POST',
         url: apiAddNewPostUrl,
         data: JSON.stringify(payload),
-        error: function() {
+        error: function () {
 //                    $('#errors').html('<p>An error has occurred</p>');
         },
-        success: function(data) {
+        success: function (data) {
             console.log(data);
         }
 
     });
 }
 
-function appendPostContentInModal(postId){
+function appendPostContentInModal(postId) {
 
     $.ajax({
         method: 'GET',
         url: "{{url('get-post_by_id',{'postId': 5})}}",
 
-        error: function() {
+        error: function () {
             // $('#errors').html('<p>An error has occurred</p>');
         },
-        success: function(data) {
-            if(data.error != false){
+        success: function (data) {
+            if (data.error != false) {
                 $("#postModal").find(".postContentInModal").html(getHtmlModalPost(data.response));
             }
         }
@@ -202,151 +212,151 @@ function appendPostContentInModal(postId){
     });
 }
 
-function appendCommentsInModal(postId, limit, offset){
+function appendCommentsInModal(postId, limit, offset) {
     $.ajax({
         method: 'GET',
         url: "{{ url('get_post_comments_with_limit_and_offset' { 'postId': 5, 'limit': 2, 'offset': 0 })}}",
-        error: function() {
+        error: function () {
             // $('#errors').html('<p>An error has occurred</p>');
         },
-        success: function(data) {
-            if(data.error != false){
-                JSON.parse(result.response).forEach(function(value, index) {
+        success: function (data) {
+            if (data.error != false) {
+                JSON.parse(result.response).forEach(function (value, index) {
                     $("#postModal").find(".postContentInModal").append(getHtmlModalComment(value));
                     offset++;
                 });
             }
         }
 
-});
+    });
 }
 
-function appendLastCommentInTimeLine(postId){
+function appendLastCommentInTimeLine(postId) {
     $.ajax({
         method: 'GET',
-        url: Routing.generate('get_last_comment_from_a_post', { postId: postId }),
-        error: function() {
+        url: Routing.generate('get_last_comment_from_a_post', {postId: postId}),
+        error: function () {
             // $('#errors').html('<p>An error has occurred</p>');
         },
-        success: function(data) {
+        success: function (data) {
             var response = JSON.parse(data.content);
 
-            if(!data.error){
-                var latestPostId = '#post_'+postId;
+            if (!data.error) {
+                var latestPostId = '#post_' + postId;
                 var responseContent = response.response;
                 $(latestPostId).find(".lastComment").html(getLastCommentHtml(responseContent));
-            }else{
+            } else {
                 console.log(data.message);
             }
         }
     });
 }
 
-function getHtmlPost(postData){
-    var myvar = '<div id= "post_'+postData.id+'" class="timeline-row">'+
-        '   <div class="timeline-icon">'+
-        '         <img alt="img" src = "/web/'+postData.author_picure_path+'">'+
-        '     </div>'+
-        ''+
-        '     <div class="panel panel-flat timeline-content">'+
-        '         <div class="panel-heading">'+
-        '             <h6 class="panel-title"></h6>'+
-        '             <div class="heading-elements">'+
-        '                 <span class="heading-text" data-livestamp='+postData.posted_at.date+'><i'+
-        '                             class="icon-checkmark-circle position-left text-success"></i></span>'+
-        '                 <ul class="icons-list">'+
-        '                     <li class="dropdown">'+
-        '                         <a href="#" class="dropdown-toggle"'+
-        '                            data-toggle="dropdown">'+
-        '                             <i class="icon-arrow-down12"></i>'+
-        '                         </a>'+
-        ''+
-        '                         <ul class="dropdown-menu dropdown-menu-right">'+
-        '                             <li><a href="#"><i class="icon-user-lock"></i> Hide'+
-        '                                     user posts</a></li>'+
-        '                             <li><a href="#"><i class="icon-user-block"></i>'+
-        '                                     Block user</a></li>'+
-        '                             <li><a href="#"><i class="icon-user-minus"></i>'+
-        '                                     Unfollow user</a></li>'+
-        '                             <li class="divider"></li>'+
-        '                             <li><a href="#"><i class="icon-embed"></i> Embed'+
-        '                                     post</a></li>'+
-        '                             <li><a href="#"><i class="icon-blocked"></i> Report'+
-        '                                     this post</a></li>'+
-        '                         </ul>'+
-        '                     </li>'+
-        '                 </ul>'+
-        '             </div>'+
-        '         </div>'+
-        ''+
-        '         <div class="panel-body">'+
-        ''+
-        '             '+postData.content+
-        ''+
-        '             <div class="lastComment">'+
-        '             </div>'+
-        '         </div>'+
-        ''+
-        '         <div class="panel-footer">'+
-        '           <div class="row">'+
-        '               <div class="post-actions pull-left">'+
-        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/share.png" class="custom-responsive-action-img"></a>'+
-        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/like.png" class="custom-responsive-action-img"></a>'+
-        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/heart.png" class="custom-responsive-action-img"></a>'+
-        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/heart_broken.png" class="custom-responsive-action-img"></a>'+
-        '               </div>'+
-        ''+
-        '               <div class="pull-right row">'+
-        '                 <button class = "btn col-lg-3" onclick="showUpCommentBox(event);" ><span class="icon-comment-discussion position-left"></span></button>'+
-        '                 <button class = "btn col-lg-offset-1 col-lg-8" onclick="popupPostModal(event);" data-toggle="modal" data-target="#postModal">See More<span class="icon-arrow-right14 position-right"></span></button>'+
-        '               </div>'+
-        '           </div>'+
-        '         </div>'+
-        '         <div class="panel-footer comment_box hide">'+
-        '               <input type="text" class="form-control" placeholder="leave a comment">'+
-        '         </div>'+
+function getHtmlPost(postData) {
+    var myvar = '<div id= "post_' + postData.id + '" class="timeline-row">' +
+        '   <div class="timeline-icon">' +
+        '         <img alt="img" src = "/web/' + postData.author_picure_path + '">' +
+        '     </div>' +
+        '' +
+        '     <div class="panel panel-flat timeline-content">' +
+        '         <div class="panel-heading">' +
+        '             <h6 class="panel-title"></h6>' +
+        '             <div class="heading-elements">' +
+        '                 <span class="heading-text" data-livestamp=' + postData.posted_at.date + '><i' +
+        '                             class="icon-checkmark-circle position-left text-success"></i></span>' +
+        '                 <ul class="icons-list">' +
+        '                     <li class="dropdown">' +
+        '                         <a href="#" class="dropdown-toggle"' +
+        '                            data-toggle="dropdown">' +
+        '                             <i class="icon-arrow-down12"></i>' +
+        '                         </a>' +
+        '' +
+        '                         <ul class="dropdown-menu dropdown-menu-right">' +
+        '                             <li><a href="#"><i class="icon-user-lock"></i> Hide' +
+        '                                     user posts</a></li>' +
+        '                             <li><a href="#"><i class="icon-user-block"></i>' +
+        '                                     Block user</a></li>' +
+        '                             <li><a href="#"><i class="icon-user-minus"></i>' +
+        '                                     Unfollow user</a></li>' +
+        '                             <li class="divider"></li>' +
+        '                             <li><a href="#"><i class="icon-embed"></i> Embed' +
+        '                                     post</a></li>' +
+        '                             <li><a href="#"><i class="icon-blocked"></i> Report' +
+        '                                     this post</a></li>' +
+        '                         </ul>' +
+        '                     </li>' +
+        '                 </ul>' +
+        '             </div>' +
+        '         </div>' +
+        '' +
+        '         <div class="panel-body">' +
+        '' +
+        '             ' + postData.content +
+        '' +
+        '             <div class="lastComment">' +
+        '             </div>' +
+        '         </div>' +
+        '' +
+        '         <div class="panel-footer">' +
+        '           <div class="row">' +
+        '               <div class="post-actions pull-left">' +
+        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/share.png" class="custom-responsive-action-img"></a>' +
+        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/like.png" class="custom-responsive-action-img"></a>' +
+        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/heart.png" class="custom-responsive-action-img"></a>' +
+        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/heart_broken.png" class="custom-responsive-action-img"></a>' +
+        '               </div>' +
+        '' +
+        '               <div class="pull-right row">' +
+        '                 <button class = "btn col-lg-3" onclick="showUpCommentBox(event);" ><span class="icon-comment-discussion position-left"></span></button>' +
+        '                 <button class = "btn col-lg-offset-1 col-lg-8" onclick="popupPostModal(event);" data-toggle="modal" data-target="#postModal">See More<span class="icon-arrow-right14 position-right"></span></button>' +
+        '               </div>' +
+        '           </div>' +
+        '         </div>' +
+        '         <div class="panel-footer comment_box hide">' +
+        '               <input type="text" class="form-control" placeholder="leave a comment">' +
+        '         </div>' +
 
-        '     </div>'+
+        '     </div>' +
         '   </div>';
 
     return myvar;
 }
 
-function getHtmlModalPost(postData){
+function getHtmlModalPost(postData) {
     return '         <div class="panel-body">' +
-           '             ' + postData.content +
-           '         </div>';
+        '             ' + postData.content +
+        '         </div>';
 }
 
-function getHtmlModalComment(comment){
-    return '<div class="media">'+
-            '<p class="pull-right"><small data-livestamp='+comment.posted_at.date+'></small></p>'+
-            '<a class="media-left" href="#">'+
-            '   <img src="/web/'+comment.author_picure_path+'" class="img-circle">'+
-            '</a>'+
-            '<div class="media-body">'+
-                '<h4 class="media-heading user_name">'+comment.author_name+'</h4>'+
-                    comment.content+
-            '</div>'+
+function getHtmlModalComment(comment) {
+    return '<div class="media">' +
+        '<p class="pull-right"><small data-livestamp=' + comment.posted_at.date + '></small></p>' +
+        '<a class="media-left" href="#">' +
+        '   <img src="/web/' + comment.author_picure_path + '" class="img-circle">' +
+        '</a>' +
+        '<div class="media-body">' +
+        '<h4 class="media-heading user_name">' + comment.author_name + '</h4>' +
+        comment.content +
+        '</div>' +
         '</div>';
 }
 
 function getLastCommentHtml(comment) {
-    if(comment != null){
-        return '<br/><h6 class="content-group">'+
-            '    <i class="icon-comment-discussion position-left"></i>'+
-            '        Las comment from <a href="#">'+comment.author_name+'</a>:'+
-            '</h6>'+
-            ''+
-            '<blockquote>'+
-            '    <p>'+comment.content+'</p>'+
-            '    <footer><cite title="Source Title" data-livestamp='+comment.posted_at.date+'></cite>'+
-            '    </footer>'+
+    if (comment != null) {
+        return '<br/><h6 class="content-group">' +
+            '    <i class="icon-comment-discussion position-left"></i>' +
+            '        Las comment from <a href="#">' + comment.author_name + '</a>:' +
+            '</h6>' +
+            '' +
+            '<blockquote>' +
+            '    <p>' + comment.content + '</p>' +
+            '    <footer><cite title="Source Title" data-livestamp=' + comment.posted_at.date + '></cite>' +
+            '    </footer>' +
             '</blockquote>';
-    }else{
-        return '<br/><h6 class="content-group">'+
-            '    <i class="icon-comment-discussion position-left"></i>'+
-            '        No comments yet'+
+    } else {
+        return '<br/><h6 class="content-group">' +
+            '    <i class="icon-comment-discussion position-left"></i>' +
+            '        No comments yet' +
             '</h6>';
 
     }
@@ -381,35 +391,35 @@ function popupPostModal(e) {
     });
 
 
-/*    function loadComments() {
-        $.ajax({
-            method: 'GET',
-            url: Routing.generate('get_post_comments_with_limit_and_offset', {
-                postId: postId,
-                limit: limit,
-                offset: offset
-            }),
-            error: function () {
-                //                    $('#errors').html('<p>An error has occurred</p>');
-            },
-            success: function (data) {
-                var content = JSON.parse(data.content);
-                if (!content.error) {
-                    var response = JSON.parse(content.response);
-                    if(response.length == 0 ){
-                        $("#postModal").find(".postCommentsInModal").html(
-                            '<h6 class="content-group">    <i class="icon-comment-discussion position-left"></i>        No comments yet</h6>'
-                        );
-                    }
-                    response.forEach(function (value, index) {
-                        $("#postModal").find(".postCommentsInModal").append(getHtmlModalComment(value));
-                        offset++;
-                    });
-                }
-            }
+    /*    function loadComments() {
+     $.ajax({
+     method: 'GET',
+     url: Routing.generate('get_post_comments_with_limit_and_offset', {
+     postId: postId,
+     limit: limit,
+     offset: offset
+     }),
+     error: function () {
+     //                    $('#errors').html('<p>An error has occurred</p>');
+     },
+     success: function (data) {
+     var content = JSON.parse(data.content);
+     if (!content.error) {
+     var response = JSON.parse(content.response);
+     if(response.length == 0 ){
+     $("#postModal").find(".postCommentsInModal").html(
+     '<h6 class="content-group">    <i class="icon-comment-discussion position-left"></i>        No comments yet</h6>'
+     );
+     }
+     response.forEach(function (value, index) {
+     $("#postModal").find(".postCommentsInModal").append(getHtmlModalComment(value));
+     offset++;
+     });
+     }
+     }
 
-        });
-    }*/
+     });
+     }*/
 
     function loadPost() {
         $.ajax({
@@ -435,7 +445,7 @@ function popupPostModal(e) {
     loadComments();
 }
 
-function showUpCommentBox(e){
+function showUpCommentBox(e) {
     e = e || window.event;
 
     var target = e.target || e.srcElement;
@@ -450,18 +460,20 @@ function showUpCommentBox(e){
 
     inputCommentBox.keypress(function (e) {
         var key = e.which;
-        if(key == 13)  // the enter key code
+        if (key == 13)  // the enter key code
         {
             var commentContent = $(this).val();
 
-            postComment(postId ,commentContent);
+            postComment(postId, commentContent);
             appendLastCommentInTimeLine(postId);
-            setTimeout(function() { appendLastCommentInTimeLine(postId); }, 1000);
+            setTimeout(function () {
+                appendLastCommentInTimeLine(postId);
+            }, 1000);
             inputCommentBox.val('');
             return false;
         }
     });
-    commentBox.removeClass("hide", function() {
+    commentBox.removeClass("hide", function () {
         commentBox.fadeIn("slow");
     });
 
@@ -469,18 +481,18 @@ function showUpCommentBox(e){
     $(target).attr("disabled", true);
 }
 
-function postComment(postId, commentContent){
+function postComment(postId, commentContent) {
     var payload = {
-        "comment_content":commentContent
+        "comment_content": commentContent
     };
     $.ajax({
         method: 'POST',
-        url:  Routing.generate('add_new_comment', { postId: postId }),
+        url: Routing.generate('add_new_comment', {postId: postId}),
         data: JSON.stringify(payload),
-        error: function() {
+        error: function () {
 //                    $('#errors').html('<p>An error has occurred</p>');
         },
-        success: function(data) {
+        success: function (data) {
             console.log(data);
         }
 
@@ -488,26 +500,26 @@ function postComment(postId, commentContent){
 }
 
 function getLoaderHtml() {
-    return  '<div class="timeline-row loading3 col-centered" style="display: none">' +
-            '   <div></div><div></div><div></div>' +
-            '   <div></div><div></div>' +
-            '</div>';
+    return '<div class="timeline-row loading3 col-centered" style="display: none">' +
+        '   <div></div><div></div><div></div>' +
+        '   <div></div><div></div>' +
+        '</div>';
 }
 
 
-function getRecomandedFriendHtml(friend){
+function getRecomandedFriendHtml(friend) {
 
-    return  '<li class="media">'+
-            '<div class="media-link">'+
-            '<div class="media-left"><img src="/web/'+friend.picture+'"'+
-            'class="img-circle" alt="no picture"></div>'+
-            '<div class="media-body">'+
-            '<span class="media-heading text-semibold">'+friend.name+'</span>'+
-            '<span class="media-annotation">'+friend.name+'</span>'+
-            '</div>'+
-            '<div class="media-right media-middle">'+
-            '<button class="btn img-circle frind-request-btn transition"></button>'+
-            '</div>'+
-            '</div>'+
-            '</li>';
+    return '<li class="media">' +
+        '<div class="media-link">' +
+        '<div class="media-left"><img src="/web/' + friend.picture + '"' +
+        'class="img-circle" alt="no picture"></div>' +
+        '<div class="media-body">' +
+        '<span class="media-heading text-semibold">' + friend.name + '</span>' +
+        '<span class="media-annotation">' + friend.name + '</span>' +
+        '</div>' +
+        '<div class="media-right media-middle">' +
+        '<button class="btn img-circle frind-request-btn transition"></button>' +
+        '</div>' +
+        '</div>' +
+        '</li>';
 }

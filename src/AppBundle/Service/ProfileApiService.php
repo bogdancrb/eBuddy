@@ -46,7 +46,7 @@ class ProfileApiService extends BaseService
             $profilePicture->setType(Picture::CUSTOM_PICTURE_TYPE)
                 ->setPath($this->getUploadDirPath().$hashedName)
                 ->setWas(Picture::PROFILE_PICTURE_LABEL)
-                ->setAuthor($this->getLoggedUser()->getAccount())
+                ->setAuthor($this->getLoggedUser()->getProfile())
                 ->setPostedAt(new \DateTime());
             $profile->setProfilePicture($profilePicture);
 
@@ -64,7 +64,7 @@ class ProfileApiService extends BaseService
             $coverPicture->setType(Picture::CUSTOM_PICTURE_TYPE)
                 ->setPath($this->getUploadDirPath().$hashedName)
                 ->setWas(Picture::PROFILE_PICTURE_LABEL)
-                ->setAuthor($this->getLoggedUser()->getAccount())
+                ->setAuthor($this->getLoggedUser()->getProfile())
                 ->setPostedAt(new \DateTime());
             $profile->setCoverPicture($coverPicture);
 

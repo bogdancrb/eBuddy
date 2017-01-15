@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller\Rest;
 
+use AppBundle\Service\PictureApiService;
 use AppBundle\Service\ProfileApiService;
 use AppBundle\Service\UserApiService;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -40,6 +41,44 @@ class RestProfileController extends FOSRestController
 
 
         $result = $profileApiService->doRequest(__FUNCTION__, $data);
+
+        return new Response($result);
+    }
+
+    /**
+     * @param Request $request
+     * @Rest\View
+     * @Rest\Route("/change_profile_picture/{pictureId}", options={"expose"=true}, name="changeProfilePicture")
+     * @return Response
+     */
+    public function changeProfilePictureAction(Request $request, $pictureId)
+    {
+
+        /** @var PictureApiService $pictureApiService */
+        $pictureApiService = $this->get(PictureApiService::SERVICE_NAME);
+
+        $data = array();
+        $data['picture_id'] = $pictureId;
+        $result = $pictureApiService->doRequest(__FUNCTION__, $data);
+
+        return new Response($result);
+    }
+
+    /**
+     * @param Request $request
+     * @Rest\View
+     * @Rest\Route("/change_cover_picture/{pictureId}", options={"expose"=true}, name="changeCoverPicture")
+     * @return Response
+     */
+    public function changeCoverPictureAction(Request $request, $pictureId)
+    {
+
+        /** @var PictureApiService $pictureApiService */
+        $pictureApiService = $this->get(PictureApiService::SERVICE_NAME);
+
+        $data = array();
+        $data['picture_id'] = $pictureId;
+        $result = $pictureApiService->doRequest(__FUNCTION__, $data);
 
         return new Response($result);
     }

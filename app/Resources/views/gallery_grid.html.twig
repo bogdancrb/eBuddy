@@ -25,15 +25,15 @@
     }
 
     function getGaleryImageHtml(image) {
-        console.log(image);
         return  '<div class="col-lg-3 col-sm-6">'+
                 '    <div class="thumbnail">'+
                 '        <div class="thumb">'+
-                '            <img src="/web/'+image.path+'" alt="">'+
+                '            <img id = "'+image.id+'" src="/web/'+image.path+'" alt="">'+
                 '            <div class="caption-overflow">'+
                 '                <span>'+
-                '                    <a href="/web/'+image.path+'" data-popup="lightbox" rel="gallery" class="btn border-white text-white btn-flat btn-icon btn-rounded"><i class="icon-plus3"></i></a>'+
-                '                    <a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-link2"></i></a>'+
+                '                    <a href="/web/'+image.path+'" data-popup="lightbox" rel="gallery" class="btn border-white text-white btn-flat btn-icon btn-rounded"><i class="icon-search4"></i></a>'+
+                '                    <a onclick="setAsProfilePicture(this)" data-popup="tooltip" title="Set as profile picture" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-file-picture"></i></a>'+
+                '                    <a onclick="setAsCoverPicture(this)" data-popup="tooltip" title="Set as cover picture" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-stack-picture"></i></a>'+
                 '                </span>'+
                 '            </div>'+
                 '        </div>'+
@@ -43,6 +43,53 @@
     $(document).ready(function () {
         getPhotoGalery();
     });
+
+    function setAsProfilePicture(data){
+        var pic =$(data).closest('.thumb').find('img');
+
+
+        var pic_id = pic.attr('id');
+        var pic_src = pic.attr('src').substring(5);
+
+        redrawProfilePicture(pic_src);
+
+        $.ajax({
+            method: 'PUT',
+            url: Routing.generate('changeProfilePicture', {pictureId: pic_id}),
+            error: function () {
+//                    $('#errors').html('<p>An error has occurred</p>');
+            },
+            success: function (data) {
+                console.log(data);
+            }
+
+        });
+
+    }
+
+    function setAsCoverPicture(data){
+        var pic =$(data).closest('.thumb').find('img');
+
+
+        var pic_id = pic.attr('id');
+        var pic_src = pic.attr('src').substring(5);
+
+        redrawCoverPicture(pic_src);
+
+        $.ajax({
+            method: 'PUT',
+            url: Routing.generate('changeCoverPicture', {pictureId: pic_id}),
+            error: function () {
+//                    $('#errors').html('<p>An error has occurred</p>');
+            },
+            success: function (data) {
+                console.log(data);
+            }
+
+        });
+
+    }
+
 </script>
 
 
