@@ -88,8 +88,6 @@ class UserApiService extends BaseService
             ->setCoverPicture($defaultCoverPicture)
             ->setLastChange(new \DateTime("now"));
 
-        $account->setSalt('');
-
         $encodedPassword = $this->getSecurityPasswordEncoder()
             ->encodePassword($account, $plainPassword);
         $account->setEmail($email)->setUsername($email)->setPassword($encodedPassword);

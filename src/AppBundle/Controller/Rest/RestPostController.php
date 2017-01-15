@@ -23,12 +23,28 @@ class RestPostController extends BaseRestController
     /**
      * @param Request $request
      * @Rest\View
-     * @Rest\Route("/api/v1/add_new_post", name="add_new_post")
+     * @Rest\Route("/api/v1/change_appreciation", options={"expose"=true}, name="changeAppreciation")
+     * @return Response
+     */
+    public function updatePostAppreciationAction(Request $request){
+        /** @var PostApiService $postApiService */
+        $postApiService = $this->get(PostApiService::SERVICE_NAME);
+
+        $data = json_decode($request->getContent(), true);
+
+        $result = $postApiService->doRequest(__FUNCTION__, $data);
+
+        return new Response($result);
+    }
+    /**
+     * @param Request $request
+     * @Rest\View
+     * @Rest\Route("/api/v1/add_new_post", options={"expose"=true},  name="add_new_post")
      * @return Response
      */
     public function addNewPostAction(Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        //$this->denyAccessUnlessGranted('ROLE_USER');
 
         /** @var PostApiService $postApiService */
         $postApiService = $this->get(PostApiService::SERVICE_NAME);
@@ -43,7 +59,7 @@ class RestPostController extends BaseRestController
     /**
      * @param Request $request
      * @Rest\View
-     * @Rest\Route("/api/v1/get_user_posts_with_limit_and_offset", name="get_user_posts_with_limit_and_offset")
+     * @Rest\Route("/api/v1/get_user_posts_with_limit_and_offset",  options={"expose"=true}, name="get_user_posts_with_limit_and_offset")
      * @return Response
      */
     public function getAllUserPostsWithLimitAndOffsetAction(Request $request)

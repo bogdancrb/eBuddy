@@ -93,7 +93,12 @@ $(document).ready(function () {
         $("#postsTimeline").html(getLoaderHtml());
         addNewPostAction(postContent);
         offset=0;
-        loadPosts();
+
+        setTimeout(function()
+        {
+            loadPosts();
+        }, 2000);
+
     });
 
     $(window).scroll(function() {
@@ -253,7 +258,13 @@ function appendLastCommentInTimeLine(postId) {
 }
 
 function getHtmlPost(postData) {
-    var myvar = '<div id= "post_' + postData.id + '" class="timeline-row">' +
+    var sppSt = postData.appreciation_status;
+
+    var likeBtnStatus = sppSt == 'none' ? 'inactive' : sppSt == 'like' ? 'active' : 'inactive';
+    var disLikeBtnStatus = sppSt == 'none' ? 'inactive' : sppSt == 'dislike' ? 'active' : 'inactive';
+
+
+    var myvar = '<div id= "' + postData.id + '" class="timeline-row">' +
         '   <div class="timeline-icon">' +
         '         <img alt="img" src = "/web/' + postData.author_picure_path + '">' +
         '     </div>' +
@@ -300,10 +311,10 @@ function getHtmlPost(postData) {
         '         <div class="panel-footer">' +
         '           <div class="row">' +
         '               <div class="post-actions pull-left">' +
-        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/share.png" class="custom-responsive-action-img"></a>' +
-        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/like.png" class="custom-responsive-action-img"></a>' +
-        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/heart.png" class="custom-responsive-action-img"></a>' +
-        '                   <a href="#"><img src="/web/eBuddy-assets/images/icons/profile/heart_broken.png" class="custom-responsive-action-img"></a>' +
+        '                   <div class="row">' +
+        '                       <div onclick="handleLike(this)" class="custom-responsive-action-img action_btn like_button_'+likeBtnStatus+' col-lg-6 col-xs-6"></div>' +
+        '                       <div onclick="handleDisLike(this)" class="custom-responsive-action-img action_btn dislike_button_'+disLikeBtnStatus+' col-lg-6 col-xs-6"></div>'+
+        '                   </div>' +
         '               </div>' +
         '' +
         '               <div class="pull-right row">' +
@@ -391,35 +402,35 @@ function popupPostModal(e) {
     });
 
 
-    /*    function loadComments() {
-     $.ajax({
-     method: 'GET',
-     url: Routing.generate('get_post_comments_with_limit_and_offset', {
-     postId: postId,
-     limit: limit,
-     offset: offset
-     }),
-     error: function () {
-     //                    $('#errors').html('<p>An error has occurred</p>');
-     },
-     success: function (data) {
-     var content = JSON.parse(data.content);
-     if (!content.error) {
-     var response = JSON.parse(content.response);
-     if(response.length == 0 ){
-     $("#postModal").find(".postCommentsInModal").html(
-     '<h6 class="content-group">    <i class="icon-comment-discussion position-left"></i>        No comments yet</h6>'
-     );
-     }
-     response.forEach(function (value, index) {
-     $("#postModal").find(".postCommentsInModal").append(getHtmlModalComment(value));
-     offset++;
-     });
-     }
-     }
+        function loadComments() {
+             $.ajax({
+                 method: 'GET',
+                 url: Routing.generate('get_post_comments_with_limit_and_offset', {
+                 postId: postId,
+                 limit: limit,
+                 offset: offset
+             }),
+             error: function () {
+             //                    $('#errors').html('<p>An error has occurred</p>');
+             },
+             success: function (data) {
+             var content = JSON.parse(data.content);
+                if (!content.error) {
+                    var response = JSON.parse(content.response);
+                    if(response.length == 0 ){
+                         $("#postModal").find(".postCommentsInModal").html(
+                                    '<h6 class="content-group">    <i class="icon-comment-discussion position-left"></i>        No comments yet</h6>'
+                            );
+                    }
+                    response.forEach(function (value, index) {
+                         $("#postModal").find(".postCommentsInModal").append(getHtmlModalComment(value));
+                         offset++;
+                    });
+                 }
+             }
 
-     });
-     }*/
+        });
+     }
 
     function loadPost() {
         $.ajax({
@@ -522,4 +533,87 @@ function getRecomandedFriendHtml(friend) {
         '</div>' +
         '</div>' +
         '</li>';
+}
+
+
+
+function handleLike(data){
+    var likeButton =$(data);
+    var dislikeButton = likeButton.siblings(".action_btn").eq(0);
+    var status = 'like';
+
+    var postId = likeButton.closest('.timeline-row').attr('id');
+
+    likeButton.effect("bounce", { direction:'up', times:5 }, 300);
+
+    if (likeButton.hasClass("like_button_active")) {
+
+        likeButton.removeClass('like_button_active');
+        likeButton.addClass('like_button_inactive');
+
+        status = 'none';
+    }else{
+        if (dislikeButton.hasClass("dislike_button_active")) {
+            dislikeButton.removeClass('dislike_button_active');
+            dislikeButton.addClass('dislike_button_inactive');
+        }
+
+        likeButton.removeClass('like_button_inactive');
+        likeButton.addClass('like_button_active');
+    }
+
+    changeAppreciationStatus(status, postId);
+}
+
+function handleDisLike(data){
+
+    var dislikeButton =$(data);
+    var likeButton = dislikeButton.siblings(".action_btn").eq(0);
+    var status = 'dislike';
+
+    var postId = dislikeButton.closest('.timeline-row').attr('id');
+
+    dislikeButton.effect("bounce", { direction:'down', times:5 }, 300);
+
+    if (dislikeButton.hasClass("dislike_button_active")) {
+        dislikeButton.removeClass('dislike_button_active');
+        dislikeButton.addClass('dislike_button_inactive');
+
+        status = 'none';
+
+    }else{
+        if (likeButton.hasClass("like_button_active")) {
+            likeButton.removeClass('like_button_active');
+            likeButton.addClass('like_button_inactive');
+        }
+
+        dislikeButton.removeClass('dislike_button_inactive');
+        dislikeButton.addClass('dislike_button_active');
+
+    }
+
+    changeAppreciationStatus(status, postId);
+}
+
+
+
+function changeAppreciationStatus(status, postId) {
+
+    var payload = {
+        'post_id':postId,
+        'status': status
+    };
+
+    $.ajax({
+        method: 'POST',
+        url: Routing.generate('changeAppreciation'),
+        data: JSON.stringify(payload),
+        error: function () {
+
+        },
+        success: function (data) {
+
+        }
+
+    });
 }

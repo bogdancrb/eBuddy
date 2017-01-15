@@ -34,10 +34,6 @@ class Account implements AccountInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $salt;
 
     public function getId()
     {
@@ -96,20 +92,9 @@ class Account implements AccountInterface
         return $this;
     }
 
-    /**
-     * @param mixed $salt
-     * @return Account
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-
-        return $this;
-    }
-
     public function getSalt()
     {
-        return $this->salt;
+        return '';
     }
 
     public function eraseCredentials()
