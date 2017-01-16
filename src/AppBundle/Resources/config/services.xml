@@ -34,6 +34,11 @@
                 <argument type="service" id="doctrine.orm.default_entity_manager"/>
             </call>
         </service>
+        <service id="api.friend.service" class="AppBundle\Service\FriendApiService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+        </service>
         <service id="api.profile.service" class="AppBundle\Service\ProfileApiService">
             <call method="setEntityManager">
                 <argument type="service" id="doctrine.orm.default_entity_manager"/>

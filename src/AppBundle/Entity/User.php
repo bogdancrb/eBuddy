@@ -40,15 +40,6 @@ class User extends BaseEntity
     private $friends;
 
     /**
-     * @var  User[]
-     *
-     * The people who think that I’m their friend.
-     *
-     * @ORM\OneToMany(targetEntity="Friendship", mappedBy="friend")
-     */
-    private $friendsWithMe;
-
-    /**
      * @var  Appreciation[]
      * @ORM\OneToMany(targetEntity="Appreciation", mappedBy="user")
      */
@@ -59,6 +50,50 @@ class User extends BaseEntity
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      */
     private $comments;
+
+    /**
+     * @var  Relationship[]
+     * @ORM\OneToMany(targetEntity="Relationship", mappedBy="user_id")
+     */
+    private $relationshipUser;
+
+    /**
+     * @return Relationship[]
+     */
+    public function getRelationshipUser()
+    {
+        return $this->relationshipUser;
+    }
+
+    /**
+     * @param Relationship[] $relationshipUser
+     */
+    public function setRelationshipUser($relationshipUser)
+    {
+        $this->relationshipUser = $relationshipUser;
+    }
+
+    /**
+     * @return Relationship[]
+     */
+    public function getRelationshipFriend()
+    {
+        return $this->relationshipFriend;
+    }
+
+    /**
+     * @param Relationship[] $relationshipFriend
+     */
+    public function setRelationshipFriend($relationshipFriend)
+    {
+        $this->relationshipFriend = $relationshipFriend;
+    }
+
+    /**
+     * @var  Relationship[]
+     * @ORM\OneToMany(targetEntity="Relationship", mappedBy="friend_id")
+     */
+    private $relationshipFriend;
 
     /**
      * @return Account
@@ -112,14 +147,6 @@ class User extends BaseEntity
     {
         $this->friends = $friends;
         return $this;
-    }
-
-    /**
-     * @return User[]
-     */
-    public function getFriendsWithMe()
-    {
-        return $this->friendsWithMe;
     }
 
     /**

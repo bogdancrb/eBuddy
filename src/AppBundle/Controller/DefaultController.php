@@ -10,6 +10,31 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
+     * @Route("/profile_edit", name="profile_edit")
+     */
+    public function indexAction(Request $request)
+    {
+
+        $address = $this->getDoctrine()
+            ->getRepository('AppBundle:Address')
+            ->findOneBy(array('id'=>
+                $this->getLoggedUser()->getProfile()->getAddress()->getId())
+            );
+
+        if($this->isUserLoggedIn()){
+            return $this->render('profile_edit_page.html.twig', array(
+                'user' => $this->getLoggedUser(),
+                'address' =>$address
+            )
+        );
+        }
+
+        return $this->render('default/index.html.twig', array(
+            'user' => $this->getLoggedUser()
+        ));
+    }
+
+    /**
      * @Route("/", name="homepage")
      */
     public function welcomeAction(Request $request)
@@ -18,9 +43,8 @@ class DefaultController extends Controller
             return $this->render('welcome.html.twig' );
         }
 
-        return $this->render('first_page.html.twig');
+        return $this->render('start_page/index.html.twig');
     }
-
     /**
      * Is the current user logged in?
      *

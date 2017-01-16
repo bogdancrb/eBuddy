@@ -4,13 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseAccount;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface as AccountInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="account")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity(fields={"email"})
  */
-class Account implements AccountInterface
+class Account implements UserInterface
 {
     /**
      * @ORM\Id
@@ -26,6 +30,7 @@ class Account implements AccountInterface
 
     /**
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
      */
     private $email;
 
@@ -34,6 +39,12 @@ class Account implements AccountInterface
      */
     private $password;
 
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     */
+    private $plainPassword;
 
     public function getId()
     {
@@ -77,6 +88,25 @@ class Account implements AccountInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+        $this->password = null;
+    }
+
+
+
     public function getRoles()
     {
         return array('ROLE_USER');
@@ -94,11 +124,11 @@ class Account implements AccountInterface
 
     public function getSalt()
     {
-        return '';
     }
 
     public function eraseCredentials()
     {
+        $this->plainPassword = null;
     }
 
 }
