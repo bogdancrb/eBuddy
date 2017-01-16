@@ -19,7 +19,14 @@ class RecommenderEngineApiService extends BaseService
      * @return \AppBundle\Entity\Profile[]|array
      */
     public function getAllFriends(){
-        $allUsers = $this->getEntityManager()->getRepository('AppBundle:Profile')->findAll();
+        $excludeFriendsIds = $this->getEntityManager()->getRepository('AppBundle:Relationship')->findFriendsByUserIdAndByStatus(
+            $this->getLoggedUser()->getId()
+        );
+
+        $allUsers = $this->getEntityManager()->getRepository('AppBundle:Profile')->getAllProfiles(
+            $this->getLoggedUser()->getProfile()->getId(),
+            $excludeFriendsIds
+        );
 
         return $this->filterUsers($allUsers);
     }
@@ -30,7 +37,6 @@ class RecommenderEngineApiService extends BaseService
      */
     private function filterUsers($users){
         $result = array();
-        $pictureRepo = $this->getEntityManager()->getRepository('AppBundle:Picture');
         foreach ($users as $user){
             $result[] = $this->composeUserReturn($user);
         }
@@ -46,6 +52,7 @@ class RecommenderEngineApiService extends BaseService
         if(!is_null($user)){
             $result = array(
                 'id'=>$user->getUser()->getId(),
+                'profile_id' => $user->getId(),
                 'user_id'=>$user->getUser()->getId(),
                 'name'=> $user->getFirstName().' '.$user->getLastName(),
                 'picture'=> $user->getProfilePicture()->getPath()

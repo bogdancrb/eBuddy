@@ -20,7 +20,7 @@ class RecommenderEngineRestController extends BaseRestController
      * @param Request $request
      *
      * @Rest\View
-     * @Rest\Route("/api/v1/get_all_usersc", options={"expose"=true}, name="get_recomanded_friends")
+     * @Rest\Route("/api/v1/get_all_users", options={"expose"=true}, name="get_recomanded_friends")
      *
      * @return string
      */

@@ -24,8 +24,8 @@
     padding-top: 5px;
 }
 
-.frind-request-btn{
-    background-image: url("https://d30y9cdsu7xlg0.cloudfront.net/png/138580-200.png");
+.friend-request-btn{
+    background-image: url("../images/icons/fr-request-static.png");
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
     background-position: center center;
@@ -34,8 +34,24 @@
     border-radius: 50%;
 }
 
-.frind-request-btn:hover{
+.friend-request-btn:hover{
+    background-image: url("../images/icons/fr-request-hover.png");
     box-shadow:0px 0px 15px 0px blue;
+}
+
+.friend-request-reject-btn{
+    background-image: url("../images/icons/fr-request-reject-static.png");
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+}
+
+.friend-request-reject-btn:hover{
+    background-image: url("../images/icons/fr-request-reject-hover.png");
+    box-shadow:0px 0px 15px 0px red;
 }
 
 .transition{
