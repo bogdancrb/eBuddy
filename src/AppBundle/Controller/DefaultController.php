@@ -14,10 +14,19 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        if(!$this->isUserLoggedIn()){
+
+        $address = $this->getDoctrine()
+            ->getRepository('AppBundle:Address')
+            ->findOneBy(array('id'=>
+                $this->getLoggedUser()->getProfile()->getAddress()->getId())
+            );
+
+        if($this->isUserLoggedIn()){
             return $this->render('profile_edit_page.html.twig', array(
-                'user' => $this->getLoggedUser()
-            ));
+                'user' => $this->getLoggedUser(),
+                'address' =>$address
+            )
+        );
         }
 
         return $this->render('default/index.html.twig', array(

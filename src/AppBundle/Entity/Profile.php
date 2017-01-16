@@ -50,7 +50,7 @@ class Profile extends BaseEntity
     /**
      * @var Address
      *
-     * @ORM\OneToOne(targetEntity="Address")
+     * @ORM\OneToOne(targetEntity="Address", cascade={"all"})
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      */
     private $address;
@@ -68,6 +68,11 @@ class Profile extends BaseEntity
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", mappedBy="profile")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Picture", mappedBy="author", cascade={"all"})
+     */
+    private $pictures;
 
     /**
      * @return string
@@ -192,6 +197,24 @@ class Profile extends BaseEntity
     public function setUser($user)
     {
         $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * @param mixed $pictures
+     * @return Profile
+     */
+    public function setPictures($pictures)
+    {
+        $this->pictures = $pictures;
         return $this;
     }
 }

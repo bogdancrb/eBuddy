@@ -63,6 +63,8 @@ doctrine:
         auto_mapping: true
 
 fos_rest:
+    body_converter:
+            enabled: true
     body_listener: true
     param_fetcher_listener: true
     exception:

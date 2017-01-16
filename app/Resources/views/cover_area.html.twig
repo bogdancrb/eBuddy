@@ -1,0 +1,19 @@
+<div class="profile-cover">
+    <div class="profile-cover-img" style="background-image:url({{asset(user.profile.coverPicture.path) }})">
+    </div>
+    <div class="media">
+        <div class="media-left">
+            <a href="#" class="profile-thumb logged_user_picture">
+                <img class="logged_user_picture img-circle profile_picture" src="{{asset(user.profile.profilePicture.path) }}" alt="">
+            </a>
+        </div>
+
+        <div class="media-body">
+            <h1 class = "full_logged_user_name">
+                {% if user is defined %}
+                    {{user.profile.firstName }} {{  user.profile.lastName }}
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+</div>

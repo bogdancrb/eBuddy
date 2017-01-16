@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Appreciation extends BaseEntity
 {
     /**
-     * @ORM\Column(type="string", columnDefinition="ENUM('like', 'dislike')")
+     * @ORM\Column(type="string", columnDefinition="ENUM('like', 'dislike' , 'none')", options={"unsigned":true, "default":"regular_picture"})
      */
     private $status;
 

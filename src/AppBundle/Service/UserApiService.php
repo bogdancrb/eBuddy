@@ -10,6 +10,7 @@ namespace AppBundle\Service;
 
 
 use AppBundle\Entity\Account;
+use AppBundle\Entity\Picture;
 use AppBundle\Entity\Profile;
 use AppBundle\Entity\User;
 use AppBundle\Repository\UserRepository;
@@ -63,9 +64,29 @@ class UserApiService extends BaseService
         $account = new Account();
         $profile = new Profile();
 
-        $profile->setFirstName($firstName)->setLastName($lastName)->setLastChange(new \DateTime("now"));
+        $defaultProfilePicture = $this->getEntityManager()
+            ->getRepository('AppBundle:Picture')
+            ->findOneBy(
+                array(
+                    'type'=>Picture::DEFAULT_PICTURE_TYPE,
+                    'was'=>Picture::PROFILE_PICTURE_LABEL
+                )
+            );
 
-        $account->setSalt('');
+        $defaultCoverPicture = $this->getEntityManager()
+            ->getRepository('AppBundle:Picture')
+            ->findOneBy(
+                array(
+                    'type'=>Picture::DEFAULT_PICTURE_TYPE,
+                    'was'=>Picture::COVER_PICTURE_LABEL
+                )
+            );
+
+        $profile->setFirstName($firstName)
+            ->setLastName($lastName)
+            ->setProfilePicture($defaultProfilePicture)
+            ->setCoverPicture($defaultCoverPicture)
+            ->setLastChange(new \DateTime("now"));
 
         $encodedPassword = $this->getSecurityPasswordEncoder()
             ->encodePassword($account, $plainPassword);

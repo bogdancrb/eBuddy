@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Account;
 use AppBundle\Entity\Profile;
 use AppBundle\Entity\User;
+use AppBundle\Form\LoginType;
 use AppBundle\Repository\UserRepository;
+use AppBundle\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +18,36 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 class UserController extends Controller
 {
     /**
+     * @Route("/register", name="security_register")
+     */
+    public function registerAction(Request $request)
+    {
+        $form = $this->createForm(RegisterType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            /** @var Account $user */
+            $user = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->get('security.authentication.guard_handler')
+                ->authenticateUserAndHandleSuccess(
+                    $user,
+                    $request,
+                    $this->get('app.security_user'),
+                    'main'
+                );
+        }
+
+        return $this->render('register.html.twig',
+            array('registerForm' => $form->createView()));
+    }
+
+    /**
      * @Route("/login", name="security_login_form")
      */
     public function loginAction(Request $request)
@@ -24,18 +56,18 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('homepage'));
         }
 
-        return $this->render('login.twig', array(
-            'error'         => $this->get('security.authentication_utils')->getLastAuthenticationError(),
-            'last_username' => $this->get('security.authentication_utils')->getLastUsername()
-        ));
-    }
+        $authenticationUtils = $this->get('security.authentication_utils');
 
-    /**
-     * @Route("/login_check", name="security_login_check")
-     */
-    public function loginCheckAction()
-    {
-        throw new \Exception('Should not get here - this should be handled magically by the security system!');
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        $loginForm = $this->createForm(LoginType::class, ['username' => $lastUsername]);
+
+        return $this->render('login.twig', array(
+            'loginForm' => $loginForm->createView(),
+            'error'         => $error,
+        ));
     }
 
     /**
@@ -44,27 +76,6 @@ class UserController extends Controller
     public function logoutAction()
     {
         throw new \Exception('Should not get here - this should be handled magically by the security system!');
-    }
-
-    /**
-     * Logs this user into the system
-     *
-     * @param User $user
-     */
-    public function loginUser(User $user)
-    {
-        $token = new UsernamePasswordToken($user, $user->getAccount()->getPassword(), 'main', $user->getAccount()->getRoles());
-
-        $this->container->get('security.token_storage')->setToken($token);
-    }
-
-    public function addFlash($message, $positiveNotice = true)
-    {
-        /** @var Request $request */
-        $request = $this->container->get('request_stack')->getCurrentRequest();
-        $noticeKey = $positiveNotice ? 'notice_happy' : 'notice_sad';
-
-        $request->getSession()->getFlashbag()->add($noticeKey, $message);
     }
 
     /**

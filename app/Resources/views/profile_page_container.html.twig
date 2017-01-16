@@ -1,0 +1,79 @@
+<div class="page-container">
+
+    <div class="page-content">
+
+        <div class="sidebar sidebar-main">
+            <div class="sidebar-content">
+
+                <div class="sidebar-category sidebar-category-visible">
+                    <div class="category-content no-padding">
+                        <ul class="navigation navigation-main navigation-accordion">
+
+                            <li class="navigation-header"><span>Main</span> <i class="icon-menu"
+                                                                               title="Main pages"></i></li>
+                            <li><a href="{{ url('homepage') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+
+            <!-- Cover area -->
+            {% include 'cover_area.html.twig' with {'user': user} %}
+            <!-- /cover area -->
+            <!-- Toolbar -->
+            {% include 'toolbar.html.twig' with {'user': user} %}
+            <!-- /toolbar -->
+            <!-- User profile -->
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="tabbable">
+                        <div class="tab-content">
+
+                            {% include 'timeline_in_profile_edit.html.twig' with {'user': user} %}
+
+                            {% if not isGuest %}
+                                {% if not other_user %}
+                                    {% include 'profile_settings.html.twig' with {'user': user} %}
+                                {% endif %}
+                            {% endif %}
+
+                            {% include 'gallery_grid.html.twig' with {'user': user} %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 hidden-xs hidden-sm hidden-md">
+
+                    {% if not isGuest %}
+
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h6 class="panel-title">You might also know</h6>
+                            </div>
+
+                            <ul id="recomanderBlock" class="media-list media-list-linked pb-5">
+
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            {% if not isGuest %}
+
+                {% include 'newPostModal.html.twig' with {'user': user} %}
+
+                {% include 'postModal.html.twig' with {'user': user} %}
+
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>

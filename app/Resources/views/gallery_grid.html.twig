@@ -1,0 +1,128 @@
+<script type="text/javascript" src="/web/limitless-assets/js/pages/gallery.js"></script>
+
+<div class="tab-pane" id="pictures">
+</div>
+
+<script>
+    function getLoggedUserPhotoGalery(){
+        $.ajax({
+            method: 'GET',
+            url: Routing.generate('getPictursOfCurrentUser'),
+            error: function () {
+                //                    $('#errors').html('<p>An error has occurred</p>');
+            },
+            success: function (data) {
+                var response = JSON.parse(data.content);
+                if (!response.error) {
+                    response.response.forEach(function (value, index) {
+                        $('#pictures').append(getGaleryImageHtml(value, false))
+                    });
+
+                }
+            }
+
+        });
+    }
+
+    function getPhotoGalery(userId){
+        $.ajax({
+            method: 'GET',
+            url: Routing.generate('getPictursOfUser', {user_id: userId}),
+            error: function () {
+                //                    $('#errors').html('<p>An error has occurred</p>');
+            },
+            success: function (data) {
+                var response = JSON.parse(data.content);
+                if (!response.error) {
+                    response.response.forEach(function (value, index) {
+                        $('#pictures').append(getGaleryImageHtml(value, true))
+                    });
+
+                }
+            }
+
+        });
+    }
+
+    function getGaleryImageHtml(image, notUser) {
+
+        var actions =  '   <a onclick="setAsProfilePicture(this)" data-popup="tooltip" title="Set as profile picture" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-file-picture"></i></a>'+
+                       '   <a onclick="setAsCoverPicture(this)" data-popup="tooltip" title="Set as cover picture" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-stack-picture"></i></a>';
+
+        return  '<div class="col-lg-3 col-sm-6">'+
+                '    <div class="thumbnail">'+
+                '        <div class="thumb">'+
+                '            <img id = "'+image.id+'" src="/web/'+image.path+'" alt="">'+
+                '            <div class="caption-overflow">'+
+                '                <span>'+
+                '                    <a href="/web/'+image.path+'" data-popup="lightbox" rel="gallery" class="btn border-white text-white btn-flat btn-icon btn-rounded"><i class="icon-search4"></i></a>'+
+                (!notUser ? actions : '')+
+                '                </span>'+
+                '            </div>'+
+                '        </div>'+
+                '    </div>'+
+                '</div>';
+    }
+    $(document).ready(function () {
+        {% if not isGuest %}
+            {% if not other_user %}
+                getLoggedUserPhotoGalery();
+            {% else %}
+                getPhotoGalery({{ user.id }});
+            {% endif %}
+        {% else %}
+            getPhotoGalery({{ user.id }});
+        {% endif %}
+    });
+
+    function setAsProfilePicture(data){
+        var pic =$(data).closest('.thumb').find('img');
+
+
+        var pic_id = pic.attr('id');
+        var pic_src = pic.attr('src').substring(5);
+
+        redrawProfilePicture(pic_src);
+
+        $.ajax({
+            method: 'PUT',
+            url: Routing.generate('changeProfilePicture', {pictureId: pic_id}),
+            error: function () {
+//                    $('#errors').html('<p>An error has occurred</p>');
+            },
+            success: function (data) {
+                console.log(data);
+            }
+
+        });
+
+    }
+
+    function setAsCoverPicture(data){
+        var pic =$(data).closest('.thumb').find('img');
+
+
+        var pic_id = pic.attr('id');
+        var pic_src = pic.attr('src').substring(5);
+
+        redrawCoverPicture(pic_src);
+
+        $.ajax({
+            method: 'PUT',
+            url: Routing.generate('changeCoverPicture', {pictureId: pic_id}),
+            error: function () {
+//                    $('#errors').html('<p>An error has occurred</p>');
+            },
+            success: function (data) {
+                console.log(data);
+            }
+
+        });
+
+    }
+
+</script>
+
+
+
+

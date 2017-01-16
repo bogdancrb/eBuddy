@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+{% block title %}Profile Edit{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('eBuddy-assets/css/hoverCard-style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('eBuddy-assets/css/loader-animation.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/ui/prism.min.js') }}"></script>
+
+{% endblock %}
+{% block globaljavascripts %}
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/editors/wysihtml5/wysihtml5.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/editors/wysihtml5/toolbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/editors/wysihtml5/parsers.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ua-UA.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/plugins/notifications/jgrowl.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/core/app.js') }}"></script>
+
+
+
+    <script type="text/javascript" src="{{ asset('limitless-assets/js/pages/editor_wysihtml5.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('eBuddy-assets/js/timeNormalizer.js') }}"></script>
+
+    <script type="text/javascript">
+        var isGuest = {% if not isGuest %} false; {% else %} true; {% endif %}
+        var userId  = {{ user.id }};
+
+        var offset = 0;
+        var limit = 3;
+        var timelineScrollEnded = true;
+
+        function getLoaderHtml() {
+            return '<div class="timeline-row loading3 col-centered" style="display: none">' +
+                    '   <div></div><div></div><div></div>' +
+                    '   <div></div><div></div>' +
+                    '</div>';
+        }
+
+
+
+        function redrawProfilePicture(path){
+            var logged_user_picture= $('.logged_user_picture');
+
+            logged_user_picture.each(function(i, obj) {
+                $(obj).prop('src', '/web/'+path);
+            });
+        }
+
+        function redrawCoverPicture(path)
+        {
+            var profileCoverImg = $('.profile-cover-img');
+
+            profileCoverImg.each(function (i, obj) {
+                console.log(obj);
+                $(obj).css('background-image', 'url("/web/' + path + '")');
+            });
+        }
+
+
+    </script>
+
+
+
+
+
+    <script type="text/javascript" src="{{ asset('eBuddy-assets/js/timeline.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('eBuddy-assets/js/profile_update.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('eBuddy-assets/js/post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('eBuddy-assets/js/page-edit.js') }}"></script>
+
+
+
+{% endblock %}
+
+{% block body %}
+    <!-- Main navbar -->
+    {% include 'main_nav_bar_component.html.twitg' with {'user': user} %}
+    <!-- /main navbar -->
+    <br/><br/>
+
+    <!-- Page container -->
+    {% include 'profile_page_container.html.twig' with {'user': user} %}
+    <!-- /main content -->
+{% endblock %}

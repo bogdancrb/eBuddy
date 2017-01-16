@@ -148,10 +148,40 @@
     min-width: auto;
 }
 
+.like_button_inactive{
+    background-image:url("/web/eBuddy-assets/images/icons/profile/like.png") ;
+}
+
+.like_button_active{
+    background-image:url("/web/eBuddy-assets/images/icons/profile/like_active.png") ;
+}
+
+.like_button_inactive:hover{
+    background-image:url("/web/eBuddy-assets/images/icons/profile/like_active.png") ;
+}
+
+
+.dislike_button_inactive{
+    background-image:url("/web/eBuddy-assets/images/icons/profile/dislike.png") ;
+}
+
+.dislike_button_active{
+    background-image:url("/web/eBuddy-assets/images/icons/profile/dislike_active.png") ;
+}
+
+.dislike_button_inactive:hover{
+    background-image:url("/web/eBuddy-assets/images/icons/profile/dislike_active.png") ;
+}
+
 .post-actions .custom-responsive-action-img
 {
-    max-width: 20%;
-    padding-left: 10px;
+    width: 10px;
+    height: 30px;
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+    padding-left: 20px;
+    margin-left: 10px;
 }
 
 .comment_box{

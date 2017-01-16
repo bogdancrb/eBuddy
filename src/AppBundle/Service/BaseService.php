@@ -10,11 +10,15 @@ namespace AppBundle\Service;
 
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\Container;
 
 class BaseService
 {
     /** @var  EntityManager */
     protected $entityManager;
+
+    /** @var  Container */
+    protected $container;
 
     /**
      * Contains all the logic needed in order to do an api request.
@@ -59,6 +63,7 @@ class BaseService
     public function setEntityManager($entityManager)
     {
         $this->entityManager = $entityManager;
+
         return $this;
     }
 
@@ -67,6 +72,11 @@ class BaseService
      */
     public function getLoggedUser()
     {
-        return $this->getEntityManager()->getRepository('AppBundle:User')->findUserByEmail('test@data.com');
+        $securityContext = $this->container->get('security.token_storage');
+
+        $token = $securityContext->getToken();
+        $user = $token->getUser();
+
+        return $user;
     }
 }
