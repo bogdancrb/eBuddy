@@ -12,7 +12,18 @@ $(document).ready(function () {
         var formData = new FormData();
         formData.append('profile_picture', $('input[type=file]')[0].files[0]);
         formData.append('cover_picture', $('input[type=file]')[1].files[0]);
-        formData.append('other_data', form.serialize());
+        formData.append('other_data', JSON.stringify(getFormData(form.serializeArray())));
+
+        function getFormData(unindexed_array){
+            var indexed_array = {};
+
+            $.map(unindexed_array, function(n, i){
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+        }
+
 
         // Apply animation once per click
         $(this).parents(".panel").addClass("animated flipOutX").one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {

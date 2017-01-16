@@ -18,25 +18,40 @@
             <call method="setSession">
                 <argument type="service" id="session"/>
             </call>
+            <call method="setSecurityTokenStorage">
+                <argument type="service" id="security.token_storage"/>
+            </call>
         </service>
         <service id="api.post.service" class="AppBundle\Service\PostApiService">
             <call method="setEntityManager">
                 <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+            <call method="setSecurityTokenStorage">
+                <argument type="service" id="security.token_storage"/>
             </call>
         </service>
         <service id="recc.api.service" class="AppBundle\Service\RecommenderEngineApiService">
             <call method="setEntityManager">
                 <argument type="service" id="doctrine.orm.default_entity_manager"/>
             </call>
+            <call method="setSecurityTokenStorage">
+                <argument type="service" id="security.token_storage"/>
+            </call>
         </service>
         <service id="api.comment.service" class="AppBundle\Service\CommentsApiService">
             <call method="setEntityManager">
                 <argument type="service" id="doctrine.orm.default_entity_manager"/>
             </call>
+            <call method="setSecurityTokenStorage">
+                <argument type="service" id="security.token_storage"/>
+            </call>
         </service>
         <service id="api.friend.service" class="AppBundle\Service\FriendApiService">
             <call method="setEntityManager">
                 <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+            <call method="setSecurityTokenStorage">
+                <argument type="service" id="security.token_storage"/>
             </call>
         </service>
         <service id="api.profile.service" class="AppBundle\Service\ProfileApiService">
@@ -49,11 +64,17 @@
             <call method="setPathInServer">
                 <argument type="string">%kernel.root_dir%/../web/</argument>
             </call>
+            <call method="setSecurityTokenStorage">
+                <argument type="service" id="security.token_storage"/>
+            </call>
         </service>
 
         <service id="api.picture.service" class="AppBundle\Service\PictureApiService">
             <call method="setEntityManager">
                 <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            </call>
+            <call method="setSecurityTokenStorage">
+                <argument type="service" id="security.token_storage"/>
             </call>
         </service>
     </services>

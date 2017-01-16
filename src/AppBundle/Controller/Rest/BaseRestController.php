@@ -18,6 +18,23 @@ class BaseRestController extends FOSRestController
      */
     public function getLoggedUser()
     {
-        return $this->getDoctrine()->getRepository('AppBundle:User')->findUserByEmail('test@data.com');
+        $securityContext = $this->container->get('security.token_storage');
+
+        $token = $securityContext->getToken();
+        $user = $token->getUser();
+        return $this->getLoggedUserFromRepo($user->getId());
+    }
+
+    public function getLoggedUserFromRepo($accountId)
+    {
+        $user = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:User')
+            ->findOneBy(
+                array(
+                    'account'=>$accountId
+                )
+            );
+
+        return $user;
     }
 }

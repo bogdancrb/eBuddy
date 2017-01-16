@@ -42,14 +42,14 @@ class UserApiService extends BaseService
         $email = isset($data['email']) ?
             $data['email'] : (null AND $errors[] = '"email" is required');
 
-        $plainPassword = isset($data['plain_password']) ?
-            $data['plain_password'] : (null AND $errors[] = '"password" is required');
+        $plainPassword = isset($data['password']) ?
+            $data['password'] : (null AND $errors[] = '"password" is required');
 
-        $firstName = isset($data['first_name']) ?
-            $data['first_name'] : (null AND $errors[] = 'please put your first name');
+        $firstName = isset($data['nume']) ?
+            $data['nume'] : (null AND $errors[] = 'please put your first name');
 
-        $lastName = isset($data['last_name']) ?
-            $data['last_name'] : (null AND $errors[] = 'please put yout last name');
+        $lastName = isset($data['prenume']) ?
+            $data['prenume'] : (null AND $errors[] = 'please put yout last name');
 
         /** @var UserRepository $userRepository */
         $userRepository = $this->getEntityManager()
@@ -77,8 +77,7 @@ class UserApiService extends BaseService
             ->getRepository('AppBundle:Picture')
             ->findOneBy(
                 array(
-                    'type'=>Picture::DEFAULT_PICTURE_TYPE,
-                    'was'=>Picture::COVER_PICTURE_LABEL
+                    'id'=>2
                 )
             );
 

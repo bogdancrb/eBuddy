@@ -9,6 +9,7 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Entity\Address;
 use AppBundle\Entity\Picture;
 use AppBundle\Entity\Profile;
 use AppBundle\Entity\ProfilePicture;
@@ -52,6 +53,7 @@ class ProfileApiService extends BaseService
 
         }
 
+
         if(isset($data['cover_picture']) && !is_null($data['cover_picture'])) {
 
             /** @var UploadedFile $picture */
@@ -68,6 +70,49 @@ class ProfileApiService extends BaseService
                 ->setPostedAt(new \DateTime());
             $profile->setCoverPicture($coverPicture);
 
+        }
+
+        if(isset($data['other_data']) && !is_null($data['other_data'])){
+            $otherData  = json_decode($data['other_data'], true);
+
+
+            if(isset($otherData['name']) && !$otherData('name')){
+                $profile->setFirstName($otherData['name']);
+            }
+
+            if(isset($otherData['surname']) && !$otherData['surname']){
+                $profile->setFirstName($otherData['surname']);
+            }
+
+            if($profile->getAddress() != null) {
+                if (isset($otherData['city']) && !$otherData['city']) {
+                    $profile->getAddress()->setCity($otherData['city']);
+                }
+
+                if (isset($otherData['country']) && !$otherData['country']) {
+                    $profile->getAddress()->setCity($otherData['country']);
+                }
+
+                if (isset($otherData['county']) && !$otherData['county']) {
+                    $profile->getAddress()->setCity($otherData['county']);
+                }
+            }else{
+
+                $address = new Address();
+                if (isset($otherData['city']) && !$otherData['city']) {
+                    $address->setCity($otherData['city']);
+                }
+
+                if (isset($otherData['country']) && !$otherData['country']) {
+                    $address->setCity($otherData['country']);
+                }
+
+                if (isset($otherData['county']) && !$otherData['county']) {
+                    $address->setCity($otherData['county']);
+                }
+
+                $profile->setAddress($address);
+            }
         }
 
         $this->getEntityManager()->persist($profile);

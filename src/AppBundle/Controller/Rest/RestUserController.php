@@ -26,13 +26,12 @@ class RestUserController extends FOSRestController
     /**
      * @param Request $request
      * @Rest\View
-     * @Rest\Route("/api/v1/user_register_handle.{format}", name="user_register_handle")
+     * @Rest\Route("/api/v1/user_register_handle", options={"expose"=true}, name="user_register_handle")
      * @return Response
      */
     public function registerHandleAction(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-
         /** @var UserApiService $userApiService */
         $userApiService = $this->get(UserApiService::SERVICE_NAME);
 

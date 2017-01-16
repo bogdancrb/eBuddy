@@ -14,9 +14,14 @@
             success: function (data) {
                 var response = JSON.parse(data.content);
                 if (!response.error) {
-                    response.response.forEach(function (value, index) {
-                        $('#pictures').append(getGaleryImageHtml(value, false))
-                    });
+
+                    if(response.response.length != 0){
+                        response.response.forEach(function (value, index) {
+                            $('#pictures').append(getGaleryImageHtml(value, false))
+                        });
+                    }else{
+                        $('#pictures').html(noPictureHtml());
+                    }
 
                 }
             }
@@ -34,9 +39,13 @@
             success: function (data) {
                 var response = JSON.parse(data.content);
                 if (!response.error) {
-                    response.response.forEach(function (value, index) {
-                        $('#pictures').append(getGaleryImageHtml(value, true))
-                    });
+                    if(response.response.length != 0){
+                        response.response.forEach(function (value, index) {
+                            $('#pictures').append(getGaleryImageHtml(value, true))
+                        });
+                    }else{
+                        $('#pictures').html(noPictureHtml());
+                    }
 
                 }
             }
@@ -63,6 +72,7 @@
                 '    </div>'+
                 '</div>';
     }
+
     $(document).ready(function () {
         {% if not isGuest %}
             {% if not other_user %}
@@ -119,6 +129,13 @@
 
         });
 
+    }
+
+    function noPictureHtml(){
+        return '<br/><h6 class="content-group">' +
+                '    <i class="icon-images2 position-left"></i>' +
+                '        No pictures yet' +
+                '</h6>';
     }
 
 </script>

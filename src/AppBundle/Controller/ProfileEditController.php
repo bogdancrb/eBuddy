@@ -16,7 +16,7 @@ use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
-class ProfileEditController extends Controller
+class ProfileEditController extends BaseController
 {
 
     /**
@@ -36,6 +36,7 @@ class ProfileEditController extends Controller
 
         return $this->render('profile_page.html.twig', array(
                 'user' => $this->getLoggedUser(),
+                'logged_user' => $this->getLoggedUser(),
                 'address' =>$address,
                 'isGuest' => false,
                 'other_user'=> false
@@ -67,37 +68,21 @@ class ProfileEditController extends Controller
                 )
             );
 
-        if(!$this->isUserLoggedIn()){
+        if($this->isUserLoggedIn()){
+
             return $this->render('profile_page.html.twig', array(
                     'user' => $user,
+                    'logged_user' => $this->getLoggedUser(),
                     'address' =>$address,
-                    'isGuest' => true,
+                    'isGuest' => !$this->isUserLoggedIn(),
                     'other_user'=>$user->getId() != $this->getLoggedUser()->getId()
                 )
             );
         }
 
-        return $this->render('default/index.html.twig', array(
+        return $this->render('welcome.html.twig', array(
             'user' => $this->getLoggedUser()
         ));
     }
 
-    /**
-     * @return \AppBundle\Entity\User
-     */
-    public function getLoggedUser()
-    {
-        return $this->getDoctrine()->getRepository('AppBundle:User')->findUserByEmail('test@data.com');
-    }
-
-    /**
-     * Is the current user logged in?
-     *
-     * @return boolean
-     */
-    public function isUserLoggedIn()
-    {
-        return $this->container->get('security.authorization_checker')
-            ->isGranted('IS_AUTHENTICATED_FULLY');
-    }
 }
