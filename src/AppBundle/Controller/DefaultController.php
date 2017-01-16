@@ -3,64 +3,23 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Form\LoginType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
-    /**
-     * @Route("/profile_edit", name="profile_edit")
-     */
-    public function indexAction(Request $request)
-    {
-
-        $address = $this->getDoctrine()
-            ->getRepository('AppBundle:Address')
-            ->findOneBy(array('id'=>
-                $this->getLoggedUser()->getProfile()->getAddress()->getId())
-            );
-
-        if($this->isUserLoggedIn()){
-            return $this->render('profile_edit_page.html.twig', array(
-                'user' => $this->getLoggedUser(),
-                'address' =>$address
-            )
-        );
-        }
-
-        return $this->render('default/index.html.twig', array(
-            'user' => $this->getLoggedUser()
-        ));
-    }
-
     /**
      * @Route("/", name="homepage")
      */
     public function welcomeAction(Request $request)
     {
-        if($this->isUserLoggedIn()){
-            return $this->render('welcome.html.twig' );
+        if (!$this->isUserLoggedIn()) {
+            return $this->redirect($this->generateUrl('security_login_form'));
         }
 
-        return $this->render('start_page/index.html.twig');
-    }
-    /**
-     * Is the current user logged in?
-     *
-     * @return boolean
-     */
-    public function isUserLoggedIn()
-    {
-        return $this->container->get('security.authorization_checker')
-            ->isGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('welcome.html.twig');
     }
 
-    /**
-     * @return \AppBundle\Entity\User
-     */
-    public function getLoggedUser()
-    {
-        return $this->getDoctrine()->getRepository('AppBundle:User')->findUserByEmail('test@data.com');
-    }
 }

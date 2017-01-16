@@ -64,11 +64,12 @@ class RestPostController extends BaseRestController
      */
     public function getAllUserPostsWithLimitAndOffsetAction(Request $request)
     {
+
+
         /** @var PostApiService $postApiService */
         $postApiService = $this->get(PostApiService::SERVICE_NAME);
 
         $data = json_decode($request->getContent(), true);
-
         $result = $postApiService->doRequest(__FUNCTION__, $data);
 
         return new Response($result);

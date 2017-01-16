@@ -205,56 +205,6 @@
         });
 
 
-        function registerUser(){
-            var paramObj = {};
-            var registerForm  = $('#register-form');
-
-            $.each(registerForm.find(":input").serializeArray(), function(_, kv) {
-                if (paramObj.hasOwnProperty(kv.name)) {
-                    paramObj[kv.name] = $.makeArray(paramObj[kv.name]);
-                    paramObj[kv.name].push(kv.value);
-                }
-                else {
-                    paramObj[kv.name] = kv.value;
-                }
-            });
-
-            $.ajax({
-                method: 'POST',
-                url: '{{ url("user_register_handle", {'format': 'json'}) }}',
-                data: JSON.stringify(paramObj),
-                error: function(data) {
-                },
-                success: function(data) {
-                    console.log(data.error);
-                    var messageFieldRegister = $('#registerMessages');
-                    var messageFieldLogin = $('#loginMessages');
-
-                    //remove old messages
-                    messageFieldRegister.html('');messageFieldLogin.html('');
-
-                    if (data.error != true) {
-                        $('a[href="#signin"]').tab('show');
-                        messageFieldLogin.html(
-                                '<div class="panel panel-success">'+
-                                    '<div class="panel-heading">You have been register succesfuly</div>'+
-                                    '<div class="panel-body"></div>'+
-                                '</div>'
-                        );
-                    } else {
-                        messageFieldRegister.html(
-                                '<div class="alert alert-danger" role="alert">' +
-                                    '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' +
-                                    '<span class="sr-only">Error:</span>' +
-                                    JSON.parse(data.message)[0] +
-                                '</div>'
-                        );
-                    }
-                }
-
-            });
-        }
-
         function checkLogin(){
             var registerForm  = $('#for');
 

@@ -120,6 +120,7 @@ class CommentsApiService extends BaseService
             $result = array();
             $result['content'] = $comment->getContent();
             $result['posted_at'] = $comment->getPostedAt();
+            $result['author_id'] = $comment->getUser()->getId();
             $result['author_name'] = $comment->getUser()->getProfile()->getFirstName() .
                 ' ' .
                 $comment->getUser()->getProfile()->getLastName();

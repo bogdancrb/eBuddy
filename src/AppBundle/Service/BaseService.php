@@ -20,6 +20,8 @@ class BaseService
     /** @var  Container */
     protected $container;
 
+    protected $securityTokenStorage;
+
     /**
      * Contains all the logic needed in order to do an api request.
      *
@@ -72,11 +74,44 @@ class BaseService
      */
     public function getLoggedUser()
     {
-        $securityContext = $this->container->get('security.token_storage');
+        $securityContext = $this->getSecurityTokenStorage();
 
         $token = $securityContext->getToken();
         $user = $token->getUser();
 
+        return $this->getLoggedUserFromRepo($user->getId());
+    }
+
+
+    public function getLoggedUserFromRepo($accountId)
+    {
+        $user = $this->getEntityManager()
+            ->getRepository('AppBundle:User')
+            ->findOneBy(
+                array(
+                    'account'=>$accountId
+                )
+            );
+
         return $user;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSecurityTokenStorage()
+    {
+        return $this->securityTokenStorage;
+    }
+
+    /**
+     * @param mixed $securityTokenStorage
+     * @return BaseService
+     */
+    public function setSecurityTokenStorage($securityTokenStorage)
+    {
+        $this->securityTokenStorage = $securityTokenStorage;
+        return $this;
+    }
+
 }

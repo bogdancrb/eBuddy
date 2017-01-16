@@ -47,6 +47,7 @@ class UserController extends Controller
             array('registerForm' => $form->createView()));
     }
 
+
     /**
      * @Route("/login", name="security_login_form")
      */
@@ -64,10 +65,11 @@ class UserController extends Controller
 
         $loginForm = $this->createForm(LoginType::class, ['username' => $lastUsername]);
 
-        return $this->render('login.twig', array(
+        return $this->render('start_page/index.html.twig', array(
             'loginForm' => $loginForm->createView(),
             'error'         => $error,
         ));
+
     }
 
     /**

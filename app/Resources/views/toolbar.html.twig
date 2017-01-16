@@ -9,12 +9,17 @@
             {% if not isGuest %}
                 {% if not other_user %}
                     <li ><a href="#activity" data-toggle="tab"><i
-                                    class="icon-menu7 position-left"></i> Timline</a></li>
+                                    class="icon-menu7 position-left"></i> Timeline</a></li>
                     <li class="active" ><a href="#settings" data-toggle="tab"><i class="icon-cog3 position-left"></i> Settings</a></li>
+                {% else %}
+
+                <li class="active"><a href="#activity" data-toggle="tab"><i
+                                class="icon-menu7 position-left"></i> Timeline</a></li>
+
                 {% endif %}
             {% else %}
                 <li class="active"><a href="#activity" data-toggle="tab"><i
-                                class="icon-menu7 position-left"></i> Timline</a></li>
+                                class="icon-menu7 position-left"></i> Timeline</a></li>
             {% endif %}
             <li><a href="#"><i class="icon-collaboration position-left"></i> Friends</a></li>
             <li><a href="#pictures" data-toggle="tab"><i class="icon-images3 position-left"></i> Photos</a></li>

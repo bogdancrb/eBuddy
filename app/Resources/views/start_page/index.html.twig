@@ -10,11 +10,14 @@
     <script src="{{ asset('eBuddy-assets/js/jquery.waypoints.js') }}"></script>
     <script src="{{ asset('eBuddy-assets/js/customWaypoints.js') }}"></script>
     <title>Title</title>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 </head>
 <body>
     <div id="myModal-register" class="Modal is-hidden is-visuallyHidden">
         <!-- Modal content -->
-        <div class="Modal-content">
+        <form class="Modal-content">
             <div id="closeRegisterModal" class="Close">&times;</div>
             <div class="start-page-text-format modal-heading">INREGISTRARE</div>
             <table class="modal-container">
@@ -40,11 +43,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <button id="login" class="modal-button">INREGISTRARE</button>
+                        <button id="register_btn_action" class="modal-button">INREGISTRARE</button>
                     </td>
                 </tr>
             </table>
-        </div>
+        </form>
     </div>
     <div id="myModal-login" class="Modal is-hidden is-visuallyHidden">
         <!-- Modal content -->
@@ -80,7 +83,24 @@
                     <td class="start-page-menu">
                         <ul class="start-page-menu-list">
                             <li>
-                                <button id="loginButtonMenu" class="start-page-menu-button">AUTENTIFICARE</button>
+                                {% if error %}
+                                    <div class="row">
+                                        <script>
+                                            alert({{ error.messageKey|trans(error.messageData) }});
+                                        </script>
+                                    </div>
+                                {% endif %}
+                                <div class="navbar-form navbar-right" role="search">
+                                    {{ form_start(loginForm) }}
+                                        <div class="form-group">
+                                            {{ form_row(loginForm.username) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_row(loginForm.password) }}
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Sign In</button>
+                                    {{ form_end(loginForm) }}
+                                </div>
                             </li>
                             <li>
                                 <button id="registerButtonMenu" class="start-page-menu-button">INREGISTRARE</button>
@@ -274,7 +294,24 @@
                     <td class="start-page-menu">
                         <ul class="start-page-menu-list">
                             <li>
-                                <button id="loginButtonStickyMenu" class="start-page-menu-button">AUTENTIFICARE</button>
+                                {% if error %}
+                                    <div class="row">
+                                        <script>
+                                            alert({{ error.messageKey|trans(error.messageData) }});
+                                        </script>
+                                    </div>
+                                {% endif %}
+                                <div class="navbar-form navbar-right" role="search">
+                                    {{ form_start(loginForm) }}
+                                    <div class="form-group">
+                                        {{ form_row(loginForm.username) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_row(loginForm.password) }}
+                                    </div>
+                                    <button type="submit" class="btn btn-default">Sign In</button>
+                                    {{ form_end(loginForm) }}
+                                </div>
                             </li>
                             <li>
                                 <button id="registerButtonStickyMenu" class="start-page-menu-button">INREGISTRARE</button>
@@ -341,8 +378,6 @@
         // Get the open button
         var btnOpen = document.getElementById("registerButtonMenu");
         var btnOpen2 = document.getElementById("registerButtonStickyMenu");
-        var btnOpen3 = document.getElementById("loginButtonMenu");
-        var btnOpen4 = document.getElementById("loginButtonStickyMenu");
 
         // Get the close button
         var btnCloseRegister = document.getElementById("closeRegisterModal");
@@ -367,7 +402,24 @@
             container.parentElement.className = "ModalOpen";
         };
 
-        btnOpen3.onclick = function() {
+
+        $('#register_btn_action').click(function (event) {
+            event.preventDefault();
+            var payload = getFormData($(this).closest('form').serializeArray());
+            registerUser(payload);
+        });
+
+        function getFormData(unindexed_array){
+            var indexed_array = {};
+
+            $.map(unindexed_array, function(n, i){
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+        }
+
+/*        btnOpen3.onclick = function() {
             modalLogin.className = "Modal is-visuallyHidden";
             setTimeout(function() {
                 container.className = "MainContainer is-blurred";
@@ -383,7 +435,7 @@
                 modalLogin.className = "Modal";
             }, 100);
             container.parentElement.className = "ModalOpen";
-        };
+        };*/
 
         // Close the modal
         btnCloseRegister.onclick = function() {
@@ -409,6 +461,46 @@
                 container.parentElement.className = "";
             }
         };
+
+
+
+        function registerUser(userData){
+            $.ajax({
+                method: 'POST',
+                url: Routing.generate('user_register_handle'),
+                data: JSON.stringify(userData),
+                error: function(data) {
+                },
+                success: function(data) {
+                    console.log(data.error);
+                    var messageFieldRegister = $('#registerMessages');
+                    var messageFieldLogin = $('#loginMessages');
+
+                    //remove old messages
+                    messageFieldRegister.html('');messageFieldLogin.html('');
+
+                    if (data.error != true) {
+//                        $('a[href="#signin"]').tab('show');
+//                        messageFieldLogin.html(
+//                                '<div class="panel panel-success">'+
+//                                '<div class="panel-heading">You have been register succesfuly</div>'+
+//                                '<div class="panel-body"></div>'+
+//                                '</div>'
+//                        );
+                    } else {
+                        $('myModal-register').append(
+                                '<div class="alert alert-danger" role="alert">' +
+                                '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' +
+                                '<span class="sr-only">Error:</span>' +
+                                JSON.parse(data.message)[0] +
+                                '</div>'
+                        );
+                    }
+                }
+
+            });
+        }
+
     });
 </script>
 

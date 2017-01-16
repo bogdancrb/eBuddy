@@ -76,7 +76,7 @@ class PictureApiService extends BaseService
         $pictures = $this->getEntityManager()->getRepository('AppBundle:Picture')
             ->findBy(
                 array(
-                    'author'=>$this->getLoggedUser()->getAccount()->getId()
+                    'author'=>$this->getLoggedUser()->getProfile()->getId()
                 )
             );
 

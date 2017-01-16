@@ -127,7 +127,6 @@ class PostApiService extends BaseService
 
         $limit = $data['limit'];
         $offset = $data['offset'];
-
         $posts = $this->getEntityManager()->getRepository('AppBundle:Post')
             ->getUserPostsWithLimitAndOffset(
                 $this->getLoggedUser()->getId(),
@@ -179,7 +178,6 @@ class PostApiService extends BaseService
                         'post' => $post
                     )
                 );
-
 
             $appreciationStatus = is_null($appreciation)? 'null' : $appreciation->getStatus();
 

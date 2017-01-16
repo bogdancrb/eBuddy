@@ -2,25 +2,27 @@
  * Created by marius.iliescu on 16-Jan-17.
  */
 $(document).ready(function () {
+
     var timeLine = $("#postsTimeline");
 
 
     timeLine.html(getLoaderHtml());
-    if(!isGuest){
-        if(userId != null) {
-            loadLoggedUserPosts();
-        }else{
-            loadUserPosts(userId);
-        }
-    }else {
-        loadUserPosts(userId);
-    }
+
+    // if(!isGuest){
+    //     if(userId == null) {
+    //         loadLoggedUserPosts();
+    //     }else{
+    //         loadUserPosts(userId);
+    //     }
+    // }else {
+    //     loadUserPosts(userId);
+    // }
 
     $(window).scroll(function() {
         // End of the document reached?
         if (timelineScrollEnded && $(window).scrollTop() >= $(document).height() - $(window).height() - 300) {
             if(!isGuest){
-                if(userId != null) {
+                if(userId == null) {
                     loadLoggedUserPosts();
                 }else{
                     loadUserPosts(userId);
@@ -89,10 +91,8 @@ function loadUserPosts(userId){
                     offset++;
                     var postHtml = getHtmlPost(value);
                     $('#postsTimeline .timeline-row:last').before(postHtml);
-                    setTimeout(function()
-                    {
-                        appendLastCommentInTimeLine(value.id);
-                    }, 2000);
+                    appendLastCommentInTimeLine(value.id);
+
                 });
                 $('.loading3').hide();
                 timelineScrollEnded = true;
@@ -144,8 +144,9 @@ function appendLastCommentInTimeLine(postId) {
             var response = JSON.parse(data.content);
 
             if (!data.error) {
-                var latestPostId = '#post_' + postId;
+                var latestPostId = '#' + postId;
                 var responseContent = response.response;
+
                 $(latestPostId).find(".lastComment").html(getLastCommentHtml(responseContent));
             } else {
                 console.log(data.message);
@@ -156,10 +157,11 @@ function appendLastCommentInTimeLine(postId) {
 
 
 function getLastCommentHtml(comment) {
+
     if (comment != null) {
         return '<br/><h6 class="content-group">' +
             '    <i class="icon-comment-discussion position-left"></i>' +
-            '        Las comment from <a href="#">' + comment.author_name + '</a>:' +
+            '        Las comment from <a href="'+Routing.generate('profile_edit')+"/"+comment.author_id+'">' + comment.author_name + '</a>:' +
             '</h6>' +
             '' +
             '<blockquote>' +
@@ -167,12 +169,12 @@ function getLastCommentHtml(comment) {
             '    <footer><cite title="Source Title" data-livestamp=' + comment.posted_at.date + '></cite>' +
             '    </footer>' +
             '</blockquote>';
-    } else {
-        return '<br/><h6 class="content-group">' +
-            '    <i class="icon-comment-discussion position-left"></i>' +
-            '        No comments yet' +
-            '</h6>';
-
     }
+
+
+    return '<br/><h6 class="content-group">' +
+        '    <i class="icon-comment-discussion position-left"></i>' +
+        '        No comments yet' +
+        '</h6>';
 
 }
