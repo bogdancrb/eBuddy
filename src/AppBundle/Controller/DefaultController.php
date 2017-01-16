@@ -14,19 +14,15 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('profile_edit_page.html.twig', array(
+        if(!$this->isUserLoggedIn()){
+            return $this->render('profile_edit_page.html.twig', array(
+                'user' => $this->getLoggedUser()
+            ));
+        }
+
+        return $this->render('default/index.html.twig', array(
             'user' => $this->getLoggedUser()
         ));
-        
-//        if(!$this->isUserLoggedIn()){
-//            return $this->render('profile_edit_page.html.twig', array(
-//                'user' => $this->getLoggedUser()
-//            ));
-//        }
-//
-//        return $this->render('default/index.html.twig', array(
-//            'user' => $this->getLoggedUser()
-//        ));
     }
 
     /**

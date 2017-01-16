@@ -31,15 +31,6 @@ class User extends BaseEntity
     private $profile;
 
     /**
-     * @var  User[]
-     *
-     * The people who I think are my friends.
-     *
-     * @ORM\OneToMany(targetEntity="Friendship", mappedBy="user", orphanRemoval=true)
-     */
-    private $friends;
-
-    /**
      * @var  Appreciation[]
      * @ORM\OneToMany(targetEntity="Appreciation", mappedBy="user")
      */
@@ -128,24 +119,6 @@ class User extends BaseEntity
     public function setProfile($profile)
     {
         $this->profile = $profile;
-        return $this;
-    }
-
-    /**
-     * @return User[]
-     */
-    public function getFriends()
-    {
-        return $this->friends;
-    }
-
-    /**
-     * @param User[] $friends
-     * @return User
-     */
-    public function setFriends($friends)
-    {
-        $this->friends = $friends;
         return $this;
     }
 

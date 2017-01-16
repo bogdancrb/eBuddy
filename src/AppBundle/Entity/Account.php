@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface as AccountInterface;
  * @ORM\Table(name="account")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class Account implements AccountInterface
+class Account
 {
     /**
      * @ORM\Id
@@ -33,11 +33,6 @@ class Account implements AccountInterface
      * @ORM\Column(type="string", length=64)
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $salt;
 
     public function getId()
     {
@@ -94,22 +89,6 @@ class Account implements AccountInterface
     {
         $this->id = $id;
         return $this;
-    }
-
-    /**
-     * @param mixed $salt
-     * @return Account
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-
-        return $this;
-    }
-
-    public function getSalt()
-    {
-        return $this->salt;
     }
 
     public function eraseCredentials()

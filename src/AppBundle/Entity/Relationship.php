@@ -28,6 +28,24 @@ class Relationship extends BaseEntity
 	private $friend;
 
 	/**
+	 * @param User $friend
+	 */
+	public function setFriend($friend)
+	{
+		$this->friend = $friend;
+		return $this;
+	}
+
+	/**
+	 * @param User $user
+	 */
+	public function setUser($user)
+	{
+		$this->user = $user;
+		return $this;
+	}
+
+	/**
 	 * @ORM\Column(type="string", columnDefinition="ENUM('pending', 'accepted')")
 	 */
 	private $status;
@@ -46,6 +64,7 @@ class Relationship extends BaseEntity
 	public function setStatus($status)
 	{
 		$this->status = $status;
+		return $this;
 	}
 
 	/**

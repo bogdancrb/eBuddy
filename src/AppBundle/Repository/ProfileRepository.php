@@ -15,16 +15,23 @@ use Doctrine\ORM\EntityRepository;
 class ProfileRepository extends EntityRepository
 {
     /**
-     * Offset and limit is for dynamic loading
-     *
-     * @return array | Profile[]
+     * @param $currentUserProfileId
+     * @param array $excludedFriendsIds
+     * @return \AppBundle\Entity\Profile[]|array
      */
-    public function getAllProfiles()
+    public function getAllProfiles($currentUserProfileId, $excludedFriendsIds = [])
     {
-        /** @var array */
-        $profiles = $this->createQueryBuilder('c')
+        $excludedFriendsIds = !empty($excludedFriendsIds) ? $excludedFriendsIds : 0;
+
+        $profiles = $this->createQueryBuilder('p');
+
+        $query = $profiles->join('p.user', 'pu')
+            ->andWhere('p.id != :profile_id')
+            ->andWhere($profiles->expr()->notIn('pu.id', ':excluded'))
+            ->setParameter('profile_id', $currentUserProfileId)
+            ->setParameter('excluded', $excludedFriendsIds)
             ->getQuery()->getResult();
 
-        return $profiles;
+        return $query;
     }
 }
