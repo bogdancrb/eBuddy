@@ -286,7 +286,7 @@
             </ul>
         </div>
     {% else %}
-        <button>Register</button>
+        <a href = "http://paw.ebuddy.ml/web/login">Login</a>
     {% endif %}
 
 </div>
