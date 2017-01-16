@@ -52,7 +52,7 @@ class RecommenderEngineApiService extends BaseService
         if(!is_null($user)){
             $result = array(
                 'id'=>$user->getUser()->getId(),
-                'profile_id' => $user->getId()
+                'profile_id' => $user->getId(),
                 'user_id'=>$user->getUser()->getId(),
                 'name'=> $user->getFirstName().' '.$user->getLastName(),
                 'picture'=> $user->getProfilePicture()->getPath()
