@@ -19,7 +19,7 @@ class DefaultController extends BaseController
             return $this->redirect($this->generateUrl('security_login_form'));
         }
 
-        return $this->render('welcome.html.twig');
+        return $this->redirect($this->generateUrl('profile_edit'));
     }
 
 }

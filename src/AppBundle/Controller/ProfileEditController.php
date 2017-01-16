@@ -24,6 +24,9 @@ class ProfileEditController extends BaseController
      */
     public function profileEdit(Request $request)
     {
+        if (!$this->isUserLoggedIn()) {
+            return $this->redirect($this->generateUrl('security_login_form'));
+        }
 
         $address = null;
         if($this->getLoggedUser()->getProfile()->getAddress()) {
