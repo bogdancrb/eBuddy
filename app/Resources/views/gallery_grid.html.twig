@@ -41,7 +41,7 @@
                 if (!response.error) {
                     if(response.response.length != 0){
                         response.response.forEach(function (value, index) {
-                            $('#pictures').append(getGaleryImageHtml(value, false))
+                            $('#pictures').append(getGaleryImageHtml(value, true))
                         });
                     }else{
                         $('#pictures').html(noPictureHtml());
@@ -72,6 +72,7 @@
                 '    </div>'+
                 '</div>';
     }
+
     $(document).ready(function () {
         {% if not isGuest %}
             {% if not other_user %}

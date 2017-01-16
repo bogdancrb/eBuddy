@@ -36,6 +36,7 @@ class ProfileEditController extends BaseController
 
         return $this->render('profile_page.html.twig', array(
                 'user' => $this->getLoggedUser(),
+                'logged_user' => $this->getLoggedUser(),
                 'address' =>$address,
                 'isGuest' => false,
                 'other_user'=> false
@@ -71,6 +72,7 @@ class ProfileEditController extends BaseController
 
             return $this->render('profile_page.html.twig', array(
                     'user' => $user,
+                    'logged_user' => $this->getLoggedUser(),
                     'address' =>$address,
                     'isGuest' => !$this->isUserLoggedIn(),
                     'other_user'=>$user->getId() != $this->getLoggedUser()->getId()
