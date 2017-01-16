@@ -79,6 +79,42 @@ class PostApiService extends BaseService
      * @return string
      * @throws \Exception
      */
+    public function getUserPostsWithLimitAndOffset($data){
+        if (!isset($data['limit'])) {
+            throw new \Exception('Put limit in the payload');
+        }
+        if (!isset($data['offset'])) {
+            throw new \Exception('Put offset in the payload');
+        }
+        if (!isset($data['user_id'])) {
+            throw new \Exception('No user');
+        }
+
+        $limit = $data['limit'];
+        $offset = $data['offset'];
+        $user_id = $data['user_id'];
+
+        $posts = $this->getEntityManager()->getRepository('AppBundle:Post')
+            ->getUserPostsWithLimitAndOffset(
+                $user_id,
+                $limit,
+                $offset
+            );
+
+        $postsToBeSent = array();
+        foreach ($posts as $post){
+            $postsToBeSent[] = $this->preparePost($post);
+        }
+
+        return $postsToBeSent;
+
+    }
+
+    /**
+     * @param $data
+     * @return string
+     * @throws \Exception
+     */
     public function getAllUserPostsWithLimitAndOffset($data)
     {
 

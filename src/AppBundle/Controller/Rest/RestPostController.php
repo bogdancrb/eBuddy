@@ -59,10 +59,28 @@ class RestPostController extends BaseRestController
     /**
      * @param Request $request
      * @Rest\View
-     * @Rest\Route("/api/v1/get_user_posts_with_limit_and_offset",  options={"expose"=true}, name="get_user_posts_with_limit_and_offset")
+     * @Rest\Route("/api/v1/get_logged_user_posts_with_limit_and_offset",  options={"expose"=true}, name="get_user_posts_with_limit_and_offset")
      * @return Response
      */
     public function getAllUserPostsWithLimitAndOffsetAction(Request $request)
+    {
+        /** @var PostApiService $postApiService */
+        $postApiService = $this->get(PostApiService::SERVICE_NAME);
+
+        $data = json_decode($request->getContent(), true);
+
+        $result = $postApiService->doRequest(__FUNCTION__, $data);
+
+        return new Response($result);
+    }
+
+    /**
+     * @param Request $request
+     * @Rest\View
+     * @Rest\Route("/api/v1/get_c_user_posts_with_limit_and_offset",  options={"expose"=true}, name="get_c_user_posts_with_limit_and_offset")
+     * @return Response
+     */
+    public function getUserPostsWithLimitAndOffsetAction(Request $request)
     {
         /** @var PostApiService $postApiService */
         $postApiService = $this->get(PostApiService::SERVICE_NAME);

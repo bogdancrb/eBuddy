@@ -9,7 +9,8 @@
 namespace AppBundle\Controller;
 
 
-use FOS\RestBundle\Controller\Annotations\Route;
+use AppBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,21 +20,84 @@ class ProfileEditController extends Controller
 {
 
     /**
-     * @param Request $request
-     * @Rest\View
-     * @Rest\Route("/api/v1/user_register_handle.{format}", name="user_register_handle")
-     * @return Response
+     * @Route("/profile", options={"expose"=true}, name="profile_edit")
      */
-    public function getProfileDetails(Request $request)
+    public function profileEdit(Request $request)
     {
-        $errors = array();
 
-        $data = json_decode($request->getContent(), true);
+        $address = null;
+        if($this->getLoggedUser()->getProfile()->getAddress()) {
+            $address = $this->getDoctrine()
+                ->getRepository('AppBundle:Address')
+                ->findOneBy(array('id' =>
+                        $this->getLoggedUser()->getProfile()->getAddress()->getId())
+                );
+        }
 
-        $response = array(
-''
+        return $this->render('profile_page.html.twig', array(
+                'user' => $this->getLoggedUser(),
+                'address' =>$address,
+                'isGuest' => false,
+                'other_user'=> false
+            )
         );
+    }
 
-        return new Response($data);
+
+    /**
+     * @Route("/profile/{userId}", name="profile_edit_user")
+     */
+    public function profileView(Request $request, $userId)
+    {
+        $address = null;
+        if($this->getLoggedUser()->getProfile()->getAddress()) {
+            $address = $this->getDoctrine()
+                ->getRepository('AppBundle:Address')
+                ->findOneBy(array('id' =>
+                        $this->getLoggedUser()->getProfile()->getAddress()->getId())
+                );
+        }
+
+        /** @var User $user */
+        $user = $this->getDoctrine()
+            ->getRepository('AppBundle:User')
+            ->findOneBy(
+                array(
+                    'id'=> $userId
+                )
+            );
+
+        if(!$this->isUserLoggedIn()){
+            return $this->render('profile_page.html.twig', array(
+                    'user' => $user,
+                    'address' =>$address,
+                    'isGuest' => true,
+                    'other_user'=>$user->getId() != $this->getLoggedUser()->getId()
+                )
+            );
+        }
+
+        return $this->render('default/index.html.twig', array(
+            'user' => $this->getLoggedUser()
+        ));
+    }
+
+    /**
+     * @return \AppBundle\Entity\User
+     */
+    public function getLoggedUser()
+    {
+        return $this->getDoctrine()->getRepository('AppBundle:User')->findUserByEmail('test@data.com');
+    }
+
+    /**
+     * Is the current user logged in?
+     *
+     * @return boolean
+     */
+    public function isUserLoggedIn()
+    {
+        return $this->container->get('security.authorization_checker')
+            ->isGranted('IS_AUTHENTICATED_FULLY');
     }
 }

@@ -19,11 +19,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>First Name</label>
-                            <input name= "first_name" type="text" value="{{ user.profile.firstName }}" class="form-control">
+                            <input name= "first_name" type="text"
+                                   value="{% if not user.profile  is null %}{{ user.profile.firstName }}{% endif %}"
+                                   class="form-control"
+                            >
                         </div>
                         <div class="col-md-6">
                             <label>Full name</label>
-                            <input name= "last_name" type="text" value="{{ user.profile.lastName }}" class="form-control">
+                            <input name= "last_name" type="text"
+                                   value="{% if not user.profile  is null %}{{ user.profile.lastName }}{% endif %}"
+                                   class="form-control">
                         </div>
                     </div>
                 </div>
@@ -32,15 +37,21 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label>Country</label>
-                            <input name= "country" type="text" value="{{ address.country }}" class="form-control">
+                            <input name= "country" type="text"
+                                   value="{% if not address  is null %}{{ address.country }}{% endif %}"
+                                   class="form-control">
                         </div>
                         <div class="col-md-4">
                             <label>County</label>
-                            <input name= "county" type="text" value="{{ address.county }}" class="form-control">
+                            <input name= "county" type="text"
+                                   value="{% if not address  is null %}{{ address.county }}{% endif %}"
+                                   class="form-control">
                         </div>
                         <div class="col-md-4">
                             <label>City</label>
-                            <input name= "city" type="text" value="{{ address.city }}" class="form-control">
+                            <input name= "city" type="text"
+                                   value="{% if not address  is null %}{{ address.city }}{% endif %}"
+                                   class="form-control">
                         </div>
                     </div>
                 </div>

@@ -45,7 +45,7 @@ class RecommenderEngineApiService extends BaseService
     private function composeUserReturn($user){
         if(!is_null($user)){
             $result = array(
-                'id'=>$user->getId(),
+                'id'=>$user->getUser()->getId(),
                 'user_id'=>$user->getUser()->getId(),
                 'name'=> $user->getFirstName().' '.$user->getLastName(),
                 'picture'=> $user->getProfilePicture()->getPath()
