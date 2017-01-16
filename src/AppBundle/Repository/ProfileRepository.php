@@ -30,6 +30,7 @@ class ProfileRepository extends EntityRepository
             ->andWhere($profiles->expr()->notIn('pu.id', ':excluded'))
             ->setParameter('profile_id', $currentUserProfileId)
             ->setParameter('excluded', $excludedFriendsIds)
+            ->setMaxResults(5)
             ->getQuery()->getResult();
 
         return $query;
