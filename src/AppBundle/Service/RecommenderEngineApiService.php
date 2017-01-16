@@ -19,6 +19,11 @@ class RecommenderEngineApiService extends BaseService
      * @return \AppBundle\Entity\Profile[]|array
      */
     public function getAllFriends(){
+        if(!$this->getLoggedUser())
+        {
+            return;
+        }
+
         $excludeFriendsIds = $this->getEntityManager()->getRepository('AppBundle:Relationship')->findFriendsByUserIdAndByStatus(
             $this->getLoggedUser()->getId()
         );

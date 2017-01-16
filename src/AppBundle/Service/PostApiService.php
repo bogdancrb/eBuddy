@@ -79,7 +79,7 @@ class PostApiService extends BaseService
      * @return string
      * @throws \Exception
      */
-    public function getUserPostsWithLimitAndOffset($data){
+    public function getUserPostsWithLimitAndOffsetC($data){
         if (!isset($data['limit'])) {
             throw new \Exception('Put limit in the payload');
         }
@@ -101,9 +101,12 @@ class PostApiService extends BaseService
                 $offset
             );
 
+        $user = $this->getEntityManager()->getRepository('AppBundle:User')
+            ->findOneBy(array('id' => $user_id));
+
         $postsToBeSent = array();
         foreach ($posts as $post){
-            $postsToBeSent[] = $this->preparePost($post);
+            $postsToBeSent[] = $this->preparePost($user, $post);
         }
 
         return $postsToBeSent;
@@ -136,7 +139,7 @@ class PostApiService extends BaseService
 
         $postsToBeSent = array();
         foreach ($posts as $post){
-            $postsToBeSent[] = $this->preparePost($post);
+            $postsToBeSent[] = $this->preparePost($this->getLoggedUser(), $post);
         }
 
         return $postsToBeSent;
@@ -165,7 +168,7 @@ class PostApiService extends BaseService
      * @param Post $post
      * @return array|Post
      */
-    public function preparePost($post)
+    public function preparePost($user, $post)
     {
         if (!is_null($post)) {
             $result = array();
@@ -174,7 +177,7 @@ class PostApiService extends BaseService
                 ->getRepository('AppBundle:Appreciation')
                 ->findOneBy(
                     array(
-                        'user' => $this->getLoggedUser(),
+                        'user' => $user,
                         'post' => $post
                     )
                 );
@@ -182,7 +185,7 @@ class PostApiService extends BaseService
             $appreciationStatus = is_null($appreciation)? 'null' : $appreciation->getStatus();
 
 
-            $result['id'] = $post->getId();
+            $result['id'] = $user->getId();
             $result['content'] = $post->getContent();
             $result['appreciation_status'] = $appreciationStatus;
             $result['posted_at'] = $post->getPostedAt();

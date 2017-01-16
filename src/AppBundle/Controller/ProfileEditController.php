@@ -53,39 +53,37 @@ class ProfileEditController extends BaseController
      */
     public function profileView(Request $request, $userId)
     {
-        $address = null;
-        if($this->getLoggedUser()->getProfile()->getAddress()) {
-            $address = $this->getDoctrine()
-                ->getRepository('AppBundle:Address')
-                ->findOneBy(array('id' =>
-                        $this->getLoggedUser()->getProfile()->getAddress()->getId())
-                );
-        }
-
-        /** @var User $user */
+        /* @var User $user */
         $user = $this->getDoctrine()
             ->getRepository('AppBundle:User')
             ->findOneBy(
                 array(
-                    'id'=> $userId
+                    'id' => $userId
                 )
             );
 
-        if($this->isUserLoggedIn()){
+        if (!$this->isUserLoggedIn())
+        {
 
             return $this->render('profile_page.html.twig', array(
-                    'user' => $user,
+                    'user'        => $user,
+                    'logged_user' => null,
+                    'address'     => $user->getProfile()->getAddress(),
+                    'isGuest'     => !$this->isUserLoggedIn(),
+                    'other_user'  => true
+                )
+            );
+        } else
+        {
+            return $this->render('profile_page.html.twig', array(
+                    'user'        => $this->getLoggedUser(),
                     'logged_user' => $this->getLoggedUser(),
-                    'address' =>$address,
-                    'isGuest' => !$this->isUserLoggedIn(),
-                    'other_user'=>$user->getId() != $this->getLoggedUser()->getId()
+                    'address'     => $this->getLoggedUser()->getProfile()->getAddress(),
+                    'isGuest'     => !$this->isUserLoggedIn(),
+                    'other_user'  => $user->getId() != $this->getLoggedUser()->getId()
                 )
             );
         }
-
-        return $this->render('welcome.html.twig', array(
-            'user' => $this->getLoggedUser()
-        ));
     }
 
 }

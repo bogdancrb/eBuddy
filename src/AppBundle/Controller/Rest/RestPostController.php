@@ -81,7 +81,7 @@ class RestPostController extends BaseRestController
      * @Rest\Route("/api/v1/get_c_user_posts_with_limit_and_offset",  options={"expose"=true}, name="get_c_user_posts_with_limit_and_offset")
      * @return Response
      */
-    public function getUserPostsWithLimitAndOffsetAction(Request $request)
+    public function getUserPostsWithLimitAndOffsetCAction(Request $request)
     {
         /** @var PostApiService $postApiService */
         $postApiService = $this->get(PostApiService::SERVICE_NAME);

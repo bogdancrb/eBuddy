@@ -286,7 +286,7 @@
             </ul>
         </div>
     {% else %}
-        <h1>Register</h1>
+        <button>Register</button>
     {% endif %}
 
 </div>
