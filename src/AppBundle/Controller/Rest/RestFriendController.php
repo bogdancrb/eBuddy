@@ -58,4 +58,21 @@ class RestFriendController extends BaseRestController
 
 		return new Response($result);
 	}
+
+	/**
+	 * @param Request $request
+	 * @Rest\View
+	 * @Rest\Route("/api/v1/reject_friend_request", name="reject_friend_request")
+	 * @return Response
+	 */
+	public function rejectFriendRequestAction(Request $request)
+	{
+		/** @var FriendApiService $postApiService */
+		$friendApiService = $this->get(FriendApiService::SERVICE_NAME);
+
+		$data = json_decode($request->getContent(), true);
+		$result = $friendApiService->doRequest(__FUNCTION__, $data);
+
+		return new Response($result);
+	}
 }

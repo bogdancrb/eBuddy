@@ -105,4 +105,15 @@ class RelationshipRepository extends EntityRepository
 
 		return $result;
 	}
+
+	public function removeRelationshipById($friendRequestId)
+	{
+		$result = $this->createQueryBuilder('r')
+			->delete()
+			->where('r.id = :relationship_id')
+			->setParameter('relationship_id', $friendRequestId)
+			->getQuery()->getSingleScalarResult();
+
+		return $result;
+	}
 }

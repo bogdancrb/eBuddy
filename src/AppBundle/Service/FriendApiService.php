@@ -60,4 +60,21 @@ class FriendApiService extends BaseService
 
 		return false;
 	}
+
+	public function rejectFriendRequest($data)
+	{
+		$pendingRelationshipId = $this->getEntityManager()->getRepository('AppBundle:Relationship')->findPendingFriendRequest(
+			$this->getLoggedUser()->getId(),
+			$data['friend_id']
+		);
+
+		if (!empty($pendingRelationshipId))
+		{
+			$result = $this->getEntityManager()->getRepository('AppBundle:Relationship')->removeRelationshipById(
+				$pendingRelationshipId
+			);
+
+			return $result;
+		}
+	}
 }

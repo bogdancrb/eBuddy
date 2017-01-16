@@ -99,6 +99,10 @@ $(document).ready(function () {
                 $('.friendAcceptRequestButton').on('click', function(){
                     acceptFriendAction(this, $(this).val());
                 });
+
+                $('.friendRejectRequestButton').on('click', function(){
+                    rejectFriendAction(this, $(this).val());
+                });
             }
         })
     }
@@ -112,6 +116,30 @@ $(document).ready(function () {
         $.ajax({
             method: "POST",
             url:  "api/v1/accept_friend_request",
+            data: JSON.stringify(userInformation),
+            success: function(data) {
+                $(elem).parent().parent().remove();
+                $('.nrOfFriendRequests').html(numberOfFriendRequests - 1);
+
+                numberOfFriendRequests--;
+
+                if ($('.nrOfFriendRequests').html() <= 0)
+                {
+                    $('.nrOfFriendRequests').remove();
+                }
+            }
+        });
+    }
+
+    function rejectFriendAction(elem, friendId)
+    {
+        var userInformation = {
+            'friend_id': friendId
+        };
+
+        $.ajax({
+            method: "POST",
+            url:  "api/v1/reject_friend_request",
             data: JSON.stringify(userInformation),
             success: function(data) {
                 $(elem).parent().parent().remove();
